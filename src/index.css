@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #C8A96E;
+  --color-gold-deep: #8B6914;
+  --color-beige-light: #F5EDD6;
+  --color-beige-medium: #E8D5A3;
+  --color-warm-black: #1A1410;
+  --color-dark-card: #201A10;
+  --color-off-white: #FAF6EE;
+  --color-beige-grey: #7C6E5A;
+
+  --font-playfair: 'Playfair Display', serif;
+  --font-bricolage: 'Bricolage Grotesque', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-dm-mono: 'DM Mono', monospace;
+  --font-inter: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #1A1410;
+  color: #FAF6EE;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Underline hover animation for nav links */
+.nav-link-underline {
+  position: relative;
+}
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #C8A96E;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-out;
+}
+.nav-link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Hide scrollbar for clean UI */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1A1410;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3228;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C8A96E;
+}
+
+/* Subtle beige glow around keywords */
+.text-glow {
+  text-shadow: 0 0 30px rgba(200, 169, 110, 0.35), 0 0 60px rgba(200, 169, 110, 0.15);
+}
+
+/* Animated gold gradient on individual letters */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.letter-gradient {
+  background: linear-gradient(90deg, #C8A96E, #E8D5A3, #FAF6EE, #E8D5A3, #C8A96E);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Soft elegant text shadow for headings */
+.text-elegant-shadow {
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(26, 20, 16, 0.6);
+}
+
+/* Marquee word hover: brightness + soft gold glow */
+.marquee-item:hover {
+  color: #8B6914;
+  text-shadow: 0 0 24px rgba(200, 169, 110, 0.45), 0 0 48px rgba(200, 169, 110, 0.15);
+}
