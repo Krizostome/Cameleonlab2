@@ -25,7 +25,6 @@ const STATS: StatItem[] = [
  */
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const badgeRef = useRef<HTMLSpanElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const ctaGroupRef = useRef<HTMLDivElement>(null)
   const haloRef = useRef<HTMLDivElement>(null)
@@ -87,27 +86,17 @@ export default function Hero() {
 
       // ── Master entrance timeline ──
       const entranceTl = gsap.timeline({
-        delay: 0.1,
+        delay: 0,
         defaults: { ease: 'power3.out' },
       })
 
-      // Badge fadeUp
-      if (badgeRef.current) {
-        entranceTl.fromTo(
-          badgeRef.current,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.7 },
-          0.2
-        )
-      }
-
-      // Subtitle fadeUp — waits for title scramble to finish (~3.0s)
+      // Subtitle fadeUp — rapid cascade after title starts
       if (subtitleRef.current) {
         entranceTl.fromTo(
           subtitleRef.current,
           { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.7 },
-          3.0
+          { y: 0, opacity: 1, duration: 0.35 },
+          0.9
         )
       }
 
@@ -117,8 +106,8 @@ export default function Hero() {
         entranceTl.fromTo(
           ctas,
           { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 },
-          3.2
+          { y: 0, opacity: 1, duration: 0.35, stagger: 0.05 },
+          1.1
         )
       }
 
@@ -223,16 +212,6 @@ export default function Hero() {
         className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-6 md:px-10"
         style={{ perspective: '1200px' }}
       >
-        {/* Badge */}
-        <span
-          ref={badgeRef}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/5 px-4 py-1.5 font-dm-sans text-xs font-medium uppercase tracking-widest text-gold opacity-0"
-          style={{ willChange: 'transform, opacity' }}
-        >
-          <span className="h-px w-4 bg-gold" />
-          Agence digitale &amp; innovation
-        </span>
-
         {/* Title with mouse-driven 3D depth */}
         <motion.div
           style={{
@@ -248,18 +227,18 @@ export default function Hero() {
             <ScrambleRevealText
               text="Votre vision,"
               className="block font-playfair text-5xl font-bold text-off-white md:text-7xl lg:text-8xl"
-              delay={0.5}
-              scrambleDuration={1.5}
-              revealDuration={0.8}
+              delay={0}
+              scrambleDuration={0.6}
+              revealDuration={0.4}
               glowWords={['vision']}
               gradientWords={['Vi']}
             />
             <ScrambleRevealText
               text="notre transformation."
               className="block font-playfair text-5xl font-bold text-off-white md:text-7xl lg:text-8xl"
-              delay={0.9}
-              scrambleDuration={1.8}
-              revealDuration={0.8}
+              delay={0.05}
+              scrambleDuration={0.9}
+              revealDuration={0.4}
               glowWords={['transformation']}
               gradientWords={['tra']}
             />

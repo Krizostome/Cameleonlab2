@@ -101,7 +101,7 @@ export default function ScrambleRevealText({
       const scrambleTween = gsap.to(proxy, {
         progress: 1,
         duration: scrambleDuration,
-        ease: 'power2.inOut',
+        ease: 'power3.inOut',
         onUpdate: () => {
           const resolved = Math.floor(proxy.progress * totalChars)
           charRefs.current.forEach((span, i) => {
@@ -127,7 +127,7 @@ export default function ScrambleRevealText({
       // Fade to half-opacity during scramble so the effect is visible
       tl.to(
         containerRef.current,
-        { opacity: 0.5, duration: scrambleDuration * 0.4, ease: 'power2.out' },
+        { opacity: 0.5, duration: scrambleDuration * 0.35, ease: 'power3.out' },
         0
       )
       tl.add(scrambleTween, 0)
@@ -140,7 +140,7 @@ export default function ScrambleRevealText({
           filter: 'blur(0px)',
           y: 0,
           duration: revealDuration,
-          ease: 'power2.out',
+          ease: 'power3.out',
         },
         `+=${scrambleDuration * 0.08}`
       )

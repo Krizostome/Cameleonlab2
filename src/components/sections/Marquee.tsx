@@ -50,7 +50,7 @@ export default function Marquee() {
           setHoveredIndex(null)
         }}
         style={{
-          animation: 'marquee-scroll 22s linear infinite',
+          animation: 'marquee-scroll 13s linear infinite',
           animationPlayState: isPaused ? 'paused' : 'running',
         }}
       >

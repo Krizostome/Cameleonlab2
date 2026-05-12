@@ -188,9 +188,6 @@ export default function Navbar() {
           <span className="font-bricolage text-xl font-bold tracking-tight text-off-white md:text-2xl">
             CameleonLab
           </span>
-          <span className="rounded-full bg-gold px-2.5 py-0.5 font-bricolage text-[10px] font-extrabold uppercase tracking-wider text-warm-black">
-            Digital
-          </span>
         </a>
 
         {/* Desktop links */}

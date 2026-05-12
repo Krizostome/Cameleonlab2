@@ -123,16 +123,18 @@ export default function Services() {
           {
             y: 60,
             opacity: 0,
+            scale: 0.9,
             filter: 'blur(10px)',
             rotateX: 8,
           },
           {
             y: 0,
             opacity: 1,
+            scale: 1,
             filter: 'blur(0px)',
             rotateX: 0,
-            duration: 1.0,
-            stagger: 0.12,
+            duration: 0.9,
+            stagger: 0.1,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: cardsRef.current,
@@ -284,7 +286,7 @@ export default function Services() {
           {SERVICES.map((service, index) => (
             <div
               key={service.title}
-              className="service-card group relative rounded-[20px] border border-[#C8A96E]/10 bg-[#211A16] p-7 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:border-t-[#C8A96E]/60 hover:bg-[#2A221C] hover:shadow-[0_8px_32px_rgba(200,169,110,0.12)] md:p-8"
+              className="service-card group relative rounded-[20px] border border-[#C8A96E]/10 bg-[#211A16] p-7 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:scale-[1.02] hover:border-t-[#C8A96E]/60 hover:bg-[#2A221C] hover:shadow-[0_12px_40px_rgba(200,169,110,0.18)] md:p-8"
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
               style={{
