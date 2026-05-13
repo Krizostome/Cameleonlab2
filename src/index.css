@@ -102,3 +102,139 @@ body {
   color: #8B6914;
   text-shadow: 0 0 24px rgba(200, 169, 110, 0.45), 0 0 48px rgba(200, 169, 110, 0.15);
 }
+
+/* Infinite horizontal marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
+}
+
+/* ── Vertical & single-track marquee keyframes ─────────────────── */
+
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-vertical-reverse {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee-single {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-single-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 30s) linear infinite;
+}
+
+.animate-marquee-vertical-reverse {
+  animation: marquee-vertical-reverse var(--duration, 30s) linear infinite;
+}
+
+.animate-marquee-single {
+  animation: marquee-single var(--duration, 30s) linear infinite;
+}
+
+.animate-marquee-single-reverse {
+  animation: marquee-single-reverse var(--duration, 30s) linear infinite;
+}
+
+.marquee-pause-on-hover:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ── Light reflection sweep on cards ───────────────────────────── */
+@keyframes light-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  50%,
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/* ── GPU-optimized transforms helper ───────────────────────────── */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* ── Glass morphism premium base ───────────────────────────────── */
+.glass-premium {
+  background: linear-gradient(
+    145deg,
+    rgba(245, 239, 231, 0.08) 0%,
+    rgba(245, 239, 231, 0.03) 100%
+  );
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(200, 169, 110, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(245, 239, 231, 0.08);
+}
+
+/* ── Smooth cubic-bezier easing utility ────────────────────────── */
+.ease-premium {
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── Card glow hover ───────────────────────────────────────────── */
+.card-glow-hover {
+  position: relative;
+}
+.card-glow-hover::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(200, 169, 110, 0.3) 0%,
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.card-glow-hover:hover::before {
+  opacity: 1;
+}
