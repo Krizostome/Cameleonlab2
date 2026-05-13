@@ -86,7 +86,7 @@ export default function Process() {
     <section
       ref={sectionRef}
       id="process"
-      className="relative overflow-hidden bg-warm-black py-24 md:py-32 lg:py-40"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-24 md:py-32 lg:py-40"
       aria-label="Notre processus"
     >
       {/* Grain texture */}
@@ -104,7 +104,7 @@ export default function Process() {
         style={{
           width: '700px',
           height: '700px',
-          background: 'radial-gradient(circle, rgba(200,169,110,0.04) 0%, transparent 60%)',
+          background: 'radial-gradient(circle, rgba(0,232,122,0.04) 0%, transparent 60%)',
           filter: 'blur(80px)',
         }}
       />
@@ -117,11 +117,11 @@ export default function Process() {
           transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
           className="mb-6 text-center"
         >
-          <span className="mb-3 inline-block font-dm-sans text-xs font-medium uppercase tracking-[0.25em] text-gold/70">
+          <span className="mb-3 inline-block font-dm-sans text-xs font-medium uppercase tracking-[0.25em] text-[#00E87A]/70">
             — Notre méthode
           </span>
-          <h2 className="font-playfair text-4xl font-bold text-off-white md:text-5xl lg:text-6xl">
-            Comment on <span className="text-glow text-gold">travaille</span>
+          <h2 className="font-playfair text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
+            Comment on <span className="text-glow text-[#00E87A]">travaille</span>
           </h2>
         </motion.div>
 
@@ -129,7 +129,7 @@ export default function Process() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.19, 1, 0.22, 1] }}
-          className="mx-auto mb-16 max-w-xl text-center font-dm-sans text-base leading-relaxed text-off-white/50 md:mb-20"
+          className="mx-auto mb-16 max-w-xl text-center font-dm-sans text-base leading-relaxed text-[#071510]/50 dark:text-[#F0FAF4]/50 md:mb-20"
         >
           Un processus simple, clair et efficace.
         </motion.p>
@@ -145,12 +145,12 @@ export default function Process() {
           >
             {/* Rotating dashed ring */}
             <div
-              className="absolute inset-[8%] rounded-full border border-dashed border-gold/15"
+              className="absolute inset-[8%] rounded-full border border-dashed border-[#00E87A]/15"
               style={{ animation: 'spin 35s linear infinite' }}
             />
 
             {/* Static subtle ring */}
-            <div className="absolute inset-[8%] rounded-full border border-gold/8" />
+            <div className="absolute inset-[8%] rounded-full border border-[#00E87A]/8" />
 
             {/* Active arc indicator */}
             <svg
@@ -163,7 +163,7 @@ export default function Process() {
                 cy="50"
                 r="42"
                 fill="none"
-                stroke="rgba(200,169,110,0.25)"
+                stroke="rgba(0,232,122,0.25)"
                 strokeWidth="0.5"
                 strokeLinecap="round"
                 strokeDasharray={`${(2 * Math.PI * 42) / 4} ${2 * Math.PI * 42}`}
@@ -184,7 +184,7 @@ export default function Process() {
                   animate={{ opacity: 0.06, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.1 }}
                   transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
-                  className="pointer-events-none select-none font-playfair text-[10rem] font-bold text-gold md:text-[12rem]"
+                  className="pointer-events-none select-none font-playfair text-[10rem] font-bold text-[#00E87A] md:text-[12rem]"
                 >
                   0{active + 1}
                 </motion.span>
@@ -212,23 +212,23 @@ export default function Process() {
                   style={{
                     left: `${pos.x}%`,
                     top: `${pos.y}%`,
-                    borderColor: isActive ? 'rgba(200,169,110,0.6)' : 'rgba(200,169,110,0.15)',
-                    backgroundColor: isActive ? 'rgba(200,169,110,0.12)' : 'rgba(200,169,110,0.03)',
+                    borderColor: isActive ? 'rgba(0,232,122,0.6)' : 'rgba(0,232,122,0.15)',
+                    backgroundColor: isActive ? 'rgba(0,232,122,0.12)' : 'rgba(0,232,122,0.03)',
                     boxShadow: isActive
-                      ? '0 0 30px rgba(200,169,110,0.25), 0 0 60px rgba(200,169,110,0.1)'
+                      ? '0 0 30px rgba(0,232,122,0.25), 0 0 60px rgba(0,232,122,0.1)'
                       : 'none',
                     transform: `translate(-50%, -50%) scale(${isActive ? 1.1 : 1})`,
                   }}
                   whileHover={{
                     scale: isActive ? 1.1 : 1.08,
-                    boxShadow: '0 0 24px rgba(200,169,110,0.2)',
+                    boxShadow: '0 0 24px rgba(0,232,122,0.2)',
                   }}
                   aria-label={`Étape ${step.id} : ${step.title}`}
                 >
                   <Icon
                     className="h-5 w-5 transition-colors duration-300 md:h-6 md:w-6"
                     style={{
-                      color: isActive ? '#C8A96E' : 'rgba(250,246,238,0.5)',
+                      color: isActive ? '#00E87A' : 'rgba(7,21,16,0.5)',
                     }}
                   />
                 </motion.button>
@@ -244,7 +244,7 @@ export default function Process() {
             className="relative"
           >
             {/* Large background number */}
-            <div className="pointer-events-none absolute -right-6 -top-16 select-none font-playfair text-[12rem] font-bold leading-none text-gold opacity-[0.04] md:text-[16rem]">
+            <div className="pointer-events-none absolute -right-6 -top-16 select-none font-playfair text-[12rem] font-bold leading-none text-[#00E87A] opacity-[0.04] md:text-[16rem]">
               0{active + 1}
             </div>
 
@@ -257,19 +257,19 @@ export default function Process() {
                 transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
               >
                 <div className="mb-4 inline-flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 bg-gold/10">
-                    <currentStep.icon className="h-4 w-4 text-gold" />
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00E87A]/30 bg-[#00E87A]/10">
+                    <currentStep.icon className="h-4 w-4 text-[#00E87A]" />
                   </span>
-                  <span className="font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-gold/70">
+                  <span className="font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]/70">
                     Étape 0{active + 1}
                   </span>
                 </div>
 
-                <h3 className="mb-5 font-playfair text-3xl font-bold text-off-white md:text-4xl">
+                <h3 className="mb-5 font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
                   {currentStep.title}
                 </h3>
 
-                <p className="mb-8 font-dm-sans text-base leading-relaxed text-off-white/60">
+                <p className="mb-8 font-dm-sans text-base leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
                   {currentStep.description}
                 </p>
 
@@ -284,9 +284,9 @@ export default function Process() {
                         delay: idx * 0.06,
                         ease: [0.19, 1, 0.22, 1],
                       }}
-                      className="flex items-start gap-3 font-dm-sans text-sm text-off-white/70"
+                      className="flex items-start gap-3 font-dm-sans text-sm text-[#071510]/70 dark:text-[#F0FAF4]/70"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00E87A]/70" />
                       {point}
                     </motion.li>
                   ))}
@@ -302,8 +302,8 @@ export default function Process() {
                   onClick={() => setActive(i)}
                   className={`h-1.5 rounded-full transition-all duration-500 ${
                     i === active
-                      ? 'w-8 bg-gold'
-                      : 'w-2 bg-off-white/15 hover:bg-off-white/30'
+                      ? 'w-8 bg-[#00E87A]'
+                      : 'w-2 bg-[#071510]/15 dark:bg-[#F0FAF4]/15 hover:bg-[#071510]/30 dark:bg-[#F0FAF4]/30'
                   }`}
                   aria-label={`Aller à l'étape ${i + 1}`}
                 />
@@ -339,10 +339,10 @@ export default function Process() {
                       className="relative z-10 flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition-all duration-300 md:p-5"
                       style={{
                         borderColor: isActive
-                          ? 'rgba(200,169,110,0.25)'
-                          : 'rgba(200,169,110,0.08)',
+                          ? 'rgba(0,232,122,0.25)'
+                          : 'rgba(0,232,122,0.08)',
                         backgroundColor: isActive
-                          ? 'rgba(200,169,110,0.05)'
+                          ? 'rgba(0,232,122,0.05)'
                           : 'transparent',
                       }}
                     >
@@ -351,34 +351,34 @@ export default function Process() {
                         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-all duration-300"
                         style={{
                           borderColor: isActive
-                            ? 'rgba(200,169,110,0.5)'
-                            : 'rgba(200,169,110,0.2)',
+                            ? 'rgba(0,232,122,0.5)'
+                            : 'rgba(0,232,122,0.2)',
                           backgroundColor: isActive
-                            ? 'rgba(200,169,110,0.12)'
-                            : 'rgba(200,169,110,0.03)',
+                            ? 'rgba(0,232,122,0.12)'
+                            : 'rgba(0,232,122,0.03)',
                         }}
                       >
                         <Icon
                           className="h-4 w-4 transition-colors duration-300"
                           style={{
-                            color: isActive ? '#C8A96E' : 'rgba(250,246,238,0.5)',
+                            color: isActive ? '#00E87A' : 'rgba(7,21,16,0.5)',
                           }}
                         />
                       </span>
 
                       {/* Title & number */}
                       <div className="flex-1">
-                        <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-gold/60">
+                        <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#00E87A]/60">
                           Étape 0{step.id}
                         </span>
-                        <span className="block font-playfair text-lg font-semibold text-off-white">
+                        <span className="block font-playfair text-lg font-semibold text-[#071510] dark:text-[#F0FAF4]">
                           {step.title}
                         </span>
                       </div>
 
                       {/* Chevron */}
                       <ChevronDown
-                        className="h-4 w-4 shrink-0 text-off-white/40 transition-transform duration-300"
+                        className="h-4 w-4 shrink-0 text-[#071510]/40 dark:text-[#F0FAF4]/40 transition-transform duration-300"
                         style={{
                           transform: isActive ? 'rotate(180deg)' : 'rotate(0deg)',
                         }}
@@ -396,16 +396,16 @@ export default function Process() {
                           className="overflow-hidden"
                         >
                           <div className="px-4 pb-2 pt-3 md:px-5">
-                            <p className="mb-5 font-dm-sans text-sm leading-relaxed text-off-white/60">
+                            <p className="mb-5 font-dm-sans text-sm leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
                               {step.description}
                             </p>
                             <ul className="space-y-2.5">
                               {step.points.map((point) => (
                                 <li
                                   key={point}
-                                  className="flex items-start gap-3 font-dm-sans text-sm text-off-white/70"
+                                  className="flex items-start gap-3 font-dm-sans text-sm text-[#071510]/70 dark:text-[#F0FAF4]/70"
                                 >
-                                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/60" />
+                                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00E87A]/60" />
                                   {point}
                                 </li>
                               ))}

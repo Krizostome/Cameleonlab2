@@ -191,7 +191,7 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative overflow-hidden bg-[#1A1410] py-24 md:py-32"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-24 md:py-32"
       aria-label="Nos services"
       onMouseMove={handleMouseMove}
     >
@@ -199,7 +199,7 @@ export default function Services() {
       <div
         className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.06]"
         style={{
-          background: 'radial-gradient(ellipse, rgba(200,169,110,0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(0,232,122,0.4) 0%, transparent 70%)',
           filter: 'blur(80px)',
         }}
       />
@@ -218,7 +218,7 @@ export default function Services() {
         className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(200,169,110,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,110,0.3) 1px, transparent 1px)',
+            'linear-gradient(rgba(0,232,122,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,232,122,0.3) 1px, transparent 1px)',
           backgroundSize: '64px 64px',
         }}
       />
@@ -233,7 +233,7 @@ export default function Services() {
           translateX: '-50%',
           translateY: '-50%',
           background:
-            'radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 70%)',
           opacity: hoveredCard !== null ? 0.6 : 0,
         }}
       />
@@ -242,7 +242,7 @@ export default function Services() {
       <div
         className="blob pointer-events-none absolute left-[10%] top-[20%] h-64 w-64 rounded-full opacity-[0.04]"
         style={{
-          background: 'radial-gradient(circle, rgba(200,169,110,0.5), transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0,232,122,0.5), transparent 70%)',
           filter: 'blur(60px)',
         }}
       />
@@ -258,16 +258,16 @@ export default function Services() {
         {/* Label */}
         <span
           ref={labelRef}
-          className="mb-6 inline-flex items-center gap-3 font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-[#C8A96E] opacity-0"
+          className="mb-6 inline-flex items-center gap-3 font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A] opacity-0"
         >
-          <span className="h-px w-6 bg-[#C8A96E]" />
+          <span className="h-px w-6 bg-[#00E87A]" />
           Ce que nous faisons
         </span>
 
         {/* Title */}
         <h2
           ref={titleRef}
-          className="mb-16 max-w-4xl font-playfair text-4xl font-bold leading-tight text-[#F8F4EC] md:text-5xl lg:text-6xl"
+          className="mb-16 max-w-4xl font-playfair text-4xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
           style={{ perspective: '800px' }}
         >
           {titleWords.map((word, i) => (
@@ -286,7 +286,7 @@ export default function Services() {
           {SERVICES.map((service, index) => (
             <div
               key={service.title}
-              className="service-card group relative rounded-[20px] border border-[#C8A96E]/10 bg-[#211A16] p-7 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:scale-[1.02] hover:border-t-[#C8A96E]/60 hover:bg-[#2A221C] hover:shadow-[0_12px_40px_rgba(200,169,110,0.18)] md:p-8"
+              className="service-card group relative rounded-[20px] border border-[#00E87A]/10 bg-[#F7FFF9] dark:bg-[#071510] p-7 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:scale-[1.02] hover:border-t-[#00E87A]/60 hover:bg-[#F0FAF4] dark:hover:bg-[#0a1812] hover:shadow-[0_12px_40px_rgba(0,232,122,0.18)] md:p-8"
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
               style={{
@@ -300,30 +300,30 @@ export default function Services() {
                 aria-hidden="true"
               >
                 <div
-                  className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-[rgba(200,169,110,0.03)] to-transparent transition-transform duration-1000 group-hover:translate-x-[250%]"
+                  className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-[rgba(0,232,122,0.03)] to-transparent transition-transform duration-1000 group-hover:translate-x-[250%]"
                   style={{ transitionTimingFunction: 'cubic-bezier(0.23,1,0.32,1)' }}
                 />
               </div>
 
               {/* Icon */}
-              <div className="mb-5 inline-flex items-center justify-center text-2xl text-[#C8A96E] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-12 md:text-3xl">
+              <div className="mb-5 inline-flex items-center justify-center text-2xl text-[#00E87A] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-12 md:text-3xl">
                 {service.icon}
               </div>
 
               {/* Title */}
-              <h3 className="mb-3 font-inter text-lg font-semibold text-[#F8F4EC] md:text-xl">
+              <h3 className="mb-3 font-inter text-lg font-semibold text-[#071510] dark:text-[#F0FAF4] md:text-xl">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="mb-6 font-dm-sans text-sm leading-relaxed text-[#7C6E5A]">
+              <p className="mb-6 font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280]">
                 {service.description}
               </p>
 
               {/* Link */}
               <a
                 href="#"
-                className="inline-flex items-center gap-2 font-dm-sans text-sm font-medium text-[#C8A96E] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-1"
+                className="inline-flex items-center gap-2 font-dm-sans text-sm font-medium text-[#00E87A] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-1"
               >
                 En savoir plus
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -338,7 +338,7 @@ export default function Services() {
         <div ref={ctaRef} className="mt-16 flex justify-center opacity-0">
           <a
             href="#"
-            className="group inline-flex items-center gap-3 rounded-full border border-[#C8A96E]/30 px-8 py-3.5 font-bricolage text-sm font-bold text-[#F8F4EC] transition-all duration-300 hover:border-[#C8A96E]/60 hover:bg-[#C8A96E]/5 hover:shadow-[0_0_24px_rgba(200,169,110,0.15)]"
+            className="group inline-flex items-center gap-3 rounded-full border border-[#00E87A]/30 px-8 py-3.5 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4] transition-all duration-300 hover:border-[#00E87A]/60 hover:bg-[#00E87A]/5 hover:shadow-[0_0_24px_rgba(0,232,122,0.15)]"
           >
             Voir tous nos services
             <span className="transition-transform duration-300 group-hover:translate-x-1">

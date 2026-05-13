@@ -54,7 +54,7 @@ function FloatingPathsBackground() {
     () => [
       {
         d: "M-200,300 C-50,100 150,500 400,250 S800,50 1100,300 S1500,550 1800,200 S2200,400 2500,150",
-        color: "#C8A96E",
+        color: "#00E87A",
         delay: 0,
         duration: 28,
         xRange: 30,
@@ -62,7 +62,7 @@ function FloatingPathsBackground() {
       },
       {
         d: "M-100,500 C100,300 300,700 600,450 S1000,200 1300,500 S1700,750 2000,350 S2400,600 2700,250",
-        color: "#E8D5A3",
+        color: "#00C060",
         delay: 3,
         duration: 34,
         xRange: -25,
@@ -70,7 +70,7 @@ function FloatingPathsBackground() {
       },
       {
         d: "M-150,150 C50,350 250,50 500,300 S900,550 1200,200 S1600,50 1900,350 S2300,600 2600,150",
-        color: "#C8A96E",
+        color: "#00E87A",
         delay: 6,
         duration: 30,
         xRange: 20,
@@ -78,7 +78,7 @@ function FloatingPathsBackground() {
       },
       {
         d: "M-50,600 C150,400 350,800 650,500 S1050,250 1350,600 S1750,850 2050,400 S2450,650 2750,300",
-        color: "#F5EDD6",
+        color: "#E6FFF2",
         delay: 9,
         duration: 36,
         xRange: -35,
@@ -86,7 +86,7 @@ function FloatingPathsBackground() {
       },
       {
         d: "M-250,400 C-50,200 150,600 450,350 S850,100 1150,450 S1550,700 1850,300 S2250,550 2550,200",
-        color: "#8B6914",
+        color: "#007A3D",
         delay: 12,
         duration: 32,
         xRange: 28,
@@ -94,7 +94,7 @@ function FloatingPathsBackground() {
       },
       {
         d: "M0,200 C200,50 400,400 700,150 S1100,350 1400,100 S1800,450 2100,200 S2500,500 2800,150",
-        color: "#E8D5A3",
+        color: "#00C060",
         delay: 15,
         duration: 26,
         xRange: -20,
@@ -102,7 +102,7 @@ function FloatingPathsBackground() {
       },
       {
         d: "M-180,550 C20,350 220,750 520,450 S920,200 1220,550 S1620,800 1920,350 S2320,600 2620,250",
-        color: "#C8A96E",
+        color: "#00E87A",
         delay: 18,
         duration: 38,
         xRange: 22,
@@ -110,7 +110,7 @@ function FloatingPathsBackground() {
       },
       {
         d: "M-80,100 C120,300 320,0 620,250 S1020,500 1320,150 S1720,50 2020,400 S2420,650 2720,200",
-        color: "#F5EDD6",
+        color: "#E6FFF2",
         delay: 21,
         duration: 30,
         xRange: -28,
@@ -236,7 +236,7 @@ export default function CTASection() {
     <section
       role="region"
       aria-labelledby="cta-title"
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#1A1410]"
+      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A]"
     >
       {/* ── Floating Paths Background ── */}
       <div className="absolute inset-0 opacity-40">
@@ -248,7 +248,7 @@ export default function CTASection() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(200,169,110,0.08) 0%, rgba(200,169,110,0.02) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(0,232,122,0.08) 0%, rgba(0,232,122,0.02) 40%, transparent 70%)",
         }}
       />
 
@@ -271,7 +271,7 @@ export default function CTASection() {
         {/* Label */}
         <motion.p
           variants={itemVariants}
-          className="font-['Bricolage_Grotesque'] text-[11px] md:text-xs uppercase tracking-[0.25em] text-[#C8A96E]/80 mb-6 md:mb-8"
+          className="font-['Bricolage_Grotesque'] text-[11px] md:text-xs uppercase tracking-[0.25em] text-[#00E87A]/80 mb-6 md:mb-8"
         >
           — Construisons quelque chose d’exceptionnel
         </motion.p>
@@ -279,7 +279,7 @@ export default function CTASection() {
         {/* Main Title — Letter reveal */}
         <h2
           id="cta-title"
-          className="font-['Playfair_Display'] font-extrabold text-[#FAF6EE] leading-[1.05] mb-8 md:mb-10"
+          className="font-['Playfair_Display'] font-extrabold text-[#071510] dark:text-[#F0FAF4] leading-[1.05] mb-8 md:mb-10"
           style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.2rem)" }}
         >
           <LetterReveal text="Transformons votre vision digitale en une expérience mémorable." />
@@ -288,7 +288,7 @@ export default function CTASection() {
         {/* Description */}
         <motion.p
           variants={itemVariants}
-          className="font-['DM_Sans'] font-light text-[#7C6E5A] max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-12 md:mb-14"
+          className="font-['DM_Sans'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-12 md:mb-14"
         >
           Nous concevons des expériences digitales modernes, élégantes et
           performantes pour les marques ambitieuses.
@@ -304,7 +304,7 @@ export default function CTASection() {
             href="#contact"
             whileHover={shouldReduce ? {} : buttonHover}
             whileTap={shouldReduce ? {} : { scale: 0.98 }}
-            className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-['Bricolage_Grotesque'] font-semibold text-[14px] tracking-wide text-[#1A1410] bg-[#C8A96E] overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(200,169,110,0.35)] w-full sm:w-auto"
+            className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-['Bricolage_Grotesque'] font-semibold text-[14px] tracking-wide text-[#071510] dark:text-[#F0FAF4] bg-[#00E87A] overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(0,232,122,0.35)] w-full sm:w-auto"
           >
             <span className="relative z-10">Démarrer un projet</span>
             {/* Shimmer */}
@@ -330,7 +330,7 @@ export default function CTASection() {
             href="#portfolio"
             whileHover={shouldReduce ? {} : buttonHover}
             whileTap={shouldReduce ? {} : { scale: 0.98 }}
-            className="inline-flex items-center justify-center px-10 py-4 rounded-full font-['Bricolage_Grotesque'] font-semibold text-[14px] tracking-wide text-[#FAF6EE] border border-[#C8A96E]/40 bg-[#FAF6EE]/[0.04] backdrop-blur-md hover:bg-[#C8A96E]/10 hover:border-[#C8A96E]/70 transition-all duration-300 w-full sm:w-auto"
+            className="inline-flex items-center justify-center px-10 py-4 rounded-full font-['Bricolage_Grotesque'] font-semibold text-[14px] tracking-wide text-[#071510] dark:text-[#F0FAF4] border border-[#00E87A]/40 bg-[#071510]/[0.04] dark:bg-[#F0FAF4]/[0.04] backdrop-blur-md hover:bg-[#00E87A]/10 hover:border-[#00E87A]/70 transition-all duration-300 w-full sm:w-auto"
           >
             Voir nos réalisations
           </motion.a>
@@ -339,7 +339,7 @@ export default function CTASection() {
         {/* Trust micro-copy */}
         <motion.p
           variants={itemVariants}
-          className="mt-10 md:mt-12 font-['DM_Mono'] text-[11px] text-[#7C6E5A]/60 tracking-wide"
+          className="mt-10 md:mt-12 font-['DM_Mono'] text-[11px] text-[#4B5563] dark:text-[#6B7280]/60 tracking-wide"
         >
           Réponse sous 24h · Devis gratuit · Sans engagement
         </motion.p>

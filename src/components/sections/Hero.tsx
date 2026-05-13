@@ -168,7 +168,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-warm-black pb-16 pt-24"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] pb-16 pt-24"
       aria-label="Accueil"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -187,7 +187,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(200,169,110,0.05) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(0,232,122,0.05) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
           maskImage: 'radial-gradient(ellipse 60% 50% at 50% 40%, black 40%, transparent 80%)',
           WebkitMaskImage:
@@ -202,7 +202,7 @@ export default function Hero() {
         style={{
           width: '600px',
           height: '400px',
-          background: 'radial-gradient(ellipse, rgba(200,169,110,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(0,232,122,0.12) 0%, transparent 70%)',
           opacity: 0.06,
           filter: 'blur(60px)',
         }}
@@ -226,7 +226,7 @@ export default function Hero() {
           <h1 className="text-elegant-shadow">
             <ScrambleRevealText
               text="Votre vision,"
-              className="block font-playfair text-5xl font-bold text-off-white md:text-7xl lg:text-8xl"
+              className="block font-playfair text-5xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-7xl lg:text-8xl"
               delay={0}
               scrambleDuration={0.6}
               revealDuration={0.4}
@@ -235,7 +235,7 @@ export default function Hero() {
             />
             <ScrambleRevealText
               text="notre transformation."
-              className="block font-playfair text-5xl font-bold text-off-white md:text-7xl lg:text-8xl"
+              className="block font-playfair text-5xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-7xl lg:text-8xl"
               delay={0.05}
               scrambleDuration={0.9}
               revealDuration={0.4}
@@ -248,7 +248,7 @@ export default function Hero() {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="mb-10 max-w-xl text-center font-dm-sans text-base font-light leading-relaxed text-beige-grey md:text-lg opacity-0"
+          className="mb-10 max-w-xl text-center font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg opacity-0"
           style={{ willChange: 'transform, opacity' }}
         >
           Nous concevons des expériences digitales sur mesure qui propulsent
@@ -261,7 +261,7 @@ export default function Hero() {
           className="mb-20 flex flex-wrap items-center justify-center gap-4"
         >
           <button
-            className="relative overflow-hidden rounded-full bg-gold px-8 py-3.5 font-bricolage text-sm font-extrabold text-warm-black transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            className="relative overflow-hidden rounded-full bg-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] transition-transform hover:scale-[1.02] active:scale-[0.98]"
             onClick={() => (window.location.href = '#contact')}
           >
             <span className="relative z-10">Démarrer un projet</span>
@@ -277,7 +277,7 @@ export default function Hero() {
           </button>
           <a
             href="#portfolio"
-            className="rounded-full border border-gold px-8 py-3.5 font-bricolage text-sm font-bold text-off-white transition-colors hover:bg-gold/10"
+            className="rounded-full border border-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4] transition-colors hover:bg-[#00E87A]/10"
           >
             Voir nos réalisations
           </a>
@@ -286,17 +286,17 @@ export default function Hero() {
         {/* Stats */}
         <div
           ref={statsRef}
-          className="grid w-full max-w-2xl grid-cols-3 gap-6 border-t border-gold/10 pt-8"
+          className="grid w-full max-w-2xl grid-cols-3 gap-6 border-t border-[#00E87A]/10 pt-8"
         >
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
               <span
                 data-count={stat.value}
-                className="block font-dm-mono text-2xl font-bold text-gold md:text-3xl"
+                className="block font-dm-mono text-2xl font-bold text-[#00E87A] md:text-3xl"
               >
                 0
               </span>
-              <span className="mt-1 block font-dm-sans text-[10px] font-medium uppercase tracking-widest text-beige-grey">
+              <span className="mt-1 block font-dm-sans text-[10px] font-medium uppercase tracking-widest text-[#4B5563] dark:text-[#6B7280]">
                 {stat.label}
               </span>
             </div>

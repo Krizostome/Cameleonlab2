@@ -258,7 +258,7 @@ function PhotoCard({
       />
 
       {/* Gradient overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#1A1410]/60 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#F7FFF9]/60 dark:from-[#060C0A]/60 via-transparent to-transparent pointer-events-none" />
 
       {/* Socials — revealed on active */}
       <AnimatePresence>
@@ -281,7 +281,7 @@ function PhotoCard({
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="w-8 h-8 rounded-full bg-[#FAF6EE]/10 backdrop-blur-sm flex items-center justify-center text-[#FAF6EE] hover:text-[#C8A96E] hover:bg-[#C8A96E]/20 transition-colors duration-200"
+                className="w-8 h-8 rounded-full bg-[#071510]/10 dark:bg-[#F0FAF4]/10 backdrop-blur-sm flex items-center justify-center text-[#071510] dark:text-[#F0FAF4] hover:text-[#00E87A] hover:bg-[#00E87A]/20 transition-colors duration-200"
               >
                 <TwitterIcon className="w-3.5 h-3.5" />
               </motion.a>
@@ -297,7 +297,7 @@ function PhotoCard({
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="w-8 h-8 rounded-full bg-[#FAF6EE]/10 backdrop-blur-sm flex items-center justify-center text-[#FAF6EE] hover:text-[#C8A96E] hover:bg-[#C8A96E]/20 transition-colors duration-200"
+                className="w-8 h-8 rounded-full bg-[#071510]/10 dark:bg-[#F0FAF4]/10 backdrop-blur-sm flex items-center justify-center text-[#071510] dark:text-[#F0FAF4] hover:text-[#00E87A] hover:bg-[#00E87A]/20 transition-colors duration-200"
               >
                 <LinkedinIcon className="w-3.5 h-3.5" />
               </motion.a>
@@ -313,7 +313,7 @@ function PhotoCard({
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="w-8 h-8 rounded-full bg-[#FAF6EE]/10 backdrop-blur-sm flex items-center justify-center text-[#FAF6EE] hover:text-[#C8A96E] hover:bg-[#C8A96E]/20 transition-colors duration-200"
+                className="w-8 h-8 rounded-full bg-[#071510]/10 dark:bg-[#F0FAF4]/10 backdrop-blur-sm flex items-center justify-center text-[#071510] dark:text-[#F0FAF4] hover:text-[#00E87A] hover:bg-[#00E87A]/20 transition-colors duration-200"
               >
                 <BehanceIcon className="w-3.5 h-3.5" />
               </motion.a>
@@ -329,7 +329,7 @@ function PhotoCard({
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="w-8 h-8 rounded-full bg-[#FAF6EE]/10 backdrop-blur-sm flex items-center justify-center text-[#FAF6EE] hover:text-[#C8A96E] hover:bg-[#C8A96E]/20 transition-colors duration-200"
+                className="w-8 h-8 rounded-full bg-[#071510]/10 dark:bg-[#F0FAF4]/10 backdrop-blur-sm flex items-center justify-center text-[#071510] dark:text-[#F0FAF4] hover:text-[#00E87A] hover:bg-[#00E87A]/20 transition-colors duration-200"
               >
                 <InstagramIcon className="w-3.5 h-3.5" />
               </motion.a>
@@ -371,7 +371,7 @@ function MemberRow({
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className={[
-        "flex items-center gap-4 py-5 border-b border-[#FAF6EE]/10 cursor-pointer",
+        "flex items-center gap-4 py-5 border-b border-black/10 dark:border-white/10 cursor-pointer",
         isDimmed ? "opacity-40" : "opacity-100",
       ].join(" ")}
     >
@@ -379,7 +379,7 @@ function MemberRow({
       <motion.span
         className="w-4 h-3 rounded-sm flex-shrink-0"
         animate={{
-          backgroundColor: isActive ? "#C8A96E" : "rgba(232, 213, 163, 0.3)",
+          backgroundColor: isActive ? "#00E87A" : "rgba(0, 232, 122, 0.3)",
           scale: isActive ? 1.08 : 1,
         }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -390,13 +390,13 @@ function MemberRow({
         <motion.h4
           className="text-base md:text-lg"
           style={{ fontFamily: "Bricolage Grotesque", fontWeight: 600 }}
-          animate={{ color: isActive ? "#FAF6EE" : "rgba(250, 246, 238, 0.55)" }}
+          animate={{ color: isActive ? "#071510" : "rgba(7, 21, 16, 0.55)" }}
           transition={{ duration: 0.3 }}
         >
           {member.name}
         </motion.h4>
         <p
-          className="text-[11px] uppercase tracking-[0.18em] text-[#7C6E5A] mt-0.5"
+          className="text-[11px] uppercase tracking-[0.18em] text-[#4B5563] dark:text-[#6B7280] mt-0.5"
           style={{ fontFamily: "DM Sans", fontWeight: 400 }}
         >
           {member.role}
@@ -419,7 +419,7 @@ function MemberRow({
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="p-1.5 rounded-md text-[#7C6E5A] hover:text-[#C8A96E] hover:bg-[#C8A96E]/10 transition-colors duration-200"
+                className="p-1.5 rounded-md text-[#4B5563] dark:text-[#6B7280] hover:text-[#00E87A] hover:bg-[#00E87A]/10 transition-colors duration-200"
               >
                 <s.Icon className="w-3.5 h-3.5" />
               </motion.a>
@@ -441,7 +441,7 @@ export default function Team() {
     <section
       role="region"
       aria-labelledby="team-title"
-      className="bg-[#1A1410] py-20 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="bg-[#F7FFF9] dark:bg-[#060C0A] py-20 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* ── Header ── */}
@@ -454,21 +454,21 @@ export default function Team() {
         >
           <motion.p
             variants={headerItem}
-            className="font-['Bricolage_Grotesque'] text-[11px] uppercase tracking-[0.2em] text-[#C8A96E] mb-4"
+            className="font-['Bricolage_Grotesque'] text-[11px] uppercase tracking-[0.2em] text-[#00E87A] mb-4"
           >
             — L'équipe derrière vos projets
           </motion.p>
           <motion.h2
             id="team-title"
             variants={headerItem}
-            className="font-['Playfair_Display'] font-extrabold text-[#FAF6EE] mb-6"
+            className="font-['Playfair_Display'] font-extrabold text-[#071510] dark:text-[#F0FAF4] mb-6"
             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
           >
             Des passionnés à votre service.
           </motion.h2>
           <motion.p
             variants={headerItem}
-            className="font-['DM_Sans'] font-light text-[#7C6E5A] max-w-xl mx-auto text-center text-base md:text-lg leading-relaxed"
+            className="font-['DM_Sans'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-xl mx-auto text-center text-base md:text-lg leading-relaxed"
           >
             Une équipe soudée, créative et engagée — chaque projet est traité
             avec la même exigence.

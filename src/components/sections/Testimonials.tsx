@@ -98,7 +98,7 @@ function StarRating({ rating }: { rating: 4 | 5 }) {
         <svg
           key={i}
           className={`h-3.5 w-3.5 ${
-            i < rating ? "text-[#C8A96E]" : "text-[#7C6E5A]/40"
+            i < rating ? "text-[#00E87A]" : "text-[#4B5563] dark:text-[#6B7280]/40"
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -120,7 +120,7 @@ function Avatar({ name }: { name: string }) {
     .toUpperCase()
 
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#C8A96E]/15 text-xs font-bold text-[#C8A96E] ring-1 ring-[#C8A96E]/20">
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00E87A]/15 text-xs font-bold text-[#00E87A] ring-1 ring-[#00E87A]/20">
       {initials}
     </div>
   )
@@ -128,24 +128,24 @@ function Avatar({ name }: { name: string }) {
 
 function TestimonialCard({ data }: { data: TestimonialData }) {
   return (
-    <div className="relative w-full rounded-2xl border border-[rgba(200,169,110,0.15)] bg-[#201A10]/90 p-5 backdrop-blur-sm">
+    <div className="relative w-full rounded-2xl border border-[rgba(0,232,122,0.15)] bg-white/82 dark:bg-[#071510]/90 p-5 backdrop-blur-sm">
       {/* Subtle top glow line */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-t-2xl bg-gradient-to-r from-transparent via-[rgba(200,169,110,0.4)] to-transparent opacity-60" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-t-2xl bg-gradient-to-r from-transparent via-[rgba(0,232,122,0.4)] to-transparent opacity-60" />
 
       <div className="flex flex-col gap-3.5">
         <StarRating rating={data.rating} />
 
-        <p className="font-dm-sans text-sm leading-relaxed text-[#F5EDD6]/90">
+        <p className="font-dm-sans text-sm leading-relaxed text-[#071510] dark:text-[#E6FFF2]/90">
           &ldquo;{data.body}&rdquo;
         </p>
 
         <div className="flex items-center gap-3 pt-1">
           <Avatar name={data.name} />
           <div className="min-w-0">
-            <p className="truncate font-bricolage text-sm font-semibold text-[#FAF6EE]">
+            <p className="truncate font-bricolage text-sm font-semibold text-[#071510] dark:text-[#F0FAF4]">
               {data.name}
             </p>
-            <p className="truncate font-dm-sans text-xs text-[#7C6E5A]">
+            <p className="truncate font-dm-sans text-xs text-[#4B5563] dark:text-[#6B7280]">
               {data.username} · {data.country}
             </p>
           </div>
@@ -161,7 +161,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative overflow-hidden bg-[#1A1410] py-20 md:py-28"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-20 md:py-28"
       aria-label="Témoignages clients"
     >
       {/* Ambient radial glow */}
@@ -179,27 +179,27 @@ export default function Testimonials() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
         {/* Header */}
         <div className="mb-12 text-center md:mb-16">
-          <span className="mb-4 inline-block font-bricolage text-[11px] uppercase tracking-[0.2em] text-[#C8A96E]/70">
+          <span className="mb-4 inline-block font-bricolage text-[11px] uppercase tracking-[0.2em] text-[#00E87A]/70">
             — Ce que disent nos clients
           </span>
-          <h2 className="mb-4 font-playfair text-4xl font-bold text-[#FAF6EE] md:text-5xl lg:text-6xl">
+          <h2 className="mb-4 font-playfair text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
             Ils nous font confiance.
           </h2>
-          <p className="mx-auto max-w-xl font-dm-sans text-base font-light leading-relaxed text-[#7C6E5A] md:text-lg">
+          <p className="mx-auto max-w-xl font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg">
             Des résultats concrets, des clients satisfaits — partout dans le monde.
           </p>
         </div>
 
         {/* 3D Marquee Block */}
-        <div className="relative overflow-hidden rounded-3xl border border-[rgba(200,169,110,0.08)] bg-[rgba(245,237,214,0.02)] h-[380px] md:h-[480px] md:[perspective:400px]">
+        <div className="relative overflow-hidden rounded-3xl border border-[rgba(0,232,122,0.08)] bg-[rgba(230,255,242,0.02)] h-[380px] md:h-[480px] md:[perspective:400px]">
           {/* Top fade mask */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-gradient-to-b from-[#1A1410] to-transparent md:h-24" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-gradient-to-b from-[#F7FFF9] dark:from-[#060C0A] to-transparent md:h-24" />
           {/* Bottom fade mask */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-gradient-to-t from-[#1A1410] to-transparent md:h-24" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-gradient-to-t from-[#F7FFF9] dark:from-[#060C0A] to-transparent md:h-24" />
           {/* Left fade mask (desktop) */}
-          <div className="pointer-events-none absolute left-0 top-0 z-20 hidden h-full w-12 bg-gradient-to-r from-[#1A1410] to-transparent md:block" />
+          <div className="pointer-events-none absolute left-0 top-0 z-20 hidden h-full w-12 bg-gradient-to-r from-[#F7FFF9] dark:from-[#060C0A] to-transparent md:block" />
           {/* Right fade mask (desktop) */}
-          <div className="pointer-events-none absolute right-0 top-0 z-20 hidden h-full w-12 bg-gradient-to-l from-[#1A1410] to-transparent md:block" />
+          <div className="pointer-events-none absolute right-0 top-0 z-20 hidden h-full w-12 bg-gradient-to-l from-[#F7FFF9] dark:from-[#060C0A] to-transparent md:block" />
 
           {/* Inner 3D transformed grid */}
           <div className="flex h-full flex-row gap-3 p-3 md:gap-4 md:p-4 md:[transform:translateX(-80px)_translateZ(-80px)_rotateX(18deg)_rotateY(-8deg)_rotateZ(18deg)] md:[transform-style:preserve-3d]">

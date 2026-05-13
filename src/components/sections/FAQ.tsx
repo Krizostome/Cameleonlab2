@@ -248,7 +248,7 @@ function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemPro
       {/* Animated progress line on hover */}
       <div
         ref={lineRef}
-        className="pointer-events-none absolute left-0 top-0 h-full w-0.5 origin-top bg-[#C8A96E]"
+        className="pointer-events-none absolute left-0 top-0 h-full w-0.5 origin-top bg-[#00E87A]"
         style={{ transform: "scaleY(0)" }}
         aria-hidden="true"
       />
@@ -260,13 +260,13 @@ function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemPro
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${item.id}`}
-        className="flex w-full items-start gap-4 py-6 text-left transition-colors duration-300 hover:bg-[#201A10]/40 md:gap-6 md:py-7"
+        className="flex w-full items-start gap-4 py-6 text-left transition-colors duration-300 hover:bg-white/82 dark:bg-[#071510]/40 md:gap-6 md:py-7"
       >
         {/* Number */}
         <span
           ref={numberRef}
           className={`mt-0.5 shrink-0 font-dm-mono text-sm font-medium transition-colors duration-300 md:text-base ${
-            isOpen ? "text-[#C8A96E]" : "text-[#7C6E5A] group-hover:text-[#C8A96E]"
+            isOpen ? "text-[#00E87A]" : "text-[#4B5563] dark:text-[#6B7280] group-hover:text-[#00E87A]"
           }`}
         >
           {item.number}
@@ -275,7 +275,7 @@ function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemPro
         {/* Question text */}
         <span
           className={`flex-1 font-bricolage text-[15px] font-bold leading-snug transition-colors duration-300 md:text-lg ${
-            isOpen ? "text-[#FAF6EE]" : "text-[#FAF6EE]/80 group-hover:text-[#FAF6EE]"
+            isOpen ? "text-[#071510] dark:text-[#F0FAF4]" : "text-[#071510]/80 dark:text-[#F0FAF4]/80 group-hover:text-[#071510] dark:text-[#F0FAF4]"
           }`}
         >
           {item.question}
@@ -286,8 +286,8 @@ function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemPro
           ref={iconRef}
           className={`mt-0.5 shrink-0 flex h-8 w-8 items-center justify-center rounded-full border transition-colors duration-300 md:h-9 md:w-9 ${
             isOpen
-              ? "border-[#C8A96E] bg-[#C8A96E] text-[#1A1410]"
-              : "border-[#7C6E5A]/40 text-[#7C6E5A] group-hover:border-[#C8A96E]/60 group-hover:text-[#C8A96E]"
+              ? "border-[#00E87A] bg-[#00E87A] text-[#071510] dark:text-[#F0FAF4]"
+              : "border-[#4B5563]/40 dark:border-[#6B7280]/40 text-[#4B5563] dark:text-[#6B7280] group-hover:border-[#00E87A]/60 group-hover:text-[#00E87A]"
           }`}
           aria-hidden="true"
         >
@@ -305,7 +305,7 @@ function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemPro
         style={{ height: isOpen ? undefined : 0 }}
       >
         <div className="pb-6 pl-10 pr-12 md:pb-7 md:pl-[3.25rem] md:pr-16">
-          <p className="font-dm-sans text-sm leading-relaxed text-[#7C6E5A] md:text-base">
+          <p className="font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-base">
             {item.answer}
           </p>
         </div>
@@ -313,7 +313,7 @@ function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemPro
 
       {/* Separator line */}
       <div
-        className="h-px w-full bg-[#E8D5A3]/15"
+        className="h-px w-full bg-[#00C060]/15"
         aria-hidden="true"
       />
     </div>
@@ -421,12 +421,12 @@ export default function FAQ() {
       id="faq"
       role="region"
       aria-labelledby="faq-title"
-      className="relative overflow-hidden bg-[#1A1410] py-16 md:py-24 lg:py-28"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-16 md:py-24 lg:py-28"
     >
       {/* Decorative background "FAQ" number */}
       <span
         ref={bgNumberRef}
-        className="pointer-events-none absolute -left-4 top-24 select-none font-playfair text-[180px] font-black leading-none text-[#F5EDD6]/[0.03] md:top-32 md:text-[280px] lg:left-8 lg:text-[380px]"
+        className="pointer-events-none absolute -left-4 top-24 select-none font-playfair text-[180px] font-black leading-none text-[#E6FFF2]/[0.03] md:top-32 md:text-[280px] lg:left-8 lg:text-[380px]"
         aria-hidden="true"
       >
         FAQ
@@ -447,28 +447,28 @@ export default function FAQ() {
           {/* LEFT COLUMN — sticky on desktop */}
           <div ref={leftColRef} className="lg:sticky lg:top-28 lg:self-start">
             {/* Label */}
-            <span className="mb-4 inline-block font-bricolage text-[11px] uppercase tracking-[0.2em] text-[#C8A96E]/70">
+            <span className="mb-4 inline-block font-bricolage text-[11px] uppercase tracking-[0.2em] text-[#00E87A]/70">
               — Questions fréquentes
             </span>
 
             {/* Title */}
             <h2
               id="faq-title"
-              className="mb-6 font-playfair text-4xl font-bold leading-[1.1] text-[#FAF6EE] md:text-5xl lg:text-[3.25rem]"
+              className="mb-6 font-playfair text-4xl font-bold leading-[1.1] text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-[3.25rem]"
             >
               Tout ce que vous{" "}
-              <span className="text-[#C8A96E]">voulez savoir.</span>
+              <span className="text-[#00E87A]">voulez savoir.</span>
             </h2>
 
             {/* Subtitle */}
-            <p className="mb-8 max-w-sm font-dm-sans text-base font-light leading-relaxed text-[#7C6E5A] md:text-lg">
+            <p className="mb-8 max-w-sm font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg">
               Vous ne trouvez pas la réponse ? Notre équipe vous répond en moins de 24h ouvrées.
             </p>
 
             {/* CTA Contact */}
             <a
               href="#contact"
-              className="group mb-12 inline-flex w-full items-center justify-center gap-3 rounded-full border border-[#C8A96E]/30 bg-[#C8A96E]/10 px-7 py-3.5 font-bricolage text-sm font-semibold text-[#C8A96E] backdrop-blur-sm transition-all duration-300 hover:border-[#C8A96E] hover:bg-[#C8A96E] hover:text-[#1A1410] lg:w-auto"
+              className="group mb-12 inline-flex w-full items-center justify-center gap-3 rounded-full border border-[#00E87A]/30 bg-[#00E87A]/10 px-7 py-3.5 font-bricolage text-sm font-semibold text-[#00E87A] backdrop-blur-sm transition-all duration-300 hover:border-[#00E87A] hover:bg-[#00E87A] hover:text-[#071510] dark:text-[#F0FAF4] lg:w-auto"
             >
               Poser une question
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -478,10 +478,10 @@ export default function FAQ() {
             <div className="hidden flex-wrap gap-8 lg:flex">
               {STATS.map((stat) => (
                 <div key={stat.label} className="flex flex-col gap-1">
-                  <span className="font-dm-mono text-2xl font-medium text-[#FAF6EE]">
+                  <span className="font-dm-mono text-2xl font-medium text-[#071510] dark:text-[#F0FAF4]">
                     {stat.value}
                   </span>
-                  <span className="font-dm-sans text-xs text-[#7C6E5A]">
+                  <span className="font-dm-sans text-xs text-[#4B5563] dark:text-[#6B7280]">
                     {stat.label}
                   </span>
                 </div>

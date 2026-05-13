@@ -13,7 +13,7 @@ import Footer from './components/layout/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-warm-black">
+    <div className="min-h-screen bg-[#F7FFF9] dark:bg-[#060C0A]">
       <Navbar />
       <Hero />
       <Marquee />

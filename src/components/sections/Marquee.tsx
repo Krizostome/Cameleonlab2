@@ -18,8 +18,7 @@ const ITEMS = [
 
 /**
  * Premium infinite marquee band separating Hero and Services.
- * Features GPU-optimized translateX, pause-on-hover, subtle glow,
- * motion blur during scroll, and grain texture.
+ * Blends seamlessly with the site's warm-black palette.
  */
 export default function Marquee() {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -28,16 +27,18 @@ export default function Marquee() {
 
   return (
     <section
-      className="relative overflow-hidden border-y border-[#E8D5A3]/30 bg-[#F5EDD6] py-6 md:py-8"
+      className="relative overflow-hidden bg-[#1A1410] py-6 md:py-8"
       aria-label="Bande défilante"
     >
-      {/* Subtle grain texture */}
+      {/* Seamless top separator — barely visible warm line */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'multiply',
-        }}
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F5EDD6]/[0.06] to-transparent"
+        aria-hidden="true"
+      />
+      {/* Seamless bottom separator */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F5EDD6]/[0.06] to-transparent"
+        aria-hidden="true"
       />
 
       {/* Marquee track */}
@@ -62,13 +63,17 @@ export default function Marquee() {
               return (
                 <div key={globalIndex} className="flex items-center shrink-0">
                   <motion.span
-                    className="inline-block px-6 font-inter text-sm font-medium uppercase tracking-[0.15em] text-[#1A1410] md:px-10 md:text-base cursor-default select-none"
+                    className="inline-block cursor-default select-none px-6 font-inter text-sm font-medium uppercase tracking-[0.15em] text-[#FAF6EE]/60 md:px-10 md:text-base"
                     onMouseEnter={() => setHoveredIndex(globalIndex)}
                     onMouseLeave={() => setHoveredIndex(null)}
                     animate={{
+                      color:
+                        hoveredIndex === globalIndex
+                          ? '#C8A96E'
+                          : '#FAF6EE99',
                       textShadow:
                         hoveredIndex === globalIndex
-                          ? '0 0 24px rgba(200, 169, 110, 0.45)'
+                          ? '0 0 24px rgba(200, 169, 110, 0.45), 0 0 48px rgba(200, 169, 110, 0.15)'
                           : '0 0 0px rgba(200, 169, 110, 0)',
                     }}
                     transition={{ duration: 0.35, ease: 'easeOut' }}
@@ -76,8 +81,7 @@ export default function Marquee() {
                     {item}
                   </motion.span>
                   <span
-                    className="mx-2 h-1.5 w-1.5 rounded-full md:mx-4"
-                    style={{ backgroundColor: 'rgba(200, 169, 110, 0.6)' }}
+                    className="mx-2 h-1.5 w-1.5 rounded-full bg-[#C8A96E]/40 md:mx-4"
                     aria-hidden="true"
                   />
                 </div>

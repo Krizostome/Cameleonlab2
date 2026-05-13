@@ -259,7 +259,7 @@ function TechModal({ tech, onClose }: { tech: Tech; onClose: () => void }) {
       role="dialog"
     >
       <motion.div
-        className="relative w-full max-w-sm rounded-2xl border border-[rgba(200,169,110,0.2)] bg-[#211A16] p-6 shadow-2xl"
+        className="relative w-full max-w-sm rounded-2xl border border-[rgba(0,232,122,0.2)] bg-[#F7FFF9] dark:bg-[#071510] p-6 shadow-2xl"
         initial={{ scale: 0.9, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -269,7 +269,7 @@ function TechModal({ tech, onClose }: { tech: Tech; onClose: () => void }) {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-[#F8F4EC]/50 transition-colors hover:bg-[rgba(200,169,110,0.1)] hover:text-[#C8A96E]"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-[#071510]/50 dark:text-[#F0FAF4]/50 transition-colors hover:bg-[rgba(0,232,122,0.1)] hover:text-[#00E87A]"
           aria-label="Fermer"
         >
           <X className="h-4 w-4" />
@@ -279,10 +279,10 @@ function TechModal({ tech, onClose }: { tech: Tech; onClose: () => void }) {
         <div className="mb-5 flex justify-center">
           <div
             className="relative flex items-center justify-center"
-            style={{ width: dims.outer.w, height: dims.outer.h, clipPath: HEX_CLIP, background: 'rgba(200,169,110,0.15)' }}
+            style={{ width: dims.outer.w, height: dims.outer.h, clipPath: HEX_CLIP, background: 'rgba(0,232,122,0.15)' }}
           >
             <div
-              className="flex items-center justify-center bg-dark-card"
+              className="flex items-center justify-center bg-white/82 dark:bg-[#071510]"
               style={{ width: dims.inner.w, height: dims.inner.h, clipPath: HEX_CLIP }}
             >
               {tech.icon}
@@ -291,19 +291,19 @@ function TechModal({ tech, onClose }: { tech: Tech; onClose: () => void }) {
         </div>
 
         {/* Name */}
-        <h3 className="mb-2 text-center font-playfair text-2xl font-bold text-[#F8F4EC]">
+        <h3 className="mb-2 text-center font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4]">
           {tech.name}
         </h3>
 
         {/* Category badge */}
         <div className="mb-4 flex justify-center">
-          <span className="inline-block rounded-full border border-[rgba(200,169,110,0.2)] bg-[rgba(200,169,110,0.08)] px-3 py-1 font-dm-sans text-[10px] font-medium uppercase tracking-[0.15em] text-[#C8A96E]">
+          <span className="inline-block rounded-full border border-[rgba(0,232,122,0.2)] bg-[rgba(0,232,122,0.08)] px-3 py-1 font-dm-sans text-[10px] font-medium uppercase tracking-[0.15em] text-[#00E87A]">
             {tech.category}
           </span>
         </div>
 
         {/* Description */}
-        <p className="text-center font-dm-sans text-sm leading-relaxed text-[#F8F4EC]/60">
+        <p className="text-center font-dm-sans text-sm leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
           {tech.description}
         </p>
       </motion.div>
@@ -345,23 +345,23 @@ function TechGridItem({
         }}
       >
         <button
-          className="relative flex cursor-pointer items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1.5 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A96E]/50"
+          className="relative flex cursor-pointer items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1.5 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00E87A]/50"
           onClick={() => onSelect(tech)}
           aria-label={`${tech.name} — ${tech.category}`}
         >
           {/* Outer hexagon (border) */}
           <div
-            className="relative flex items-center justify-center transition-colors duration-300 group-hover:bg-[rgba(200,169,110,0.3)]"
+            className="relative flex items-center justify-center transition-colors duration-300 group-hover:bg-[rgba(0,232,122,0.3)]"
             style={{
               width: dims.outer.w,
               height: dims.outer.h,
               clipPath: HEX_CLIP,
-              background: 'rgba(200,169,110,0.12)',
+              background: 'rgba(0,232,122,0.12)',
             }}
           >
             {/* Inner hexagon (fill) */}
             <div
-              className="flex items-center justify-center bg-[#201A10] transition-colors duration-300 group-hover:bg-[#2A221C]"
+              className="flex items-center justify-center bg-white/82 dark:bg-[#071510] transition-colors duration-300 group-hover:bg-[#F0FAF4] dark:group-hover:bg-[#0a1812]"
               style={{
                 width: dims.inner.w,
                 height: dims.inner.h,
@@ -376,7 +376,7 @@ function TechGridItem({
           <div
             className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             style={{
-              filter: 'drop-shadow(0 0 16px rgba(200,169,110,0.35))',
+              filter: 'drop-shadow(0 0 16px rgba(0,232,122,0.35))',
               clipPath: HEX_CLIP,
             }}
           />
@@ -385,14 +385,14 @@ function TechGridItem({
 
       {/* Desktop tooltip */}
       <div className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-3 hidden w-56 -translate-x-1/2 md:group-hover:block">
-        <div className="relative rounded-xl border border-[rgba(200,169,110,0.15)] bg-[#211A16]/95 p-4 shadow-2xl backdrop-blur-xl">
-          <div className="mb-1 font-inter text-sm font-semibold text-[#F8F4EC]">
+        <div className="relative rounded-xl border border-[rgba(0,232,122,0.15)] bg-[#F7FFF9] dark:bg-[#071510]/95 p-4 shadow-2xl backdrop-blur-xl">
+          <div className="mb-1 font-inter text-sm font-semibold text-[#071510] dark:text-[#F0FAF4]">
             {tech.name}
           </div>
-          <p className="mb-2.5 text-xs leading-relaxed text-[#F8F4EC]/60">
+          <p className="mb-2.5 text-xs leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
             {tech.description}
           </p>
-          <span className="inline-block rounded-full border border-[rgba(200,169,110,0.2)] bg-[rgba(200,169,110,0.08)] px-2 py-0.5 font-dm-sans text-[10px] font-medium uppercase tracking-[0.15em] text-[#C8A96E]">
+          <span className="inline-block rounded-full border border-[rgba(0,232,122,0.2)] bg-[rgba(0,232,122,0.08)] px-2 py-0.5 font-dm-sans text-[10px] font-medium uppercase tracking-[0.15em] text-[#00E87A]">
             {tech.category}
           </span>
 
@@ -424,14 +424,14 @@ export default function StackTechnologique() {
   return (
     <section
       id="stack"
-      className="relative overflow-hidden bg-[#1A1410] py-24 md:py-32"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-24 md:py-32"
       aria-label="Stack technologique"
     >
       {/* Subtle radial halo */}
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.05]"
         style={{
-          background: 'radial-gradient(ellipse, rgba(200,169,110,0.5) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(0,232,122,0.5) 0%, transparent 70%)',
           filter: 'blur(90px)',
         }}
       />
@@ -450,7 +450,7 @@ export default function StackTechnologique() {
         className="pointer-events-none absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(200,169,110,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,110,0.3) 1px, transparent 1px)',
+            'linear-gradient(rgba(0,232,122,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,232,122,0.3) 1px, transparent 1px)',
           backgroundSize: '64px 64px',
         }}
       />
@@ -458,19 +458,19 @@ export default function StackTechnologique() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         {/* Label */}
         <motion.span
-          className="mb-6 inline-flex items-center gap-3 font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-[#C8A96E]"
+          className="mb-6 inline-flex items-center gap-3 font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
         >
-          <span className="h-px w-6 bg-[#C8A96E]" />
+          <span className="h-px w-6 bg-[#00E87A]" />
           Notre stack
         </motion.span>
 
         {/* Title */}
         <motion.h2
-          className="mb-6 max-w-4xl font-playfair text-4xl font-bold leading-tight text-[#F8F4EC] md:text-5xl lg:text-6xl"
+          className="mb-6 max-w-4xl font-playfair text-4xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
           initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-50px' }}
@@ -481,7 +481,7 @@ export default function StackTechnologique() {
 
         {/* Subtitle */}
         <motion.p
-          className="mb-16 max-w-xl font-dm-sans text-base leading-relaxed text-[#F8F4EC]/50 md:mb-20"
+          className="mb-16 max-w-xl font-dm-sans text-base leading-relaxed text-[#071510]/50 dark:text-[#F0FAF4]/50 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}

@@ -181,7 +181,7 @@ export default function Portfolio() {
     <section
       ref={sectionRef}
       id="portfolio"
-      className="relative overflow-hidden bg-warm-black py-24 md:py-32 lg:py-40"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-24 md:py-32 lg:py-40"
       aria-label="Portfolio"
     >
       {/* Grain */}
@@ -199,7 +199,7 @@ export default function Portfolio() {
         style={{
           width: '600px',
           height: '600px',
-          background: 'radial-gradient(circle, rgba(200,169,110,0.05) 0%, transparent 60%)',
+          background: 'radial-gradient(circle, rgba(0,232,122,0.05) 0%, transparent 60%)',
           filter: 'blur(100px)',
         }}
       />
@@ -213,16 +213,16 @@ export default function Portfolio() {
           className="mb-16 flex flex-col items-start justify-between gap-6 md:mb-20 md:flex-row md:items-end"
         >
           <div>
-            <span className="mb-3 inline-block font-dm-sans text-xs font-medium uppercase tracking-[0.25em] text-gold/70">
+            <span className="mb-3 inline-block font-dm-sans text-xs font-medium uppercase tracking-[0.25em] text-[#00E87A]/70">
               — Projets sélectionnés
             </span>
-            <h2 className="font-playfair text-4xl font-bold text-off-white md:text-5xl lg:text-6xl">
-              Nos <span className="text-glow text-gold">réalisations</span>
+            <h2 className="font-playfair text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
+              Nos <span className="text-glow text-[#00E87A]">réalisations</span>
             </h2>
           </div>
           <a
             href="#all-projects"
-            className="group inline-flex items-center gap-2 font-dm-sans text-sm font-medium text-off-white/80 transition-colors hover:text-gold"
+            className="group inline-flex items-center gap-2 font-dm-sans text-sm font-medium text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors hover:text-[#00E87A]"
           >
             Voir tout
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
@@ -244,8 +244,8 @@ export default function Portfolio() {
               onClick={() => setFilter(f)}
               className={`rounded-full border px-5 py-2 font-dm-sans text-xs font-medium uppercase tracking-wider transition-all duration-300 ${
                 filter === f
-                  ? 'border-gold/50 bg-gold/10 text-gold shadow-[0_0_20px_rgba(200,169,110,0.1)]'
-                  : 'border-gold/10 text-off-white/50 hover:border-gold/30 hover:text-off-white/80'
+                  ? 'border-[#00E87A]/50 bg-[#00E87A]/10 text-[#00E87A] shadow-[0_0_20px_rgba(0,232,122,0.1)]'
+                  : 'border-[#00E87A]/10 text-[#071510]/50 dark:text-[#F0FAF4]/50 hover:border-[#00E87A]/30 hover:text-[#071510]/80 dark:text-[#F0FAF4]/80'
               }`}
             >
               {f}
@@ -264,7 +264,7 @@ export default function Portfolio() {
             style={{ perspective: '1200px' }}
           >
             {/* Depth shadow */}
-            <div className="pointer-events-none absolute inset-8 rounded-2xl bg-gold/5 blur-3xl" />
+            <div className="pointer-events-none absolute inset-8 rounded-2xl bg-[#00E87A]/5 blur-3xl" />
 
             <div className="relative h-full w-full overflow-hidden rounded-2xl">
               {filteredProjects.map((project, idx) => {
@@ -284,7 +284,7 @@ export default function Portfolio() {
                     }}
                     style={{ transformStyle: 'preserve-3d', zIndex }}
                   >
-                    <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-dark-card shadow-2xl">
+                    <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-white/82 dark:bg-[#071510] shadow-2xl">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -300,7 +300,7 @@ export default function Portfolio() {
                         }}
                       />
                       {/* Hover overlay */}
-                      <div className="pointer-events-none absolute inset-0 bg-gold/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                      <div className="pointer-events-none absolute inset-0 bg-[#00E87A]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     </div>
                   </motion.div>
                 )
@@ -327,30 +327,30 @@ export default function Portfolio() {
                   {currentProject.categories.map((cat) => (
                     <span
                       key={cat}
-                      className="rounded-full border border-gold/20 bg-gold/5 px-3 py-1 font-dm-sans text-[10px] font-medium uppercase tracking-wider text-gold"
+                      className="rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-3 py-1 font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#00E87A]"
                     >
                       {cat}
                     </span>
                   ))}
                 </div>
 
-                <h3 className="mb-4 font-playfair text-3xl font-bold text-off-white md:text-4xl">
+                <h3 className="mb-4 font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
                   <WordReveal text={currentProject.title} />
                 </h3>
 
-                <p className="mb-8 font-dm-sans text-base leading-relaxed text-off-white/60">
+                <p className="mb-8 font-dm-sans text-base leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
                   <WordReveal text={currentProject.description} />
                 </p>
 
                 <a
                   href={currentProject.link}
-                  className="group/link inline-flex items-center gap-3 font-dm-sans text-sm font-semibold text-gold transition-colors hover:text-gold-deep"
+                  className="group/link inline-flex items-center gap-3 font-dm-sans text-sm font-semibold text-[#00E87A] transition-colors hover:text-[#00E87A]-deep"
                 >
                   <span className="relative">
                     Voir projet
                     <span className="absolute bottom-0 left-0 h-px w-0 bg-current transition-all duration-300 group-hover/link:w-full" />
                   </span>
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gold/30 transition-all duration-300 group-hover/link:scale-105 group-hover/link:border-gold/60 group-hover/link:bg-gold/10">
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#00E87A]/30 transition-all duration-300 group-hover/link:scale-105 group-hover/link:border-[#00E87A]/60 group-hover/link:bg-[#00E87A]/10">
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
                   </span>
                 </a>
@@ -362,16 +362,16 @@ export default function Portfolio() {
               <button
                 onClick={goPrev}
                 aria-label="Projet précédent"
-                className="group/btn flex h-12 w-12 items-center justify-center rounded-full border border-gold/20 transition-all duration-300 hover:border-gold/50 hover:bg-gold/5 hover:shadow-[0_0_20px_rgba(200,169,110,0.15)]"
+                className="group/btn flex h-12 w-12 items-center justify-center rounded-full border border-[#00E87A]/20 transition-all duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/5 hover:shadow-[0_0_20px_rgba(0,232,122,0.15)]"
               >
-                <ArrowLeft className="h-4 w-4 text-off-white/70 transition-colors group-hover/btn:text-gold" />
+                <ArrowLeft className="h-4 w-4 text-[#071510]/70 dark:text-[#F0FAF4]/70 transition-colors group-hover/btn:text-[#00E87A]" />
               </button>
               <button
                 onClick={goNext}
                 aria-label="Projet suivant"
-                className="group/btn flex h-12 w-12 items-center justify-center rounded-full border border-gold/20 transition-all duration-300 hover:border-gold/50 hover:bg-gold/5 hover:shadow-[0_0_20px_rgba(200,169,110,0.15)]"
+                className="group/btn flex h-12 w-12 items-center justify-center rounded-full border border-[#00E87A]/20 transition-all duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/5 hover:shadow-[0_0_20px_rgba(0,232,122,0.15)]"
               >
-                <ArrowRight className="h-4 w-4 text-off-white/70 transition-colors group-hover/btn:text-gold" />
+                <ArrowRight className="h-4 w-4 text-[#071510]/70 dark:text-[#F0FAF4]/70 transition-colors group-hover/btn:text-[#00E87A]" />
               </button>
               <div className="ml-auto flex gap-2">
                 {filteredProjects.map((_, i) => (
@@ -380,8 +380,8 @@ export default function Portfolio() {
                     onClick={() => setActiveIndex(i)}
                     className={`h-1.5 rounded-full transition-all duration-500 ${
                       i === activeIndex
-                        ? 'w-8 bg-gold'
-                        : 'w-2 bg-off-white/20 hover:bg-off-white/40'
+                        ? 'w-8 bg-[#00E87A]'
+                        : 'w-2 bg-[#071510]/20 dark:bg-[#F0FAF4]/20 hover:bg-[#071510]/40 dark:bg-[#F0FAF4]/40'
                     }`}
                     aria-label={`Aller au projet ${i + 1}`}
                   />

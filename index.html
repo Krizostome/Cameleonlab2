@@ -8,6 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Mono:wght@400;500;700&family=DM+Sans:wght@300;400;500&family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+    <script>
+      /* Anti-flash: apply theme before React renders */
+      (function() {
+        const stored = localStorage.getItem('cameleonlab-theme')
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const resolved = stored ? stored : (systemDark ? 'dark' : 'light')
+        document.documentElement.classList.add(resolved)
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

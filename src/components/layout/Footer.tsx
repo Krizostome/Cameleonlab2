@@ -213,14 +213,14 @@ function FooterLinkItem({ href, children }: { href: string; children: React.Reac
   return (
     <a
       href={href}
-      className="group inline-flex items-center gap-1.5 text-[#FAF6EE]/60 hover:text-[#C8A96E] transition-all duration-300 text-sm"
+      className="group inline-flex items-center gap-1.5 text-[#071510]/60 dark:text-[#F0FAF4]/60 hover:text-[#00E87A] transition-all duration-300 text-sm"
     >
       <span className="relative">
         {children}
-        <span className="absolute left-0 -bottom-0.5 w-0 h-px bg-[#C8A96E] transition-all duration-300 group-hover:w-full" />
+        <span className="absolute left-0 -bottom-0.5 w-0 h-px bg-[#00E87A] transition-all duration-300 group-hover:w-full" />
       </span>
       <motion.span
-        className="inline-block opacity-0 -translate-x-1 text-[#C8A96E] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+        className="inline-block opacity-0 -translate-x-1 text-[#00E87A] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
       >
         →
       </motion.span>
@@ -247,7 +247,7 @@ function SocialIcon({
       aria-label={label}
       whileHover={{ scale: 1.12, rotate: 4 }}
       whileTap={{ scale: 0.95 }}
-      className="w-10 h-10 rounded-full border border-[#FAF6EE]/10 bg-[#FAF6EE]/[0.03] flex items-center justify-center text-[#FAF6EE]/50 hover:text-[#C8A96E] hover:border-[#C8A96E]/40 hover:bg-[#C8A96E]/10 transition-colors duration-300"
+      className="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] flex items-center justify-center text-[#071510]/50 dark:text-[#F0FAF4]/50 hover:text-[#00E87A] hover:border-[#00E87A]/40 hover:bg-[#00E87A]/10 transition-colors duration-300"
     >
       <Icon className="w-4 h-4" />
     </motion.a>
@@ -272,11 +272,11 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-[#1A1410] overflow-hidden">
+    <footer className="relative bg-[#F7FFF9] dark:bg-[#060C0A] overflow-hidden">
       {/* ── Decorative giant text ── */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
-          className="font-['Playfair_Display'] font-black text-[#FAF6EE]/[0.035] whitespace-nowrap"
+          className="font-['Playfair_Display'] font-black text-[#071510]/[0.04] dark:text-[#F0FAF4]/[0.035] whitespace-nowrap"
           style={{ fontSize: "clamp(4.5rem, 12.6vw, 11.7rem)" }}
         >
           CAMELEONLAB
@@ -288,7 +288,7 @@ export default function Footer() {
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(200,169,110,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse at center, rgba(0,232,122,0.06) 0%, transparent 70%)",
         }}
       />
 
@@ -302,7 +302,7 @@ export default function Footer() {
 
       {/* ── Top decorative line ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-px bg-gradient-to-r from-transparent via-[#C8A96E]/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[#00E87A]/20 to-transparent" />
       </div>
 
       {/* ── Main content ── */}
@@ -319,11 +319,11 @@ export default function Footer() {
           <motion.div variants={itemVariants} className="lg:col-span-6">
             <a
               href="#"
-              className="inline-block font-['Playfair_Display'] font-bold text-2xl md:text-3xl text-[#FAF6EE] mb-4 tracking-tight"
+              className="inline-block font-['Playfair_Display'] font-bold text-2xl md:text-3xl text-[#071510] dark:text-[#F0FAF4] mb-4 tracking-tight"
             >
-              cameleon<span className="text-[#C8A96E]">lab</span>
+              cameleon<span className="text-[#00E87A]">lab</span>
             </a>
-            <p className="text-[#FAF6EE]/50 text-sm leading-relaxed max-w-md mb-6">
+            <p className="text-[#071510]/50 dark:text-[#F0FAF4]/50 text-sm leading-relaxed max-w-md mb-6">
               Nous créons des expériences digitales modernes, élégantes et mémorables.
             </p>
             <div className="flex items-center gap-3 mb-10">
@@ -339,10 +339,10 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div>
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#C8A96E] mb-4 font-['Bricolage_Grotesque'] font-semibold">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-4 font-['Bricolage_Grotesque'] font-semibold">
                 Restons connectés
               </h3>
-              <p className="text-[#FAF6EE]/50 text-sm leading-relaxed mb-4 max-w-md">
+              <p className="text-[#071510]/50 dark:text-[#F0FAF4]/50 text-sm leading-relaxed mb-4 max-w-md">
                 Recevez nos actualités, inspirations et conseils digitaux directement dans votre boîte mail.
               </p>
               <form onSubmit={handleSubmit} className="flex gap-2 max-w-md">
@@ -352,14 +352,14 @@ export default function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Saisissez votre adresse email..."
-                    className="w-full px-4 py-2.5 rounded-lg bg-[#FAF6EE]/[0.04] border border-[#FAF6EE]/10 text-[#FAF6EE] text-sm placeholder:text-[#7C6E5A]/50 focus:outline-none focus:border-[#C8A96E]/40 focus:bg-[#C8A96E]/[0.04] transition-all duration-300 backdrop-blur-sm"
+                    className="w-full px-4 py-2.5 rounded-lg bg-[#071510]/[0.04] dark:bg-[#F0FAF4]/[0.04] border border-black/10 dark:border-white/10 text-[#071510] dark:text-[#F0FAF4] text-sm placeholder:text-[#4B5563] dark:text-[#6B7280]/50 focus:outline-none focus:border-[#00E87A]/40 focus:bg-[#00E87A]/[0.04] transition-all duration-300 backdrop-blur-sm"
                   />
                 </div>
                 <motion.button
                   type="submit"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-5 py-2.5 rounded-lg bg-[#C8A96E] text-[#1A1410] font-['Bricolage_Grotesque'] font-semibold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(200,169,110,0.25)] transition-shadow duration-300"
+                  className="px-5 py-2.5 rounded-lg bg-[#00E87A] text-[#071510] dark:text-[#F0FAF4] font-['Bricolage_Grotesque'] font-semibold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,232,122,0.25)] transition-shadow duration-300"
                 >
                   {submitted ? "✓" : "OK"}
                 </motion.button>
@@ -374,7 +374,7 @@ export default function Footer() {
               variants={columnVariants}
               className="lg:col-span-2"
             >
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#C8A96E] mb-5 font-['Bricolage_Grotesque'] font-semibold">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-5 font-['Bricolage_Grotesque'] font-semibold">
                 {column.title}
               </h3>
               <ul className="space-y-3">
@@ -391,36 +391,36 @@ export default function Footer() {
         {/* ── Contact info row ── */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-8 border-t border-[#FAF6EE]/10"
+          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-8 border-t border-black/10 dark:border-white/10"
         >
           <div className="flex flex-wrap items-center gap-6">
             <a
               href="mailto:hello@cameleonlab.com"
-              className="flex items-center gap-2 text-[#FAF6EE]/40 hover:text-[#C8A96E] transition-colors duration-300 text-sm"
+              className="flex items-center gap-2 text-[#071510]/40 dark:text-[#F0FAF4]/40 hover:text-[#00E87A] transition-colors duration-300 text-sm"
             >
               <MailIcon className="w-4 h-4" />
               <span>hello@cameleonlab.com</span>
             </a>
             <a
               href="tel:+33612345678"
-              className="flex items-center gap-2 text-[#FAF6EE]/40 hover:text-[#C8A96E] transition-colors duration-300 text-sm"
+              className="flex items-center gap-2 text-[#071510]/40 dark:text-[#F0FAF4]/40 hover:text-[#00E87A] transition-colors duration-300 text-sm"
             >
               <PhoneIcon className="w-4 h-4" />
               <span>+33 6 12 34 56 78</span>
             </a>
-            <span className="flex items-center gap-2 text-[#FAF6EE]/40 text-sm">
+            <span className="flex items-center gap-2 text-[#071510]/40 dark:text-[#F0FAF4]/40 text-sm">
               <MapPinIcon className="w-4 h-4" />
               <span>Cotonou, Bénin</span>
             </span>
           </div>
 
-          <p className="text-[#FAF6EE]/25 text-xs font-['DM_Mono'] tracking-wide">
+          <p className="text-[#071510]/25 dark:text-[#F0FAF4]/25 text-xs font-['DM_Mono'] tracking-wide">
             © {new Date().getFullYear()} CameleonLab. Tous droits réservés.
           </p>
         </motion.div>
 
         {/* ── Bottom decorative line ── */}
-        <div className="mt-8 h-px bg-gradient-to-r from-transparent via-[#C8A96E]/10 to-transparent" />
+        <div className="mt-8 h-px bg-gradient-to-r from-transparent via-[#00E87A]/10 to-transparent" />
 
         {/* ── Legal links ── */}
         <motion.div
@@ -431,7 +431,7 @@ export default function Footer() {
             <a
               key={item}
               href="#"
-              className="text-[#FAF6EE]/25 hover:text-[#C8A96E]/70 transition-colors duration-300 text-xs tracking-wide"
+              className="text-[#071510]/25 dark:text-[#F0FAF4]/25 hover:text-[#00E87A]/70 transition-colors duration-300 text-xs tracking-wide"
             >
               {item}
             </a>
