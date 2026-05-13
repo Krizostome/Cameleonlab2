@@ -265,7 +265,7 @@ export default function Navbar() {
         className="overflow-hidden md:hidden"
         style={{ height: 0, opacity: 0 }}
       >
-        <div className="flex flex-col gap-4 px-6 pb-6 pt-2">
+        <div className="flex flex-col gap-4 px-6 pb-6 pt-5 bg-[#F7FFF9]/95 dark:bg-[#060C0A]/95 backdrop-blur-xl border-t border-black/10 dark:border-white/10 rounded-b-2xl shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
