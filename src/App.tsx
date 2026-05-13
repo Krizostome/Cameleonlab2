@@ -6,6 +6,10 @@ import Portfolio from './components/sections/Portfolio'
 import Process from './components/sections/Process'
 import StackTechnologique from './components/sections/StackTechnologique'
 import Testimonials from './components/sections/Testimonials'
+import Team from './components/sections/Team'
+import FAQ from './components/sections/FAQ'
+import CTASection from './components/sections/CTA'
+import Footer from './components/layout/Footer'
 
 function App() {
   return (
@@ -17,7 +21,11 @@ function App() {
       <Portfolio />
       <Process />
       <StackTechnologique />
+      <Team />
       <Testimonials />
+      <FAQ />
+      <CTASection />
+      <Footer />
     </div>
   )
 }

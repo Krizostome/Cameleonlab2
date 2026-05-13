@@ -206,14 +206,14 @@ export default function Testimonials() {
             {/* Mobile: 2 columns */}
             <div className="flex h-full w-full flex-row gap-3 md:hidden">
               <div className="flex h-full flex-1 flex-col">
-                <Marquee vertical duration={30} className="h-full">
+                <Marquee vertical pauseOnHover duration={30} className="h-full">
                   {TESTIMONIALS.map((t) => (
                     <TestimonialCard key={t.name} data={t} />
                   ))}
                 </Marquee>
               </div>
               <div className="flex h-full flex-1 flex-col">
-                <Marquee vertical reverse duration={26} className="h-full">
+                <Marquee vertical reverse pauseOnHover duration={26} className="h-full">
                   {TESTIMONIALS.map((t) => (
                     <TestimonialCard key={`${t.name}-rev`} data={t} />
                   ))}
@@ -224,28 +224,28 @@ export default function Testimonials() {
             {/* Desktop: 4 columns */}
             <div className="hidden h-full w-full flex-row gap-4 md:flex">
               <div className="flex h-full w-[240px] flex-col lg:w-[260px]">
-                <Marquee vertical duration={35} className="h-full">
+                <Marquee vertical pauseOnHover duration={35} className="h-full">
                   {TESTIMONIALS.map((t) => (
                     <TestimonialCard key={t.name} data={t} />
                   ))}
                 </Marquee>
               </div>
               <div className="flex h-full w-[240px] flex-col lg:w-[260px]">
-                <Marquee vertical reverse duration={28} className="h-full">
+                <Marquee vertical reverse pauseOnHover duration={28} className="h-full">
                   {TESTIMONIALS.map((t) => (
                     <TestimonialCard key={`${t.name}-rev`} data={t} />
                   ))}
                 </Marquee>
               </div>
               <div className="flex h-full w-[240px] flex-col lg:w-[260px]">
-                <Marquee vertical duration={32} className="h-full">
+                <Marquee vertical pauseOnHover duration={32} className="h-full">
                   {TESTIMONIALS.map((t) => (
                     <TestimonialCard key={t.name} data={t} />
                   ))}
                 </Marquee>
               </div>
               <div className="flex h-full w-[240px] flex-col lg:w-[260px]">
-                <Marquee vertical reverse duration={25} className="h-full">
+                <Marquee vertical reverse pauseOnHover duration={25} className="h-full">
                   {TESTIMONIALS.map((t) => (
                     <TestimonialCard key={`${t.name}-rev`} data={t} />
                   ))}
