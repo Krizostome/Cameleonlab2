@@ -236,7 +236,7 @@ export default function CTASection() {
     <section
       role="region"
       aria-labelledby="cta-title"
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A]"
+      className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A]"
     >
       {/* ── Floating Paths Background ── */}
       <div className="absolute inset-0 opacity-40">
@@ -262,7 +262,7 @@ export default function CTASection() {
 
       {/* ── Content ── */}
       <motion.div
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24 md:py-32"
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 md:py-20"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
@@ -301,7 +301,7 @@ export default function CTASection() {
         >
           {/* Primary button */}
           <motion.a
-            href="#contact"
+            href="/contact"
             whileHover={shouldReduce ? {} : buttonHover}
             whileTap={shouldReduce ? {} : { scale: 0.98 }}
             className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-['Bricolage_Grotesque'] font-semibold text-[14px] tracking-wide text-[#071510] dark:text-[#F0FAF4] bg-[#00E87A] overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(0,232,122,0.35)] w-full sm:w-auto"

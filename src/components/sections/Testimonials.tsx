@@ -161,7 +161,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-20 md:py-28"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-14 md:py-18 lg:py-20"
       aria-label="Témoignages clients"
     >
       {/* Ambient radial glow */}

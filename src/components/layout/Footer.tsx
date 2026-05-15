@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { Link, useLocation } from 'react-router-dom'
 import { motion, Variants, useReducedMotion } from "framer-motion"
 
 /* ═══════════════════════════════════════════════════════════════════ */
@@ -139,12 +140,14 @@ const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: "Navigation",
     links: [
-      { label: "Accueil", href: "#" },
+      { label: "Accueil", href: "/" },
+      { label: "À propos", href: "#about" },
+      { label: "Blog", href: "/blog" },
       { label: "Services", href: "#services" },
       { label: "Portfolio", href: "#portfolio" },
       { label: "Processus", href: "#process" },
       { label: "Équipe", href: "#team" },
-      { label: "Contact", href: "#contact" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
@@ -210,21 +213,55 @@ const columnVariants: Variants = {
 /* ═══════════════════════════════════════════════════════════════════ */
 
 function FooterLinkItem({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <a
-      href={href}
-      className="group inline-flex items-center gap-1.5 text-[#071510]/60 dark:text-[#F0FAF4]/60 hover:text-[#00E87A] transition-all duration-300 text-sm"
-    >
+  const { pathname } = useLocation()
+  const isExternal = href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http')
+  const isRoute = href.startsWith('/')
+  const isAnchor = href.startsWith('#')
+
+  const className =
+    'group inline-flex items-center gap-1.5 text-[#071510]/60 dark:text-[#F0FAF4]/60 hover:text-[#00E87A] transition-all duration-300 text-sm'
+
+  const inner = (
+    <>
       <span className="relative">
         {children}
         <span className="absolute left-0 -bottom-0.5 w-0 h-px bg-[#00E87A] transition-all duration-300 group-hover:w-full" />
       </span>
-      <motion.span
-        className="inline-block opacity-0 -translate-x-1 text-[#00E87A] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
-      >
+      <motion.span className="inline-block opacity-0 -translate-x-1 text-[#00E87A] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
         →
       </motion.span>
-    </a>
+    </>
+  )
+
+  if (isExternal) {
+    return (
+      <a href={href} className={className}>
+        {inner}
+      </a>
+    )
+  }
+
+  if (isRoute) {
+    return (
+      <Link to={href} className={className}>
+        {inner}
+      </Link>
+    )
+  }
+
+  // Anchor link
+  if (pathname === '/') {
+    return (
+      <a href={href} className={className}>
+        {inner}
+      </a>
+    )
+  }
+
+  return (
+    <Link to={`/${href}`} className={className}>
+      {inner}
+    </Link>
   )
 }
 

@@ -421,7 +421,7 @@ export default function FAQ() {
       id="faq"
       role="region"
       aria-labelledby="faq-title"
-      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-16 md:py-24 lg:py-28"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-12 md:py-16 lg:py-20"
     >
       {/* Decorative background "FAQ" number */}
       <span
@@ -467,7 +467,7 @@ export default function FAQ() {
 
             {/* CTA Contact */}
             <a
-              href="#contact"
+              href="/contact"
               className="group mb-12 inline-flex w-full items-center justify-center gap-3 rounded-full border border-[#00E87A]/30 bg-[#00E87A]/10 px-7 py-3.5 font-bricolage text-sm font-semibold text-[#00E87A] backdrop-blur-sm transition-all duration-300 hover:border-[#00E87A] hover:bg-[#00E87A] hover:text-[#071510] dark:text-[#F0FAF4] lg:w-auto"
             >
               Poser une question

@@ -260,3 +260,205 @@ body {
 .card-glow-hover:hover::before {
   opacity: 1;
 }
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/*  Shimmer animation for buttons                                      */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite linear;
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/*  Article body typography (editorial premium)                        */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+.article-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: #071510;
+}
+.dark .article-body {
+  color: #F0FAF4;
+}
+
+.article-body p {
+  margin-bottom: 1.75rem;
+  color: rgba(7, 21, 16, 0.82);
+}
+.dark .article-body p {
+  color: rgba(240, 250, 244, 0.82);
+}
+
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  color: #071510;
+  scroll-margin-top: 6rem;
+}
+.dark .article-body h2 {
+  color: #F0FAF4;
+}
+
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+  color: #071510;
+  scroll-margin-top: 6rem;
+}
+.dark .article-body h3 {
+  color: #F0FAF4;
+}
+
+.article-body ul,
+.article-body ol {
+  margin-bottom: 1.75rem;
+  padding-left: 1.5rem;
+}
+
+.article-body li {
+  margin-bottom: 0.625rem;
+  color: rgba(7, 21, 16, 0.75);
+}
+.dark .article-body li {
+  color: rgba(240, 250, 244, 0.75);
+}
+
+.article-body ul li::marker {
+  color: #00E87A;
+}
+
+.article-body ol li::marker {
+  color: #00E87A;
+  font-weight: 600;
+}
+
+.article-body blockquote {
+  position: relative;
+  margin: 2.5rem 0;
+  padding: 1.5rem 1.75rem;
+  border-left: 3px solid #00E87A;
+  background: rgba(0, 232, 122, 0.04);
+  border-radius: 0 12px 12px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(7, 21, 16, 0.8);
+}
+.dark .article-body blockquote {
+  background: rgba(0, 232, 122, 0.06);
+  color: rgba(240, 250, 244, 0.85);
+}
+
+.article-body blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -4px;
+  left: 12px;
+  font-size: 3rem;
+  line-height: 1;
+  color: rgba(0, 232, 122, 0.2);
+  font-family: 'Playfair Display', serif;
+}
+
+.article-body pre {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  background: #071510;
+  overflow-x: auto;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #E6FFF2;
+}
+.dark .article-body pre {
+  background: #0a1a14;
+  border: 1px solid rgba(0, 232, 122, 0.1);
+}
+
+.article-body code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(7, 21, 16, 0.06);
+  color: #007A3D;
+}
+.dark .article-body code {
+  background: rgba(240, 250, 244, 0.08);
+  color: #00E87A;
+}
+
+.article-body pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.article-body img,
+.article-body .article-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 2rem 0;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+.dark .article-body img,
+.dark .article-body .article-image img {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.article-body a {
+  color: #00E87A;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(0, 232, 122, 0.3);
+  transition: text-decoration-color 0.3s ease;
+}
+.article-body a:hover {
+  text-decoration-color: rgba(0, 232, 122, 0.8);
+}
+
+.article-body strong {
+  font-weight: 600;
+  color: #071510;
+}
+.dark .article-body strong {
+  color: #F0FAF4;
+}
+
+.article-body hr {
+  margin: 2.5rem 0;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 232, 122, 0.2), transparent);
+}
+
+.article-body figure {
+  margin: 2rem 0;
+}
+
+.article-body figcaption {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #6B7280;
+  margin-top: 0.75rem;
+  font-style: italic;
+}

@@ -181,7 +181,7 @@ export default function Portfolio() {
     <section
       ref={sectionRef}
       id="portfolio"
-      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-24 md:py-32 lg:py-40"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-16 md:py-20 lg:py-24"
       aria-label="Portfolio"
     >
       {/* Grain */}

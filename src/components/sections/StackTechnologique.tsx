@@ -424,7 +424,7 @@ export default function StackTechnologique() {
   return (
     <section
       id="stack"
-      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-24 md:py-32"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-16 md:py-20 lg:py-24"
       aria-label="Stack technologique"
     >
       {/* Subtle radial halo */}

@@ -262,7 +262,7 @@ export default function Hero() {
         >
           <button
             className="relative overflow-hidden rounded-full bg-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] transition-transform hover:scale-[1.02] active:scale-[0.98]"
-            onClick={() => (window.location.href = '#contact')}
+            onClick={() => (window.location.href = '/contact')}
           >
             <span className="relative z-10">Démarrer un projet</span>
             <span

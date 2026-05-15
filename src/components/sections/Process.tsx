@@ -86,7 +86,7 @@ export default function Process() {
     <section
       ref={sectionRef}
       id="process"
-      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-24 md:py-32 lg:py-40"
+      className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-16 md:py-20 lg:py-24"
       aria-label="Notre processus"
     >
       {/* Grain texture */}
@@ -226,10 +226,7 @@ export default function Process() {
                   aria-label={`Étape ${step.id} : ${step.title}`}
                 >
                   <Icon
-                    className="h-5 w-5 transition-colors duration-300 md:h-6 md:w-6"
-                    style={{
-                      color: isActive ? '#00E87A' : 'rgba(7,21,16,0.5)',
-                    }}
+                    className={`h-5 w-5 transition-colors duration-300 md:h-6 md:w-6 ${isActive ? 'text-[#00E87A]' : 'text-[#071510]/50 dark:text-[#F0FAF4]/50'}`}
                   />
                 </motion.button>
               )
@@ -359,10 +356,7 @@ export default function Process() {
                         }}
                       >
                         <Icon
-                          className="h-4 w-4 transition-colors duration-300"
-                          style={{
-                            color: isActive ? '#00E87A' : 'rgba(7,21,16,0.5)',
-                          }}
+                          className={`h-4 w-4 transition-colors duration-300 ${isActive ? 'text-[#00E87A]' : 'text-[#071510]/50 dark:text-[#F0FAF4]/50'}`}
                         />
                       </span>
 
