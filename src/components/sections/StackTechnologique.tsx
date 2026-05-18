@@ -22,8 +22,8 @@ function ReactIcon({ className = 'h-7 w-7' }: { className?: string }) {
 
 function NextjsIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="white">
-      <path d="M12 2L2 22h20L12 2zm0 3.5L18.5 20h-13L12 5.5z" />
+    <svg viewBox="0 0 24 24" className={`${className} text-[#071510] dark:text-[#F0FAF4]`} fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 5.5l6.5 8.5V7.5h1v9h-1.5l-6.5-8.5v8.5h-1.5v-9h1.5z" />
     </svg>
   )
 }
@@ -31,10 +31,8 @@ function NextjsIcon({ className = 'h-7 w-7' }: { className?: string }) {
 function TypeScriptIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className}>
-      <rect width="24" height="24" rx="4" fill="#3178C6" />
-      <text x="12" y="17" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold" fontFamily="sans-serif">
-        TS
-      </text>
+      <rect width="24" height="24" rx="3" fill="#3178C6" />
+      <path d="M14.5 16.5v1.2c-.4.2-.9.3-1.4.3-.6 0-1.1-.2-1.5-.5-.4-.3-.5-.8-.5-1.3 0-.3.1-.6.2-.8.2-.2.4-.4.7-.6.3-.2.7-.3 1.1-.4.3-.1.6-.2.8-.3.2-.1.3-.2.3-.4 0-.2-.1-.3-.2-.4-.1-.1-.3-.1-.5-.1-.4 0-.8.1-1.1.4l-.9-.9c.5-.4 1.1-.6 1.9-.6.7 0 1.3.2 1.7.5.4.3.6.8.6 1.4 0 .4-.1.7-.3 1-.2.2-.5.4-.8.6-.3.2-.7.3-1.2.4-.4.1-.7.2-.8.3-.2.1-.2.2-.2.4 0 .2.1.3.2.4.1.1.3.1.6.1.4 0 .8-.1 1.2-.4l.8.9zM18 12.5h-1.5v-1.2H21v1.2h-1.5v4.8H18v-4.8z" fill="white" />
     </svg>
   )
 }
@@ -61,21 +59,24 @@ function NodejsIcon({ className = 'h-7 w-7' }: { className?: string }) {
 
 function LaravelIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className}>
-      <rect width="24" height="24" rx="5" fill="#FF2D20" />
-      <text x="12" y="17" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold" fontFamily="sans-serif">
-        L
-      </text>
+    <svg viewBox="0 0 50 52" className={className} fill="none">
+      <path
+        d="M49.626 11.564c-.005-.001-.01-.003-.014-.005a.072.072 0 00-.025-.01c-.003 0-.007 0-.01-.002L31.512 5.478a.19.19 0 00-.155.035.185.185 0 00-.07.143v9.092c0 .073.04.14.105.173a.19.19 0 00.193-.01l5.44-3.272a.184.184 0 01.185 0 .185.185 0 01.093.16v16.284a.185.185 0 01-.093.16.19.19 0 01-.185 0l-5.44-3.27a.189.189 0 00-.193-.012.188.188 0 00-.105.174v9.091c0 .072.04.14.105.173.055.028.12.03.176.005l18.065-6.07a.188.188 0 00.12-.176V11.758a.186.186 0 00-.106-.175.19.19 0 00-.04-.02zM.538 5.582c-.006.002-.012.004-.017.007a.073.073 0 00-.025.01c-.003.001-.006.002-.009.003L.47 5.61l-.003.003-.01.007-.003.004-.005.007-.003.005-.005.007-.003.006-.004.007-.003.007-.003.007-.003.008-.002.007-.003.008-.002.008-.002.009-.002.008-.002.01-.002.009-.001.01-.002.01-.001.01-.001.01-.001.011v.01l-.001.011v21.986c0 .06.03.115.08.146l.01.006.01.005.01.004.01.003.01.003.01.002.011.002.01.001.011.001.01.001h.011l18.05 2.997a.19.19 0 00.155-.035.185.185 0 00.07-.143V21.34a.185.185 0 00-.105-.174.19.19 0 00-.193.012l-5.44 3.27a.185.185 0 01-.185 0 .185.185 0 01-.093-.16V8.004a.185.185 0 01.093-.16.19.19 0 01.185 0l5.44 3.272a.188.188 0 00.193.012.188.188 0 00.105-.174V2.763a.185.185 0 00-.08-.148L.644 5.58a.19.19 0 00-.106.002z"
+        fill="#FF2D20"
+      />
+      <path
+        d="M24.518 5.478a.19.19 0 00-.155.035.185.185 0 00-.07.143v9.092c0 .073.04.14.105.173a.19.19 0 00.193-.01l5.44-3.272a.184.184 0 01.185 0 .185.185 0 01.093.16v16.284a.185.185 0 01-.093.16.19.19 0 01-.185 0l-5.44-3.27a.189.189 0 00-.193-.012.188.188 0 00-.105.174v9.091c0 .072.04.14.105.173.055.028.12.03.176.005l18.065-6.07a.188.188 0 00.12-.176V11.758a.186.186 0 00-.106-.175.19.19 0 00-.04-.02l-.014-.005a.072.072 0 00-.025-.01c-.003 0-.007 0-.01-.002L24.518 5.478z"
+        fill="#FF2D20"
+      />
     </svg>
   )
 }
 
 function ExpressIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className}>
-      <rect width="24" height="24" rx="4" fill="#333333" />
-      <text x="12" y="17" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="sans-serif">
-        Ex
+    <svg viewBox="0 0 24 24" className={`${className} text-[#071510] dark:text-[#F0FAF4]`}>
+      <text x="12" y="15" textAnchor="middle" fill="currentColor" fontSize="6.5" fontWeight="700" fontFamily="'Inter', 'Helvetica Neue', Arial, sans-serif" letterSpacing="0.3">
+        express
       </text>
     </svg>
   )
@@ -93,25 +94,24 @@ function MysqlIcon({ className = 'h-7 w-7' }: { className?: string }) {
 
 function FlutterIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className}>
-      <rect width="24" height="24" rx="4" fill="#02569B" />
-      <text x="12" y="17" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold" fontFamily="sans-serif">
-        Fl
-      </text>
+    <svg viewBox="0 0 24 24" className={className} fill="none">
+      <path d="M12.35 2L5.1 14.45l3.1 5.3L18.6 7.1 12.35 2z" fill="#02569B" />
+      <path d="M15.2 19.75l-3.1-5.3H7.3l3.1 5.3h4.8z" fill="#02569B" />
+      <path d="M12.35 14.45L9.25 9.15H4.45l3.1 5.3h4.8z" fill="#13B9FD" />
+      <path d="M18.6 7.1l3.1 5.3h-4.8l-1.55-2.65 3.25-2.65z" fill="#13B9FD" />
     </svg>
   )
 }
 
-function ReactNativeIcon({ className = 'h-7 w-7' }: { className?: string }) {
+function ElectronIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
-    <svg viewBox="-11 -11 22 22" className={className} fill="none">
-      <circle r="1.8" fill="#61DAFB" />
-      <ellipse rx="9.5" ry="3.5" stroke="#61DAFB" strokeWidth="1.2" />
-      <ellipse rx="9.5" ry="3.5" stroke="#61DAFB" strokeWidth="1.2" transform="rotate(60)" />
-      <ellipse rx="9.5" ry="3.5" stroke="#61DAFB" strokeWidth="1.2" transform="rotate(120)" />
-      <text x="0" y="4" textAnchor="middle" fill="#61DAFB" fontSize="4" fontWeight="bold" fontFamily="sans-serif">
-        RN
-      </text>
+    <svg viewBox="0 0 24 24" className={className} fill="none">
+      <circle cx="12" cy="12" r="1.8" fill="#47848F" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.5" stroke="#47848F" strokeWidth="1.2" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.5" stroke="#47848F" strokeWidth="1.2" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.5" stroke="#47848F" strokeWidth="1.2" transform="rotate(120 12 12)" />
+      <circle cx="17" cy="7.5" r="1.1" fill="#9FEAF9" />
+      <circle cx="5" cy="16" r="1.1" fill="#9FEAF9" />
     </svg>
   )
 }
@@ -152,7 +152,7 @@ function PhotoshopIcon({ className = 'h-7 w-7' }: { className?: string }) {
 
 function VercelIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="white">
+    <svg viewBox="0 0 24 24" className={`${className} text-[#071510] dark:text-[#F0FAF4]`} fill="currentColor">
       <path d="M12 2L2 22h20L12 2z" />
     </svg>
   )
@@ -170,17 +170,15 @@ function FirebaseIcon({ className = 'h-7 w-7' }: { className?: string }) {
 function DockerIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className}>
-      <rect width="24" height="24" rx="4" fill="#2496ED" />
-      <text x="12" y="17" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold" fontFamily="sans-serif">
-        Do
-      </text>
+      <path d="M22.3 10.5c-.1-.1-.3-.1-.4 0-1 .6-2.1.9-3.3.9-.4 0-.8 0-1.2-.1-.1 0-.2-.1-.2-.2v-1.4c0-.3-.2-.5-.5-.5H3.5c-.3 0-.5.2-.5.5v8.5c0 .3.2.5.5.5h1.5c.3 0 .5-.2.5-.5v-.5h1v.5c0 .3.2.5.5.5h1.5c.3 0 .5-.2.5-.5v-.5h1v.5c0 .3.2.5.5.5h1.5c.3 0 .5-.2.5-.5v-.5h1v.5c0 .3.2.5.5.5h1.5c.3 0 .5-.2.5-.5v-.5h1v.5c0 .3.2.5.5.5h1.5c.3 0 .5-.2.5-.5v-.5h1v.5c0 .3.2.5.5.5h1.5c.3 0 .5-.2.5-.5v-3.5c.1 0 .3-.1.4-.1.3-.1.5-.4.5-.7 0-.4-.3-.7-.7-.7zM6 15.5H5v-1.5h1v1.5zm0-2.5H5v-1.5h1V13zm2.5 2.5h-1v-1.5h1v1.5zm0-2.5h-1v-1.5h1V13zm2.5 2.5h-1v-1.5h1v1.5zm0-2.5h-1v-1.5h1V13zm2.5 2.5h-1v-1.5h1v1.5zm0-2.5h-1v-1.5h1V13z" fill="#2496ED" />
+      <path d="M23.5 9.5c-.1-.1-.2-.1-.3 0-.4.2-.8.4-1.2.5-.1 0-.2 0-.3-.1-.2-.2-.4-.3-.6-.5-.1-.1-.1-.2-.1-.3 0-.5-.2-1-.5-1.4-.1-.1-.2-.1-.3-.1-.5.1-1 .4-1.3.8-.1.1-.2.1-.3.1-.4-.1-.8-.1-1.2-.1-.4 0-.8.1-1.2.2-.1 0-.2 0-.2-.1-.3-.4-.8-.7-1.3-.8-.1 0-.2 0-.3.1-.3.4-.5.9-.5 1.4 0 .1 0 .2-.1.3-.2.2-.4.4-.6.5-.1.1-.2.1-.3.1-.4-.1-.8-.3-1.2-.5-.1 0-.2-.1-.3 0-.2.1-.3.3-.3.5 0 .2.1.4.3.5 1.3.7 2.8 1.1 4.3 1.1 1.5 0 3-.4 4.3-1.1.2-.1.3-.3.3-.5 0-.2-.1-.4-.3-.5z" fill="#2496ED" opacity="0.6" />
     </svg>
   )
 }
 
 function GithubIcon({ className = 'h-7 w-7' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="white">
+    <svg viewBox="0 0 24 24" className={`${className} text-[#071510] dark:text-[#F0FAF4]`} fill="currentColor">
       <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
     </svg>
   )
@@ -208,7 +206,7 @@ const TECHS: Tech[] = [
   { name: 'Express', icon: <ExpressIcon />, description: 'Framework web minimaliste et flexible pour Node.js.', category: 'Backend', size: 'sm' },
   { name: 'MySQL', icon: <MysqlIcon />, description: 'Système de gestion de base de données relationnelle open-source.', category: 'Backend', size: 'sm' },
   { name: 'Flutter', icon: <FlutterIcon />, description: 'Framework UI pour applications mobiles multiplateformes performantes.', category: 'Mobile', size: 'md' },
-  { name: 'React Native', icon: <ReactNativeIcon />, description: 'Framework pour applications mobiles natives en JavaScript.', category: 'Mobile', size: 'md' },
+  { name: 'Electron', icon: <ElectronIcon />, description: 'Framework pour applications desktop multiplateformes avec web technologies.', category: 'Mobile', size: 'md' },
   { name: 'Figma', icon: <FigmaIcon />, description: 'Outil de design collaboratif basé sur le cloud.', category: 'Design', size: 'lg' },
   { name: 'Adobe XD', icon: <AdobeXdIcon />, description: 'Outil de conception d\'expériences utilisateur et de prototypes.', category: 'Design', size: 'sm' },
   { name: 'Photoshop', icon: <PhotoshopIcon />, description: 'Logiciel de retouche d\'image et de création graphique professionnel.', category: 'Design', size: 'sm' },

@@ -111,6 +111,15 @@ body {
 /*  Utilities                                                          */
 /* ═══════════════════════════════════════════════════════════════════ */
 
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Underline hover animation for nav links */
 .nav-link-underline {
   position: relative;

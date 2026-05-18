@@ -144,7 +144,7 @@ const FOOTER_COLUMNS: FooterColumn[] = [
       { label: "À propos", href: "#about" },
       { label: "Blog", href: "/blog" },
       { label: "Services", href: "#services" },
-      { label: "Portfolio", href: "#portfolio" },
+      { label: "Portfolio", href: "/portfolio" },
       { label: "Processus", href: "#process" },
       { label: "Équipe", href: "#team" },
       { label: "Contact", href: "/contact" },

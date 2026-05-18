@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ThemeToggle from '../ui/ThemeToggle'
 
 /** Navigation link descriptor */
@@ -17,7 +16,7 @@ const NAV_LINKS: NavLinkItem[] = [
   { label: 'À propos', href: '#about' },
   { label: 'Blog', href: '/blog', isRoute: true },
   { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Portfolio', href: '/portfolio', isRoute: true },
   { label: 'Contact', href: '/contact', isRoute: true },
 ]
 
@@ -72,14 +71,20 @@ export default function Navbar() {
   const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const mobileOpenRef = useRef(mobileOpen)
   mobileOpenRef.current = mobileOpen
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    gsap.registerPlugin(ScrollTrigger)
-
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+
     const ctx = gsap.context(() => {
       if (!prefersReduced) {
         const entranceTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -91,38 +96,15 @@ export default function Navbar() {
         entranceTl.fromTo(ctaRef.current, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.4')
       }
 
-      if (!prefersReduced && navRef.current) {
-        gsap.to(navRef.current, {
-          scrollTrigger: { trigger: navRef.current, start: 'top top', end: '+=80', toggleActions: 'play none none reverse' },
-          backgroundColor: 'rgba(26, 20, 16, 0.8)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          borderBottomColor: 'rgba(232, 213, 163, 1)',
-          duration: 0.35,
-          ease: 'power2.out',
-        })
-      } else if (navRef.current) {
-        const onScroll = () => {
-          if (window.scrollY > 40) {
-            navRef.current!.style.backgroundColor = 'rgba(26, 20, 16, 0.8)'
-            navRef.current!.style.backdropFilter = 'blur(24px)'
-            navRef.current!.style.borderBottomColor = 'rgba(232, 213, 163, 1)'
-          } else {
-            navRef.current!.style.backgroundColor = 'transparent'
-            navRef.current!.style.backdropFilter = 'blur(0px)'
-            navRef.current!.style.borderBottomColor = 'transparent'
-          }
-        }
-        window.addEventListener('scroll', onScroll, { passive: true })
-        onScroll()
-      }
-
       if (!prefersReduced && shimmerRef.current) {
         gsap.fromTo(shimmerRef.current, { x: '-100%' }, { x: '300%', duration: 2.5, repeat: -1, ease: 'none' })
       }
     }, navRef)
 
-    return () => ctx.revert()
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      ctx.revert()
+    }
   }, [])
 
   useEffect(() => {
@@ -161,7 +143,7 @@ export default function Navbar() {
   const linkClass = 'nav-link-underline font-dm-sans text-sm font-medium text-[#071510]/90 dark:text-[#F0FAF4]/90 transition-colors hover:text-[#00E87A]'
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-colors duration-300" style={{ backgroundColor: 'transparent' }} aria-label="Navigation principale">
+    <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${scrolled ? 'bg-[#F7FFF9]/80 dark:bg-[#060C0A]/80 backdrop-blur-xl border-[#00E87A]/20' : 'bg-transparent border-transparent'}`} aria-label="Navigation principale">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
         {/* Logo */}
         <Link ref={logoRef} to="/" className="flex items-center gap-2 opacity-0" style={{ willChange: 'transform, opacity' }}>

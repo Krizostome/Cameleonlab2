@@ -15,6 +15,8 @@ import Footer from './components/layout/Footer'
 import ContactPage from './pages/ContactPage'
 import BlogPage from './pages/BlogPage'
 import ArticleDetail from './pages/ArticleDetail'
+import PortfolioPage from './pages/PortfolioPage'
+import ProjectDetailPage from './pages/ProjectDetailPage'
 
 function HomePage() {
   return (
@@ -42,6 +44,8 @@ function App() {
       <div className="min-h-screen bg-[#F7FFF9] dark:bg-[#060C0A]">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<ArticleDetail />} />

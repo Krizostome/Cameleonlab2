@@ -402,13 +402,13 @@ function ArticleNotFound({ onBack }: { onBack: () => void }) {
       <p className="mb-8 max-w-md text-center font-dm-sans text-[#6B7280]">
         L'article que vous recherchez n'existe pas ou a été déplacé.
       </p>
-      <button
-        onClick={onBack}
+        <Link
+        to="/blog"
         className="inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-bricolage text-sm font-extrabold text-[#071510] transition-all hover:shadow-[0_0_24px_rgba(0,232,122,0.3)]"
       >
         <ArrowLeft className="h-4 w-4" />
-        Retour au blog
-      </button>
+        Tous les articles
+      </Link>
     </div>
   )
 }
@@ -519,7 +519,7 @@ export default function ArticleDetail() {
             className="group flex items-center gap-2 font-dm-sans text-sm font-medium text-[#071510]/70 dark:text-[#F0FAF4]/70 transition-colors hover:text-[#00E87A]"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-            <span className="hidden sm:inline">Retour aux articles</span>
+            <span className="hidden sm:inline">Articles</span>
           </button>
           <Link
             to="/"

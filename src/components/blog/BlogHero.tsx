@@ -222,7 +222,7 @@ export default function BlogHero() {
           className="mb-6 flex items-center gap-3"
         >
           <div className="h-px w-8 bg-[#00E87A]/40" />
-          <span className="font-dm-mono text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280]">
+          <span className="font-dm-mono text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280] dark:text-[#F0FAF4]/50">
             Blog CameleonLab
           </span>
           <div className="h-px w-8 bg-[#00E87A]/40" />
@@ -243,7 +243,7 @@ export default function BlogHero() {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="mb-10 max-w-xl text-center font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg opacity-0"
+          className="mb-10 max-w-xl text-center font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#F0FAF4]/60 md:text-lg opacity-0"
           style={{ willChange: 'transform, opacity, filter' }}
         >
           Plongez dans nos réflexions sur le design, le développement et l'innovation digitale. 
@@ -274,7 +274,7 @@ export default function BlogHero() {
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="font-dm-mono text-[10px] uppercase tracking-widest text-[#6B7280]">
+            <span className="font-dm-mono text-[10px] uppercase tracking-widest text-[#6B7280] dark:text-[#F0FAF4]/40">
               Scroll
             </span>
             <div className="h-8 w-px bg-gradient-to-b from-[#00E87A]/60 to-transparent" />
