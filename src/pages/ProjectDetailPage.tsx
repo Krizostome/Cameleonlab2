@@ -41,11 +41,6 @@ function animateCountUp(el: HTMLElement, targetStr: string) {
   })
 }
 
-/**
- * Page détail d'un projet — hero plein écran, infos, résultats visuels,
- * navigation suivant/précédent, CTA retour portfolio.
- * Couleurs CameleonLab vert néon, support dark mode.
- */
 export default function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>()
 
@@ -66,11 +61,7 @@ export default function ProjectDetailPage() {
     window.scrollTo(0, 0)
   }, [slug])
 
-  /**
-   * @animation Animations GSAP au montage — hero fadeUp stagger, infos slide-in,
-   * métriques countUp, navigation slide depuis bas.
-   * @note Bails out si prefers-reduced-motion ou projet introuvable.
-   */
+  /** Animations GSAP montage */
   useEffect(() => {
     if (typeof window === "undefined") return
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -78,7 +69,7 @@ export default function ProjectDetailPage() {
     if (!project) return
 
     const ctx = gsap.context(() => {
-      /* A) Hero — fadeUp stagger (titre, meta, badge) */
+      /* A) Hero — fadeUp stagger */
       const heroEls = heroRef.current?.querySelectorAll(".hero-animate")
       if (heroEls) {
         gsap.fromTo(
@@ -88,7 +79,7 @@ export default function ProjectDetailPage() {
         )
       }
 
-      /* B) Infos — fadeIn depuis la gauche (col gauche) et la droite (col droite) */
+      /* B) Infos — fadeIn droite/gauche */
       if (infoRef.current) {
         const leftCol = infoRef.current.querySelector(".info-left")
         const rightCol = infoRef.current.querySelector(".info-right")
@@ -100,14 +91,14 @@ export default function ProjectDetailPage() {
         }
       }
 
-      /* C) Métriques visuelles — countUp GSAP ScrollTrigger */
+      /* C) Métriques visuelles — countUp */
       metricValueRefs.current.forEach((el) => {
         if (!el) return
         const target = el.dataset.value || ""
         animateCountUp(el, target)
       })
 
-      /* D) Navigation — slide depuis bas au scroll */
+      /* D) Navigation — slide depuis bas */
       if (navRef.current) {
         gsap.fromTo(
           navRef.current,
@@ -126,17 +117,16 @@ export default function ProjectDetailPage() {
     return () => ctx.revert()
   }, [project])
 
-  /* ── État projet introuvable ── */
   if (!project) {
     return (
       <>
         <Navbar />
-        <main className="flex min-h-[60vh] items-center justify-center bg-[#060C0A]">
+        <main className="flex min-h-[60vh] items-center justify-center bg-[#1A1410]">
           <div className="text-center">
-            <h1 className="mb-4 font-playfair text-3xl text-[#F0FAF4]">Projet introuvable</h1>
+            <h1 className="mb-4 font-playfair text-3xl text-[#FAF6EE]">Projet introuvable</h1>
             <Link
               to="/portfolio"
-              className="inline-flex items-center gap-2 font-bricolage text-sm font-semibold text-[#00E87A]"
+              className="inline-flex items-center gap-2 font-bricolage text-sm font-semibold text-[#C8A96E]"
             >
               <ArrowLeft className="h-4 w-4" />
               Tous les projets
@@ -154,24 +144,24 @@ export default function ProjectDetailPage() {
 
       <main>
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  A) HERO PROJECT                                           */}
+        {/*  A) HERO PROJECT — palette beige doré                     */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section ref={heroRef} className="relative h-[70vh] min-h-[500px] overflow-hidden">
           <img src={project.image} alt={project.imageAlt} className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-[#060C0A]/60" />
+          <div className="absolute inset-0 bg-[#1A1410]/60" />
 
           <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-12 md:px-10 md:pb-16 lg:pb-20">
             <span
-              className="hero-animate mb-4 inline-block w-fit rounded-full border border-[#00E87A]/40 bg-[#060C0A]/60 px-4 py-1.5 font-bricolage text-[11px] font-semibold uppercase tracking-[0.15em] text-[#00E87A] backdrop-blur-sm"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              className="hero-animate mb-4 inline-block w-fit rounded-full border border-[#C8A96E]/40 bg-[#1A1410]/60 px-4 py-1.5 font-bricolage text-[11px] font-semibold uppercase tracking-[0.15em] text-[#C8A96E] backdrop-blur-sm"
+              style={{ fontFamily: "'Satoshi', sans-serif" }}
             >
               {project.category}
             </span>
 
             <h1
-              className="hero-animate mb-6 max-w-3xl font-playfair font-black text-[#F0FAF4]"
+              className="hero-animate mb-6 max-w-3xl font-playfair font-black text-[#FAF6EE]"
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Outfit', sans-serif",
                 fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 lineHeight: 1.1,
               }}
@@ -180,15 +170,15 @@ export default function ProjectDetailPage() {
             </h1>
 
             <div className="hero-animate flex flex-wrap items-center gap-4 md:gap-6">
-              <span className="font-dm-mono text-sm font-medium text-[#F0FAF4]/80" style={{ fontFamily: "'DM Mono', monospace" }}>
+              <span className="font-dm-mono text-sm font-medium text-[#FAF6EE]/80" style={{ fontFamily: "'Satoshi', sans-serif" }}>
                 {project.client}
               </span>
-              <span className="hidden h-1 w-1 rounded-full bg-[#00E87A]/50 md:block" />
-              <span className="font-dm-mono text-sm text-[#F0FAF4]/60" style={{ fontFamily: "'DM Mono', monospace" }}>
+              <span className="hidden h-1 w-1 rounded-full bg-[#C8A96E]/50 md:block" />
+              <span className="font-dm-mono text-sm text-[#FAF6EE]/60" style={{ fontFamily: "'Satoshi', sans-serif" }}>
                 {project.year}
               </span>
-              <span className="hidden h-1 w-1 rounded-full bg-[#00E87A]/50 md:block" />
-              <span className="font-dm-mono text-sm text-[#F0FAF4]/60" style={{ fontFamily: "'DM Mono', monospace" }}>
+              <span className="hidden h-1 w-1 rounded-full bg-[#C8A96E]/50 md:block" />
+              <span className="font-dm-mono text-sm text-[#FAF6EE]/60" style={{ fontFamily: "'Satoshi', sans-serif" }}>
                 {project.duration}
               </span>
             </div>
@@ -196,27 +186,27 @@ export default function ProjectDetailPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  B) INFOS PROJET                                           */}
+        {/*  B) INFOS PROJET                                          */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section ref={infoRef} className="bg-[#F7FFF9] py-16 dark:bg-[#060C0A] md:py-24">
+        <section ref={infoRef} className="bg-[#F5EDD6] py-16 dark:bg-[#1A1410] md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
-              {/* ── Col gauche : description + technologies ── */}
+              {/* Col gauche */}
               <div className="info-left">
                 <h2
-                  className="mb-6 font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-3xl"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  className="mb-6 font-playfair text-2xl font-bold text-[#1A1410] dark:text-[#FAF6EE] md:text-3xl"
+                  style={{ fontFamily: "'Outfit', sans-serif" }}
                 >
                   À propos du projet
                 </h2>
-                <p className="mb-8 font-dm-sans text-base font-light leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
+                <p className="mb-8 font-dm-sans text-base font-light leading-relaxed text-[#7C6E5A]">
                   {project.fullDescription}
                 </p>
 
                 <div className="mb-6">
                   <h3
-                    className="mb-3 font-bricolage text-xs font-semibold uppercase tracking-[0.2em] text-[#071510]/50 dark:text-[#F0FAF4]/50"
-                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                    className="mb-3 font-bricolage text-xs font-semibold uppercase tracking-[0.2em] text-[#7C6E5A]"
+                    style={{ fontFamily: "'Satoshi', sans-serif" }}
                   >
                     Technologies
                   </h3>
@@ -224,7 +214,7 @@ export default function ProjectDetailPage() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-[#00E87A]/20 bg-white px-3 py-1 font-dm-sans text-xs font-medium text-[#00E87A] dark:border-[#00E87A]/20 dark:bg-[#071510]"
+                        className="rounded-full border border-[#C8A96E]/20 bg-white px-3 py-1 font-dm-sans text-xs font-medium text-[#8B6914] dark:border-[#C8A96E]/20 dark:bg-[#201A10]"
                       >
                         {tech}
                       </span>
@@ -233,11 +223,11 @@ export default function ProjectDetailPage() {
                 </div>
               </div>
 
-              {/* ── Col droite : résultats chiffrés + métadonnées ── */}
+              {/* Col droite */}
               <div className="info-right">
                 <h2
-                  className="mb-6 font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-3xl"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  className="mb-6 font-playfair text-2xl font-bold text-[#1A1410] dark:text-[#FAF6EE] md:text-3xl"
+                  style={{ fontFamily: "'Outfit', sans-serif" }}
                 >
                   Résultats
                 </h2>
@@ -246,45 +236,45 @@ export default function ProjectDetailPage() {
                   {project.results.map((r, i) => (
                     <div
                       key={r.label}
-                      className="rounded-xl border border-[#00E87A]/10 bg-white p-5 transition-shadow duration-300 hover:shadow-lg dark:border-[#00E87A]/10 dark:bg-[#071510]"
+                      className="rounded-xl border border-[#E8D5A3] bg-white p-5 transition-shadow duration-300 hover:shadow-lg dark:border-[#C8A96E]/10 dark:bg-[#201A10]"
                     >
                       <span
                         ref={(el) => (metricValueRefs.current[i] = el)}
                         data-value={r.value}
-                        className="mb-1 block font-dm-mono text-2xl font-bold text-[#00E87A] md:text-3xl"
-                        style={{ fontFamily: "'DM Mono', monospace" }}
+                        className="mb-1 block font-dm-mono text-2xl font-bold text-[#C8A96E] md:text-3xl"
+                        style={{ fontFamily: "'Satoshi', sans-serif" }}
                       >
                         {r.value}
                       </span>
-                      <span className="font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#071510]/50 dark:text-[#F0FAF4]/50">
+                      <span className="font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#7C6E5A]">
                         {r.label}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="space-y-4 rounded-xl border border-[#00E87A]/10 bg-white p-6 dark:border-[#00E87A]/10 dark:bg-[#071510]">
-                  <div className="flex justify-between border-b border-[#00E87A]/10 pb-3 dark:border-[#00E87A]/10">
-                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#071510]/50 dark:text-[#F0FAF4]/50">
+                <div className="space-y-4 rounded-xl border border-[#E8D5A3] bg-white p-6 dark:border-[#C8A96E]/10 dark:bg-[#201A10]">
+                  <div className="flex justify-between border-b border-[#E8D5A3]/50 pb-3 dark:border-[#C8A96E]/10">
+                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#7C6E5A]">
                       Client
                     </span>
-                    <span className="font-dm-sans text-sm font-medium text-[#071510] dark:text-[#F0FAF4]">
+                    <span className="font-dm-sans text-sm font-medium text-[#1A1410] dark:text-[#FAF6EE]">
                       {project.client}
                     </span>
                   </div>
-                  <div className="flex justify-between border-b border-[#00E87A]/10 pb-3 dark:border-[#00E87A]/10">
-                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#071510]/50 dark:text-[#F0FAF4]/50">
+                  <div className="flex justify-between border-b border-[#E8D5A3]/50 pb-3 dark:border-[#C8A96E]/10">
+                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#7C6E5A]">
                       Année
                     </span>
-                    <span className="font-dm-mono text-sm text-[#071510] dark:text-[#F0FAF4]" style={{ fontFamily: "'DM Mono', monospace" }}>
+                    <span className="font-dm-mono text-sm text-[#1A1410] dark:text-[#FAF6EE]" style={{ fontFamily: "'Satoshi', sans-serif" }}>
                       {project.year}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#071510]/50 dark:text-[#F0FAF4]/50">
+                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#7C6E5A]">
                       Durée
                     </span>
-                    <span className="font-dm-mono text-sm text-[#071510] dark:text-[#F0FAF4]" style={{ fontFamily: "'DM Mono', monospace" }}>
+                    <span className="font-dm-mono text-sm text-[#1A1410] dark:text-[#FAF6EE]" style={{ fontFamily: "'Satoshi', sans-serif" }}>
                       {project.duration}
                     </span>
                   </div>
@@ -295,13 +285,13 @@ export default function ProjectDetailPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  C) SECTION RÉSULTATS VISUELS                              */}
+        {/*  C) SECTION RÉSULTATS VISUELS — beige doré                */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="bg-[#F7FFF9] py-16 dark:bg-[#060C0A] md:py-24">
+        <section className="bg-[#F5EDD6] py-16 dark:bg-[#1A1410] md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <h2
-              className="mb-12 text-center font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-3xl"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="mb-12 text-center font-playfair text-2xl font-bold text-[#1A1410] dark:text-[#FAF6EE] md:text-3xl"
+              style={{ fontFamily: "'Outfit', sans-serif" }}
             >
               Impact mesurable
             </h2>
@@ -310,19 +300,19 @@ export default function ProjectDetailPage() {
               {project.results.map((r, i) => (
                 <div
                   key={r.label}
-                  className="flex flex-col items-center rounded-xl border border-[#00E87A]/15 bg-white p-8 text-center transition-colors duration-300 hover:border-[#00E87A]/30 dark:bg-[#071510]"
+                  className="flex flex-col items-center rounded-xl border border-[#E8D5A3] bg-white p-8 text-center transition-colors duration-300 hover:border-[#C8A96E]/30 dark:border-[#C8A96E]/15 dark:bg-[#201A10]"
                 >
                   <span
                     ref={(el) => {
                       if (!metricValueRefs.current[i + 3]) metricValueRefs.current[i + 3] = el
                     }}
                     data-value={r.value}
-                    className="mb-2 block font-dm-mono text-4xl font-bold text-[#00E87A] md:text-5xl"
-                    style={{ fontFamily: "'DM Mono', monospace" }}
+                    className="mb-2 block font-dm-mono text-4xl font-bold text-[#C8A96E] md:text-5xl"
+                    style={{ fontFamily: "'Satoshi', sans-serif" }}
                   >
                     {r.value}
                   </span>
-                  <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#071510]/50 dark:text-[#F0FAF4]/50">
+                  <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#7C6E5A]">
                     {r.label}
                   </span>
                 </div>
@@ -332,9 +322,9 @@ export default function ProjectDetailPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  D) NAVIGATION PROJET SUIVANT/PRÉCÉDENT                    */}
+        {/*  D) NAVIGATION PROJET SUIVANT/PRÉCÉDENT                   */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section ref={navRef} className="bg-[#F7FFF9] py-16 dark:bg-[#060C0A] md:py-24">
+        <section ref={navRef} className="bg-[#F5EDD6] py-16 dark:bg-[#1A1410] md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
               {prevProject && (
@@ -349,17 +339,17 @@ export default function ProjectDetailPage() {
                       className="h-full w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-105 group-hover:opacity-80"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-[#060C0A]/40" />
+                    <div className="absolute inset-0 bg-[#1A1410]/40" />
                   </div>
                   <div className="mt-4 flex items-center gap-3">
-                    <ArrowLeft className="h-4 w-4 text-[#00E87A] transition-transform duration-300 group-hover:-translate-x-1" />
+                    <ArrowLeft className="h-4 w-4 text-[#C8A96E] transition-transform duration-300 group-hover:-translate-x-1" />
                     <div>
-                      <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#071510]/50 dark:text-[#F0FAF4]/50">
+                      <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#7C6E5A]">
                         Projet précédent
                       </span>
                       <span
-                        className="font-playfair text-lg font-bold text-[#071510] transition-colors group-hover:text-[#00E87A] dark:text-[#F0FAF4]"
-                        style={{ fontFamily: "'Playfair Display', serif" }}
+                        className="font-playfair text-lg font-bold text-[#1A1410] transition-colors group-hover:text-[#8B6914] dark:text-[#FAF6EE]"
+                        style={{ fontFamily: "'Outfit', sans-serif" }}
                       >
                         {prevProject.title}
                       </span>
@@ -380,21 +370,21 @@ export default function ProjectDetailPage() {
                       className="h-full w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-105 group-hover:opacity-80"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-[#060C0A]/40" />
+                    <div className="absolute inset-0 bg-[#1A1410]/40" />
                   </div>
                   <div className="mt-4 flex items-center gap-3 text-right">
                     <div>
-                      <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#071510]/50 dark:text-[#F0FAF4]/50">
+                      <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#7C6E5A]">
                         Projet suivant
                       </span>
                       <span
-                        className="font-playfair text-lg font-bold text-[#071510] transition-colors group-hover:text-[#00E87A] dark:text-[#F0FAF4]"
-                        style={{ fontFamily: "'Playfair Display', serif" }}
+                        className="font-playfair text-lg font-bold text-[#1A1410] transition-colors group-hover:text-[#8B6914] dark:text-[#FAF6EE]"
+                        style={{ fontFamily: "'Outfit', sans-serif" }}
                       >
                         {nextProject.title}
                       </span>
                     </div>
-                    <ArrowRight className="h-4 w-4 text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 text-[#C8A96E] transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </Link>
               )}
@@ -403,14 +393,14 @@ export default function ProjectDetailPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  E) CTA RETOUR PORTFOLIO                                   */}
+        {/*  E) CTA RETOUR PORTFOLIO                                  */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="bg-[#F7FFF9] pb-16 text-center dark:bg-[#060C0A] md:pb-24">
+        <section className="bg-[#F5EDD6] pb-16 text-center dark:bg-[#1A1410] md:pb-24">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <Link
               to="/portfolio"
-              className="inline-flex items-center gap-3 rounded-full bg-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-semibold text-[#071510] transition-all duration-300 hover:bg-[#00c96a] hover:shadow-[0_8px_24px_rgba(0,232,122,0.3)]"
-              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              className="inline-flex items-center gap-3 rounded-full bg-[#C8A96E] px-8 py-3.5 font-bricolage text-sm font-semibold text-[#1A1410] transition-all duration-300 hover:bg-[#8B6914] hover:text-[#FAF6EE] hover:shadow-[0_8px_24px_rgba(139,105,20,0.3)]"
+              style={{ fontFamily: "'Satoshi', sans-serif" }}
             >
               <ArrowLeft className="h-4 w-4" />
               Voir tous les projets

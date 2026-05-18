@@ -7,13 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import type { Project } from "../../data/projects"
 import ProjectCard from "../ui/ProjectCard"
 
-/* ─────────────────────────────────────────────────────────────────── */
-/*  PortfolioGrid — grille masonry avec filtres GSAP Flip           */
-/*  • Filtres par catégorie avec compteur                           */
-/*  • Animation Flip au changement de filtre                       */
-/*  • Scroll reveal stagger initial                                 */
-/*  • Support dark mode / reduced-motion / touch device            */
-/* ─────────────────────────────────────────────────────────────────── */
+/* ───────────────────────────────────────────────────────────────── */
+/*  PortfolioGrid — grille masonry avec filtres GSAP Flip            */
+/*  Palette beige doré, support dark mode.                           */
+/* ───────────────────────────────────────────────────────────────── */
 
 gsap.registerPlugin(Flip, ScrollTrigger)
 
@@ -27,7 +24,6 @@ const FILTERS = [
 ]
 
 interface PortfolioGridProps {
-  /** Liste complète des projets */
   projects: Project[]
 }
 
@@ -37,34 +33,17 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
   const gridRef = useRef<HTMLDivElement>(null)
   const initialRevealDone = useRef(false)
 
-  /** Compte les projets par catégorie */
   const getCount = useCallback(
     (value: string) =>
       value === "all" ? projects.length : projects.filter((p) => p.category === value).length,
     [projects]
   )
 
-  /**
-   * @animation Scroll reveal initial — fadeUp stagger sur chaque carte
-   * @trigger Quand la grille entre à 80% dans le viewport
-   * @note Joué une seule fois (once: true) via un flag réf.
-   */
+  /** Scroll reveal initial — joué une seule fois au montage */
   useEffect(() => {
     if (initialRevealDone.current) return
     if (!gridRef.current) return
     if (typeof window === "undefined") return
-
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (prefersReduced) {
-      initialRevealDone.current = true
-      if (gridRef.current) {
-        gridRef.current.querySelectorAll(".project-card").forEach((card) => {
-          ;(card as HTMLElement).style.opacity = "1"
-          ;(card as HTMLElement).style.transform = "none"
-        })
-      }
-      return
-    }
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -91,11 +70,7 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
     return () => ctx.revert()
   }, [])
 
-  /**
-   * @animation Filtre avec GSAP Flip — réordonne / entre / sort les cartes
-   * @trigger Clic sur un bouton de filtre
-   * @param filter Valeur du filtre à appliquer
-   */
+  /** Filtre avec animation GSAP Flip */
   const handleFilter = (filter: string) => {
     if (!gridRef.current) return
 
@@ -125,7 +100,7 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
   }
 
   return (
-    <section className="relative bg-[#F7FFF9] py-16 dark:bg-[#060C0A] md:py-20 lg:py-24">
+    <section className="relative bg-[#F5EDD6] py-16 dark:bg-[#1A1410] md:py-20 lg:py-24">
       {/* Texture grain subtile */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -139,8 +114,8 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
         {/* ── Barre de filtres ── */}
         <div className="mb-10 md:mb-14" role="group" aria-label="Filtres par catégorie">
           <p
-            className="mb-4 font-bricolage text-[11px] font-semibold uppercase tracking-[0.22em] text-[#071510]/50 dark:text-[#F0FAF4]/50"
-            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            className="mb-4 font-bricolage text-[11px] font-semibold uppercase tracking-[0.22em] text-[#7C6E5A]"
+            style={{ fontFamily: "'Satoshi', sans-serif" }}
           >
             Filtrer par :
           </p>
@@ -159,11 +134,11 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
                     shrink-0 rounded-full px-4 py-2 text-[12px] font-semibold transition-all duration-300
                     ${
                       isActive
-                        ? "bg-[#00E87A] text-[#071510] shadow-[0_4px_14px_rgba(0,232,122,0.4)]"
-                        : "border border-[#00E87A]/10 bg-white/60 text-[#071510]/50 hover:border-[#00E87A]/30 hover:text-[#071510]/80 dark:bg-[#071510]/40 dark:text-[#F0FAF4]/50 dark:hover:border-[#00E87A]/30 dark:hover:text-[#F0FAF4]/80"
+                        ? "bg-[#C8A96E] text-[#1A1410] shadow-[0_4px_14px_rgba(200,169,110,0.4)]"
+                        : "border border-[#E8D5A3] bg-white/60 text-[#7C6E5A] hover:border-[#C8A96E] hover:text-[#8B6914] dark:border-[#E8D5A3]/20 dark:bg-[#201A10]/60 dark:text-[#FAF6EE]/60 dark:hover:border-[#C8A96E] dark:hover:text-[#C8A96E]"
                     }
                   `}
-                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                  style={{ fontFamily: "'Satoshi', sans-serif" }}
                 >
                   {f.label} ({count})
                 </button>
@@ -174,7 +149,7 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
 
         {/* ── Compteur projets ── */}
         <div className="mb-6 text-right">
-          <span className="font-dm-sans text-xs text-[#071510]/50 dark:text-[#F0FAF4]/50">
+          <span className="font-dm-sans text-xs text-[#7C6E5A]">
             {filteredProjects.length} projet{filteredProjects.length > 1 ? "s" : ""} affiché
             {filteredProjects.length > 1 ? "s" : ""}
           </span>
@@ -186,18 +161,12 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
           className="grid grid-cols-1 items-start gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3"
         >
           {filteredProjects.map((project, index) => {
-            /*
-              Taille responsive des cartes :
-              - large : 2 colonnes sur md+, aspect-[3/2] mobile / aspect-[16/10] desktop
-              - medium : 1 colonne, aspect-[3/2] mobile / aspect-[4/5] desktop
-              - small : 1 colonne, aspect-[3/2] mobile / aspect-[3/4] desktop
-            */
             const sizeClasses =
               project.size === "large"
-                ? "md:col-span-2 aspect-[3/2] md:aspect-[16/10]"
+                ? "md:col-span-2 aspect-[16/10]"
                 : project.size === "medium"
-                ? "aspect-[3/2] md:aspect-[4/5]"
-                : "aspect-[3/2] md:aspect-[3/4]"
+                ? "aspect-[4/5]"
+                : "aspect-[3/4]"
 
             return (
               <ProjectCard

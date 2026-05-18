@@ -334,13 +334,13 @@ const OrbitCard = React.memo(function OrbitCard({
           <div className="relative p-4 md:p-5">
             <h4
               className="text-[#071510] dark:text-[#F0FAF4] font-bold text-base md:text-lg leading-tight"
-              style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
+              style={{ fontFamily: "Satoshi, sans-serif" }}
             >
               {member.name}
             </h4>
             <p
               className="text-[#6B7280] text-[10px] md:text-[11px] uppercase tracking-[0.18em] mt-1"
-              style={{ fontFamily: "DM Sans, sans-serif", fontWeight: 400 }}
+              style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 400 }}
             >
               {member.role}
             </p>
@@ -399,13 +399,13 @@ function SliderCard({ member }: { member: TeamMember }) {
         <div className="p-5">
           <h4
             className="text-[#071510] dark:text-[#F0FAF4] font-bold text-lg"
-            style={{ fontFamily: "Bricolage Grotesque, sans-serif" }}
+            style={{ fontFamily: "Satoshi, sans-serif" }}
           >
             {member.name}
           </h4>
           <p
             className="text-[#6B7280] text-[11px] uppercase tracking-[0.18em] mt-1"
-            style={{ fontFamily: "DM Sans, sans-serif" }}
+            style={{ fontFamily: "Satoshi, sans-serif" }}
           >
             {member.role}
           </p>
@@ -760,21 +760,21 @@ export default function Team() {
         >
           <motion.p
             variants={headerItem}
-            className="font-['Bricolage_Grotesque'] text-[11px] uppercase tracking-[0.22em] text-[#00E87A] mb-4"
+            className="font-['Satoshi'] text-[11px] uppercase tracking-[0.22em] text-[#00E87A] mb-4"
           >
             — L'équipe derrière vos projets digitaux
           </motion.p>
           <motion.h2
             id="team-title"
             variants={headerItem}
-            className="font-['Playfair_Display'] font-extrabold text-[#071510] dark:text-[#F0FAF4] mb-5"
+            className="font-['Outfit'] font-extrabold text-[#071510] dark:text-[#F0FAF4] mb-5"
             style={{ fontSize: "clamp(2rem, 5.5vw, 4rem)", lineHeight: 1.1 }}
           >
             Des passionnés à votre service.
           </motion.h2>
           <motion.p
             variants={headerItem}
-            className="font-['DM_Sans'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-xl mx-auto text-base md:text-lg leading-relaxed"
+            className="font-['Satoshi'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-xl mx-auto text-base md:text-lg leading-relaxed"
           >
             Designers, développeurs et créatifs passionnés qui construisent des expériences mémorables.
           </motion.p>

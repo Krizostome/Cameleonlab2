@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { Search, Palette, Cog, Rocket, ChevronDown } from 'lucide-react'
+import { Search, Palette, Cog, Rocket, ChevronDown, MousePointerClick, ChevronRight } from 'lucide-react'
 
 interface ProcessStep {
   id: number
@@ -134,6 +134,19 @@ export default function Process() {
           Un processus simple, clair et efficace.
         </motion.p>
 
+        {/* Hint text for desktop */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mb-8 hidden items-center justify-center gap-2 text-center lg:flex"
+        >
+          <MousePointerClick className="h-4 w-4 text-[#00E87A]/60" />
+          <span className="font-dm-sans text-xs text-[#071510]/40 dark:text-[#F0FAF4]/40">
+            Cliquez sur une étape pour explorer
+          </span>
+        </motion.div>
+
         {/* ─── DESKTOP : Circle + Content ─── */}
         <div className="hidden lg:grid lg:grid-cols-2 lg:items-center lg:gap-20">
           {/* Left: Orbital Circle */}
@@ -141,7 +154,7 @@ export default function Process() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-            className="relative mx-auto aspect-square w-full max-w-[420px]"
+            className="relative mx-auto aspect-square w-full max-w-[480px]"
           >
             {/* Rotating dashed ring */}
             <div
@@ -151,29 +164,6 @@ export default function Process() {
 
             {/* Static subtle ring */}
             <div className="absolute inset-[8%] rounded-full border border-[#00E87A]/8" />
-
-            {/* Active arc indicator */}
-            <svg
-              className="absolute inset-[8%] h-full w-full"
-              viewBox="0 0 100 100"
-              style={{ transform: 'rotate(-90deg)' }}
-            >
-              <circle
-                cx="50"
-                cy="50"
-                r="42"
-                fill="none"
-                stroke="rgba(0,232,122,0.25)"
-                strokeWidth="0.5"
-                strokeLinecap="round"
-                strokeDasharray={`${(2 * Math.PI * 42) / 4} ${2 * Math.PI * 42}`}
-                style={{
-                  transform: `rotate(${active * 90}deg)`,
-                  transformOrigin: '50% 50%',
-                  transition: 'transform 0.7s cubic-bezier(0.19,1,0.32,1)',
-                }}
-              />
-            </svg>
 
             {/* Center number */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -191,44 +181,84 @@ export default function Process() {
               </AnimatePresence>
             </div>
 
-            {/* Orbital icons */}
+            {/* ─── Orbital icons — circle + label séparés pour un centrage parfait ─── */}
             {STEPS.map((step, i) => {
-              const pos = getOrbitalPosition(i, 36)
+              const pos = getOrbitalPosition(i, 40)
               const isActive = i === active
               const Icon = step.icon
 
               return (
-                <motion.button
+                <div
                   key={step.id}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.3 + i * 0.1,
-                    ease: [0.19, 1, 0.22, 1],
-                  }}
-                  onClick={() => setActive(i)}
-                  className="absolute flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border transition-all duration-500 md:h-[72px] md:w-[72px]"
+                  className="absolute"
                   style={{
                     left: `${pos.x}%`,
                     top: `${pos.y}%`,
-                    borderColor: isActive ? 'rgba(0,232,122,0.6)' : 'rgba(0,232,122,0.15)',
-                    backgroundColor: isActive ? 'rgba(0,232,122,0.12)' : 'rgba(0,232,122,0.03)',
-                    boxShadow: isActive
-                      ? '0 0 30px rgba(0,232,122,0.25), 0 0 60px rgba(0,232,122,0.1)'
-                      : 'none',
-                    transform: `translate(-50%, -50%) scale(${isActive ? 1.1 : 1})`,
+                    transform: 'translate(-50%, -50%)',
                   }}
-                  whileHover={{
-                    scale: isActive ? 1.1 : 1.08,
-                    boxShadow: '0 0 24px rgba(0,232,122,0.2)',
-                  }}
-                  aria-label={`Étape ${step.id} : ${step.title}`}
                 >
-                  <Icon
-                    className={`h-5 w-5 transition-colors duration-300 md:h-6 md:w-6 ${isActive ? 'text-[#00E87A]' : 'text-[#071510]/50 dark:text-[#F0FAF4]/50'}`}
+                  {/* Bouton icône — centré exactement sur le point orbital */}
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.3 + i * 0.1,
+                      ease: [0.19, 1, 0.22, 1],
+                    }}
+                    onClick={() => setActive(i)}
+                    className="flex cursor-pointer items-center justify-center rounded-full border transition-all duration-500 hover:scale-105"
+                    style={{
+                      width: '72px',
+                      height: '72px',
+                      borderColor: isActive ? 'rgba(0,232,122,0.6)' : 'rgba(0,232,122,0.15)',
+                      backgroundColor: isActive ? 'rgba(0,232,122,0.12)' : 'rgba(0,232,122,0.03)',
+                      boxShadow: isActive
+                        ? '0 0 30px rgba(0,232,122,0.25), 0 0 60px rgba(0,232,122,0.1)'
+                        : 'none',
+                    }}
+                    aria-label={`Étape ${step.id} : ${step.title}`}
+                  >
+                    <Icon
+                      className={`h-6 w-6 transition-colors duration-300 ${isActive ? 'text-[#00E87A]' : 'text-[#071510]/50 dark:text-[#F0FAF4]/50'}`}
+                    />
+                  </motion.button>
+
+                  {/* Label — positionné en dessous du cercle, centré horizontalement */}
+                  <span
+                    className={`absolute left-1/2 mt-2.5 block -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-0.5 font-dm-sans text-[10px] font-semibold uppercase tracking-wider transition-all duration-300 ${
+                      isActive
+                        ? 'bg-[#00E87A]/15 text-[#00E87A] opacity-100'
+                        : 'text-[#071510]/50 opacity-80 dark:text-[#F0FAF4]/50'
+                    }`}
+                  >
+                    {step.title}
+                  </span>
+                </div>
+              )
+            })}
+
+            {/* ─── Flèches directionnelles entre les étapes (sens horaire) ─── */}
+            {[0, 1, 2, 3].map((arrowIndex) => {
+              /* Calcul de l'angle médian entre deux icônes consécutives */
+              const midAngle = (arrowIndex * 90 - 45) * (Math.PI / 180)
+              const x = 50 + Math.cos(midAngle) * 40
+              const y = 50 + Math.sin(midAngle) * 40
+              /* Rotation pour que la flèche suive la tangente du cercle */
+              const rotation = arrowIndex * 90 - 45 + 90
+              const isNextArrow = arrowIndex === active
+
+              return (
+                <div
+                  key={`arrow-${arrowIndex}`}
+                  className="pointer-events-none absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+                  style={{ left: `${x}%`, top: `${y}%` }}
+                >
+                  <ChevronRight
+                    className={`h-3.5 w-3.5 transition-all duration-500 ${isNextArrow ? 'text-[#00E87A]' : 'text-[#00E87A]/20'}`}
+                    style={{ transform: `rotate(${rotation}deg)` }}
                   />
-                </motion.button>
+                </div>
               )
             })}
           </motion.div>

@@ -5,21 +5,14 @@ import { Link } from "react-router-dom"
 import gsap from "gsap"
 import type { Project } from "../../data/projects"
 
-/* ─────────────────────────────────────────────────────────────────── */
-/*  ProjectCard — carte projet premium avec :                        */
-/*  • Tilt 3D au mousemove (desktop uniquement)                     */
-/*  • Overlay clip-path reveal au hover                             */
-/*  • Curseur personnalisé « Voir »                                 */
-/*  • Désactivé sur mobile (pointer: coarse)                        */
-/*  • Couleurs CameleonLab vert néon, support dark mode.              */
-/* ─────────────────────────────────────────────────────────────────── */
+/* ───────────────────────────────────────────────────────────────── */
+/*  ProjectCard — carte projet avec tilt 3D, overlay clip-path       */
+/*  reveal et curseur personnalisé. Palette beige doré.              */
+/* ───────────────────────────────────────────────────────────────── */
 
 export interface ProjectCardProps {
-  /** Projet à afficher */
   project: Project
-  /** Index pour le lazy-loading (eager sur les 4 premiers) */
   index: number
-  /** Classes Tailwind additionnelles (aspect ratio, colspan…) */
   className?: string
 }
 
@@ -29,7 +22,6 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
   const cursorDotRef = useRef<HTMLDivElement>(null)
   const bottomInfoRef = useRef<HTMLDivElement>(null)
 
-  /** Détection reduced-motion et touch device */
   const prefersReduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -38,10 +30,6 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
     typeof window !== "undefined" &&
     window.matchMedia("(pointer: coarse)").matches
 
-  /**
-   * Initialisation : positionne l'overlay clip-path hors champ.
-   * @note Kill des tweens au unmount pour éviter les fuites mémoire.
-   */
   useEffect(() => {
     if (prefersReduced) return
     if (!overlayRef.current) return
@@ -53,10 +41,7 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
     }
   }, [prefersReduced])
 
-  /**
-   * @animation Overlay clip-path slide-up + fade-out texte bas + apparation curseur
-   * @trigger mouseenter sur la carte (desktop uniquement)
-   */
+  /** Overlay slide-up + disparition texte bas au hover */
   const handleMouseEnter = () => {
     if (prefersReduced || isTouchDevice) return
     if (!overlayRef.current || !cursorDotRef.current || !bottomInfoRef.current) return
@@ -81,10 +66,7 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
     })
   }
 
-  /**
-   * @animation Overlay clip-path slide-down + fade-in texte bas + disparition curseur + reset tilt
-   * @trigger mouseleave sur la carte (desktop uniquement)
-   */
+  /** Overlay slide-down + réapparition texte bas au leave */
   const handleMouseLeave = () => {
     if (prefersReduced || isTouchDevice) return
     if (!overlayRef.current || !cardRef.current || !cursorDotRef.current || !bottomInfoRef.current) return
@@ -116,11 +98,7 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
     })
   }
 
-  /**
-   * @animation Tilt 3D (rotateX / rotateY) + curseur personnalisé suiveur
-   * @trigger mousemove sur la carte (desktop uniquement)
-   * @param e Événement souris React
-   */
+  /** Tilt 3D + curseur suiveur au mousemove */
   const handleMouseMove = (e: React.MouseEvent) => {
     if (prefersReduced || isTouchDevice) return
     if (!cardRef.current || !cursorDotRef.current) return
@@ -175,7 +153,7 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(6,12,10,0.9) 0%, rgba(6,12,10,0.4) 40%, transparent 65%)",
+            "linear-gradient(to top, rgba(26,20,16,0.9) 0%, rgba(26,20,16,0.4) 40%, transparent 65%)",
         }}
       />
 
@@ -185,12 +163,12 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
         className="pointer-events-none absolute inset-0 flex flex-col justify-end p-5 md:p-6"
         style={{
           background:
-            "linear-gradient(to top, rgba(6,12,10,0.98) 0%, rgba(6,12,10,0.85) 55%, rgba(6,12,10,0.5) 100%)",
+            "linear-gradient(to top, rgba(26,20,16,0.98) 0%, rgba(26,20,16,0.85) 55%, rgba(26,20,16,0.5) 100%)",
           clipPath: "inset(100% 0 0 0)",
         }}
       >
         {/* Description révélée */}
-        <p className="mb-4 font-dm-sans text-sm font-light leading-relaxed text-[#F0FAF4]/80">
+        <p className="mb-4 font-dm-sans text-sm font-light leading-relaxed text-[#FAF6EE]/80">
           {project.description}
         </p>
 
@@ -199,12 +177,12 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
           {project.results.slice(0, 2).map((r) => (
             <div key={r.label} className="flex flex-col">
               <span
-                className="font-dm-mono text-lg font-bold text-[#00E87A]"
-                style={{ fontFamily: "'DM Mono', monospace" }}
+                className="font-dm-mono text-lg font-bold text-[#C8A96E]"
+                style={{ fontFamily: "'Satoshi', sans-serif" }}
               >
                 {r.value}
               </span>
-              <span className="font-dm-sans text-[10px] uppercase tracking-wider text-[#F0FAF4]/50">
+              <span className="font-dm-sans text-[10px] uppercase tracking-wider text-[#FAF6EE]/50">
                 {r.label}
               </span>
             </div>
@@ -212,7 +190,7 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
         </div>
 
         {/* CTA */}
-        <span className="inline-flex items-center gap-2 font-bricolage text-xs font-semibold uppercase tracking-wider text-[#00E87A]">
+        <span className="inline-flex items-center gap-2 font-bricolage text-xs font-semibold uppercase tracking-wider text-[#C8A96E]">
           Voir le projet
           <span>→</span>
         </span>
@@ -220,8 +198,8 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
 
       {/* ── Numéro projet ── */}
       <div
-        className="pointer-events-none absolute left-4 top-4 font-dm-mono text-2xl font-bold text-[#00E87A] opacity-80 md:text-3xl"
-        style={{ fontFamily: "'DM Mono', monospace" }}
+        className="pointer-events-none absolute left-4 top-4 font-dm-mono text-2xl font-bold text-[#C8A96E] opacity-80 md:text-3xl"
+        style={{ fontFamily: "'Satoshi', sans-serif" }}
       >
         {project.number}
       </div>
@@ -231,7 +209,7 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
         {project.tags.slice(0, 2).map((tag) => (
           <span
             key={tag}
-            className="rounded-full border border-[#00E87A]/25 bg-[#060C0A]/50 px-2.5 py-1 font-bricolage text-[10px] font-semibold uppercase tracking-wider text-[#00E87A] backdrop-blur-sm"
+            className="rounded-full border border-[#C8A96E]/25 bg-[#1A1410]/50 px-2.5 py-1 font-bricolage text-[10px] font-semibold uppercase tracking-wider text-[#E8D5A3] backdrop-blur-sm"
           >
             {tag}
           </span>
@@ -243,12 +221,12 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
         ref={bottomInfoRef}
         className="pointer-events-none absolute bottom-0 left-0 right-0 p-5 transition-all duration-500 md:p-6"
       >
-        <p className="mb-1 font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#00E87A]">
+        <p className="mb-1 font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#C8A96E]">
           {project.client}
         </p>
         <h3
-          className="font-playfair text-xl font-bold text-[#F0FAF4] md:text-2xl"
-          style={{ fontFamily: "'Playfair Display', serif" }}
+          className="font-playfair text-xl font-bold text-[#FAF6EE] md:text-2xl"
+          style={{ fontFamily: "'Outfit', sans-serif" }}
         >
           {project.title}
         </h3>
@@ -258,7 +236,7 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
       {!isTouchDevice && (
         <div
           ref={cursorDotRef}
-          className="pointer-events-none absolute left-0 top-0 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#00E87A]/40 bg-[#060C0A]/80 text-[10px] font-semibold uppercase tracking-wider text-[#00E87A] opacity-0 backdrop-blur-sm"
+          className="pointer-events-none absolute left-0 top-0 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#C8A96E]/40 bg-[#1A1410]/80 text-[10px] font-semibold uppercase tracking-wider text-[#C8A96E] opacity-0 backdrop-blur-sm"
           style={{ willChange: "transform, opacity" }}
         >
           Voir

@@ -271,7 +271,7 @@ export default function CTASection() {
         {/* Label */}
         <motion.p
           variants={itemVariants}
-          className="font-['Bricolage_Grotesque'] text-[11px] md:text-xs uppercase tracking-[0.25em] text-[#00E87A]/80 mb-6 md:mb-8"
+          className="font-['Satoshi'] text-[11px] md:text-xs uppercase tracking-[0.25em] text-[#00E87A]/80 mb-6 md:mb-8"
         >
           — Construisons quelque chose d’exceptionnel
         </motion.p>
@@ -279,7 +279,7 @@ export default function CTASection() {
         {/* Main Title — Letter reveal */}
         <h2
           id="cta-title"
-          className="font-['Playfair_Display'] font-extrabold text-[#071510] dark:text-[#F0FAF4] leading-[1.05] mb-8 md:mb-10"
+          className="font-['Outfit'] font-extrabold text-[#071510] dark:text-[#F0FAF4] leading-[1.05] mb-8 md:mb-10"
           style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.2rem)" }}
         >
           <LetterReveal text="Transformons votre vision digitale en une expérience mémorable." />
@@ -288,7 +288,7 @@ export default function CTASection() {
         {/* Description */}
         <motion.p
           variants={itemVariants}
-          className="font-['DM_Sans'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-12 md:mb-14"
+          className="font-['Satoshi'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-12 md:mb-14"
         >
           Nous concevons des expériences digitales modernes, élégantes et
           performantes pour les marques ambitieuses.
@@ -304,7 +304,7 @@ export default function CTASection() {
             href="/contact"
             whileHover={shouldReduce ? {} : buttonHover}
             whileTap={shouldReduce ? {} : { scale: 0.98 }}
-            className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-['Bricolage_Grotesque'] font-semibold text-[14px] tracking-wide text-[#071510] dark:text-[#F0FAF4] bg-[#00E87A] overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(0,232,122,0.35)] w-full sm:w-auto"
+            className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-['Satoshi'] font-semibold text-[14px] tracking-wide text-[#071510] dark:text-[#F0FAF4] bg-[#00E87A] overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(0,232,122,0.35)] w-full sm:w-auto"
           >
             <span className="relative z-10">Démarrer un projet</span>
             {/* Shimmer */}
@@ -330,7 +330,7 @@ export default function CTASection() {
             href="#portfolio"
             whileHover={shouldReduce ? {} : buttonHover}
             whileTap={shouldReduce ? {} : { scale: 0.98 }}
-            className="inline-flex items-center justify-center px-10 py-4 rounded-full font-['Bricolage_Grotesque'] font-semibold text-[14px] tracking-wide text-[#071510] dark:text-[#F0FAF4] border border-[#00E87A]/40 bg-[#071510]/[0.04] dark:bg-[#F0FAF4]/[0.04] backdrop-blur-md hover:bg-[#00E87A]/10 hover:border-[#00E87A]/70 transition-all duration-300 w-full sm:w-auto"
+            className="inline-flex items-center justify-center px-10 py-4 rounded-full font-['Satoshi'] font-semibold text-[14px] tracking-wide text-[#071510] dark:text-[#F0FAF4] border border-[#00E87A]/40 bg-[#071510]/[0.04] dark:bg-[#F0FAF4]/[0.04] backdrop-blur-md hover:bg-[#00E87A]/10 hover:border-[#00E87A]/70 transition-all duration-300 w-full sm:w-auto"
           >
             Voir nos réalisations
           </motion.a>
@@ -339,7 +339,7 @@ export default function CTASection() {
         {/* Trust micro-copy */}
         <motion.p
           variants={itemVariants}
-          className="mt-10 md:mt-12 font-['DM_Mono'] text-[11px] text-[#4B5563] dark:text-[#6B7280]/60 tracking-wide"
+          className="mt-10 md:mt-12 font-['Satoshi'] text-[11px] text-[#4B5563] dark:text-[#6B7280]/60 tracking-wide"
         >
           Réponse sous 24h · Devis gratuit · Sans engagement
         </motion.p>

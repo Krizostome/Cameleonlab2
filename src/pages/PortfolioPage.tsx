@@ -10,7 +10,6 @@ import { PROJECTS } from "../data/projects"
 
 gsap.registerPlugin(ScrollTrigger)
 
-/* ── Stats du hero ── */
 const STATS = [
   { value: 9, suffix: "+", label: "Projets livrés" },
   { value: 5, suffix: "", label: "Catégories" },
@@ -19,10 +18,6 @@ const STATS = [
 
 const TITLE_WORDS = ["Ce", "que", "nous", "avons", "construit."]
 
-/**
- * Page Portfolio principale — hero animé + grille masonry avec filtres
- * Couleurs CameleonLab vert néon, support dark mode.
- */
 export default function PortfolioPage() {
   const sectionRef = useRef<HTMLElement>(null)
   const labelRef = useRef<HTMLSpanElement>(null)
@@ -35,41 +30,16 @@ export default function PortfolioPage() {
     window.scrollTo(0, 0)
   }, [])
 
-  /**
-   * @animation Hero GSAP — séquence d'entrée (label, titre mot-par-mot, sous-titre, stats countUp)
-   * @note Utilise gsap.context() + ctx.revert() pour le nettoyage.
-   * @note Bails out si prefers-reduced-motion ou SSR.
-   */
+  /** Animations hero GSAP */
   useEffect(() => {
     if (typeof window === "undefined") return
     if (!sectionRef.current) return
 
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
-    /* Réduit motion : rendre tout visible immédiatement, pas d'animation */
-    if (prefersReduced) {
-      if (labelRef.current) {
-        labelRef.current.style.opacity = "1"
-        labelRef.current.style.transform = "none"
-      }
-      if (subtitleRef.current) {
-        subtitleRef.current.style.opacity = "1"
-        subtitleRef.current.style.transform = "none"
-      }
-      if (titleRef.current) {
-        titleRef.current.querySelectorAll(".hero-word").forEach((w) => {
-          ;(w as HTMLElement).style.clipPath = "inset(0% 0 0 0)"
-          ;(w as HTMLElement).style.opacity = "1"
-        })
-      }
-      statNumberRefs.current.forEach((el, i) => {
-        if (el) el.textContent = STATS[i].value + STATS[i].suffix
-      })
-      return
-    }
+    if (prefersReduced) return
 
     const ctx = gsap.context(() => {
-      /* 1. Label fadeUp (y:20→0, opacity 0→1, delay 0.2s, durée 0.6s) */
+      /* 1. Label fadeUp */
       if (labelRef.current) {
         gsap.fromTo(
           labelRef.current,
@@ -78,7 +48,7 @@ export default function PortfolioPage() {
         )
       }
 
-      /* 2. Titre mot par mot — clipPath reveal (inset 100% → 0%) */
+      /* 2. Titre mot par mot — clipPath reveal */
       if (titleRef.current) {
         const words = titleRef.current.querySelectorAll(".hero-word")
         gsap.fromTo(
@@ -95,7 +65,7 @@ export default function PortfolioPage() {
         )
       }
 
-      /* 3. Sous-titre fadeUp (delay 0.9s) */
+      /* 3. Sous-titre fadeUp */
       if (subtitleRef.current) {
         gsap.fromTo(
           subtitleRef.current,
@@ -104,7 +74,7 @@ export default function PortfolioPage() {
         )
       }
 
-      /* 4. Stats countUp — chaque valeur animée avec ScrollTrigger */
+      /* 4. Stats countUp */
       statNumberRefs.current.forEach((el, i) => {
         if (!el) return
         const { value, suffix } = STATS[i]
@@ -136,29 +106,29 @@ export default function PortfolioPage() {
 
       <main>
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  HERO SECTION                                              */}
+        {/*  HERO SECTION — palette beige doré                         */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section
           ref={sectionRef}
-          className="relative overflow-hidden bg-[#F7FFF9] py-24 dark:bg-[#060C0A] md:py-32 lg:py-40"
+          className="relative overflow-hidden bg-[#1A1410] py-24 md:py-32 lg:py-40"
           aria-label="Hero portfolio"
         >
-          {/* Grille de points vert néon */}
+          {/* Grille de points beige */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-[0.08] dark:opacity-[0.06]"
+            className="pointer-events-none absolute inset-0 opacity-[0.06]"
             style={{
               backgroundImage:
-                "radial-gradient(circle, #00E87A 1px, transparent 1px)",
+                "radial-gradient(circle, #C8A96E 1px, transparent 1px)",
               backgroundSize: "32px 32px",
             }}
           />
 
           {/* Halo radial centre */}
           <div
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.12] dark:opacity-[0.06]"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.06]"
             style={{
               background:
-                "radial-gradient(ellipse, rgba(0,232,122,0.4) 0%, transparent 70%)",
+                "radial-gradient(ellipse, rgba(200,169,110,0.6) 0%, transparent 70%)",
               filter: "blur(90px)",
             }}
           />
@@ -168,21 +138,21 @@ export default function PortfolioPage() {
               {/* Label */}
               <span
                 ref={labelRef}
-                className="mb-6 inline-flex items-center gap-3 font-bricolage text-[11px] font-semibold uppercase tracking-[0.22em] text-[#00E87A] opacity-0"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                className="mb-6 inline-flex items-center gap-3 font-bricolage text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C8A96E] opacity-0"
+                style={{ fontFamily: "'Satoshi', sans-serif" }}
               >
-                <span className="h-px w-6 bg-[#00E87A]" />
+                <span className="h-px w-6 bg-[#C8A96E]" />
                 Nos réalisations
-                <span className="h-px w-6 bg-[#00E87A]" />
+                <span className="h-px w-6 bg-[#C8A96E]" />
               </span>
 
-              {/* Titre — clamp(2rem, 8vw, 6rem), adapté clair/sombre */}
+              {/* Titre */}
               <h1
                 ref={titleRef}
-                className="mb-6 max-w-4xl font-playfair font-black text-[#071510] dark:text-[#F0FAF4]"
+                className="mb-6 max-w-4xl font-playfair font-black text-[#FAF6EE]"
                 style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "clamp(2rem, 8vw, 6rem)",
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: "clamp(3rem, 8vw, 6rem)",
                   lineHeight: 1.05,
                 }}
               >
@@ -200,13 +170,13 @@ export default function PortfolioPage() {
               {/* Sous-titre */}
               <p
                 ref={subtitleRef}
-                className="mb-14 max-w-lg font-dm-sans text-base font-light leading-relaxed text-[#4B5563] opacity-0 dark:text-[#F0FAF4]/60 md:text-lg"
+                className="mb-14 max-w-lg font-dm-sans text-base font-light leading-relaxed text-[#7C6E5A] opacity-0 md:text-lg"
               >
-                De l&apos;idée au produit livré — voici quelques projets qui illustrent
+                De l'idée au produit livré — voici quelques projets qui illustrent
                 notre façon de travailler.
               </p>
 
-              {/* Stats animées */}
+              {/* Stats */}
               <div
                 ref={statsRef}
                 className="flex flex-wrap items-center justify-center gap-8 md:gap-14"
@@ -215,12 +185,12 @@ export default function PortfolioPage() {
                   <div key={stat.label} className="flex flex-col items-center">
                     <span
                       ref={(el) => (statNumberRefs.current[i] = el)}
-                      className="font-dm-mono text-3xl font-bold text-[#00E87A] md:text-4xl"
-                      style={{ fontFamily: "'DM Mono', monospace" }}
+                      className="font-dm-mono text-3xl font-bold text-[#C8A96E] md:text-4xl"
+                      style={{ fontFamily: "'Satoshi', sans-serif" }}
                     >
                       0{stat.suffix}
                     </span>
-                    <span className="mt-1 font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#6B7280] dark:text-[#F0FAF4]/60">
+                    <span className="mt-1 font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#FAF6EE]/60">
                       {stat.label}
                     </span>
                   </div>

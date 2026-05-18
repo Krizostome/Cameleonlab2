@@ -313,7 +313,7 @@ export default function Footer() {
       {/* ── Decorative giant text ── */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
-          className="font-['Playfair_Display'] font-black text-[#071510]/[0.04] dark:text-[#F0FAF4]/[0.035] whitespace-nowrap"
+          className="font-['Outfit'] font-black text-[#071510]/[0.04] dark:text-[#F0FAF4]/[0.035] whitespace-nowrap"
           style={{ fontSize: "clamp(4.5rem, 12.6vw, 11.7rem)" }}
         >
           CAMELEONLAB
@@ -356,7 +356,7 @@ export default function Footer() {
           <motion.div variants={itemVariants} className="lg:col-span-6">
             <a
               href="#"
-              className="inline-block font-['Playfair_Display'] font-bold text-2xl md:text-3xl text-[#071510] dark:text-[#F0FAF4] mb-4 tracking-tight"
+              className="inline-block font-['Outfit'] font-bold text-2xl md:text-3xl text-[#071510] dark:text-[#F0FAF4] mb-4 tracking-tight"
             >
               cameleon<span className="text-[#00E87A]">lab</span>
             </a>
@@ -376,7 +376,7 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div>
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-4 font-['Bricolage_Grotesque'] font-semibold">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-4 font-['Satoshi'] font-semibold">
                 Restons connectés
               </h3>
               <p className="text-[#071510]/50 dark:text-[#F0FAF4]/50 text-sm leading-relaxed mb-4 max-w-md">
@@ -396,7 +396,7 @@ export default function Footer() {
                   type="submit"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-5 py-2.5 rounded-lg bg-[#00E87A] text-[#071510] dark:text-[#F0FAF4] font-['Bricolage_Grotesque'] font-semibold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,232,122,0.25)] transition-shadow duration-300"
+                  className="px-5 py-2.5 rounded-lg bg-[#00E87A] text-[#071510] dark:text-[#F0FAF4] font-['Satoshi'] font-semibold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,232,122,0.25)] transition-shadow duration-300"
                 >
                   {submitted ? "✓" : "OK"}
                 </motion.button>
@@ -411,7 +411,7 @@ export default function Footer() {
               variants={columnVariants}
               className="lg:col-span-2"
             >
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-5 font-['Bricolage_Grotesque'] font-semibold">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-5 font-['Satoshi'] font-semibold">
                 {column.title}
               </h3>
               <ul className="space-y-3">
@@ -451,7 +451,7 @@ export default function Footer() {
             </span>
           </div>
 
-          <p className="text-[#071510]/25 dark:text-[#F0FAF4]/25 text-xs font-['DM_Mono'] tracking-wide">
+          <p className="text-[#071510]/25 dark:text-[#F0FAF4]/25 text-xs font-['Satoshi'] tracking-wide">
             © {new Date().getFullYear()} CameleonLab. Tous droits réservés.
           </p>
         </motion.div>
