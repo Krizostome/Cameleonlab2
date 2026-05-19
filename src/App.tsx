@@ -6,7 +6,7 @@ import BasedInCotonou from './components/sections/BasedInCotonou'
 import Services from './components/sections/Services'
 import Portfolio from './components/sections/Portfolio'
 import Process from './components/sections/Process'
-import StackTechnologique from './components/sections/StackTechnologique'
+import TechExpertise from './components/sections/TechExpertise'
 import Testimonials from './components/sections/Testimonials'
 import Team from './components/sections/Team'
 import FAQ from './components/sections/FAQ'
@@ -28,7 +28,7 @@ function HomePage() {
       <Services />
       <Portfolio />
       <Process />
-      <StackTechnologique />
+      <TechExpertise />
       <Team />
       <Testimonials />
       <FAQ />

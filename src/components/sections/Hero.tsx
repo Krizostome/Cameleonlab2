@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import ScrambleRevealText from '../ui/ScrambleRevealText'
+import OrbitalAnimation from './OrbitalAnimation'
 
 /** Stat item shape */
 interface StatItem {
@@ -20,8 +21,9 @@ const STATS: StatItem[] = [
 
 /**
  * Premium Hero section for CameleonLab.
- * Features a futuristic scramble-text reveal, blur-to-sharp typography,
- * subtle 3D mouse parallax via Framer Motion, and count-up stats.
+ * Features orbital tech animation, mesh gradient background, glassmorphism,
+ * scramble-text reveal, blur-to-sharp typography, subtle 3D mouse parallax,
+ * and count-up stats.
  */
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -30,6 +32,7 @@ export default function Hero() {
   const haloRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
   const ctaShimmerRef = useRef<HTMLSpanElement>(null)
+  const textColRef = useRef<HTMLDivElement>(null)
 
   // ── Framer Motion: mouse-driven subtle 3D depth ──
   const mouseX = useMotionValue(0)
@@ -90,7 +93,17 @@ export default function Hero() {
         defaults: { ease: 'power3.out' },
       })
 
-      // Subtitle fadeUp — rapid cascade after title starts
+      // Text column entrance
+      if (textColRef.current) {
+        entranceTl.fromTo(
+          textColRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          0.2
+        )
+      }
+
+      // Subtitle fadeUp
       if (subtitleRef.current) {
         entranceTl.fromTo(
           subtitleRef.current,
@@ -168,11 +181,57 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] pb-16 pt-24"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] pb-16 pt-28 md:pt-32"
       aria-label="Accueil"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      {/*  Mesh Gradient Background                                       */}
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="mesh-blob mesh-blob-1 absolute rounded-full opacity-40 blur-[100px]"
+          style={{
+            width: '50vw',
+            height: '50vw',
+            top: '-10%',
+            left: '-10%',
+            background: 'radial-gradient(circle, rgba(34,197,94,0.25) 0%, transparent 70%)',
+          }}
+        />
+        <div
+          className="mesh-blob mesh-blob-2 absolute rounded-full opacity-30 blur-[100px]"
+          style={{
+            width: '45vw',
+            height: '45vw',
+            top: '20%',
+            right: '-15%',
+            background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)',
+          }}
+        />
+        <div
+          className="mesh-blob mesh-blob-3 absolute rounded-full opacity-25 blur-[100px]"
+          style={{
+            width: '40vw',
+            height: '40vw',
+            bottom: '-10%',
+            left: '30%',
+            background: 'radial-gradient(circle, rgba(236,72,153,0.18) 0%, transparent 70%)',
+          }}
+        />
+        <div
+          className="mesh-blob mesh-blob-4 absolute rounded-full opacity-20 blur-[100px]"
+          style={{
+            width: '35vw',
+            height: '35vw',
+            bottom: '10%',
+            right: '20%',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)',
+          }}
+        />
+      </div>
+
       {/* Grain texture overlay */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -198,7 +257,7 @@ export default function Hero() {
       {/* Halo behind title */}
       <div
         ref={haloRef}
-        className="pointer-events-none absolute left-1/2 top-[28%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="pointer-events-none absolute left-1/2 top-[28%] -translate-x-1/2 -translate-y-1/2 rounded-full lg:left-[30%]"
         style={{
           width: '600px',
           height: '400px',
@@ -208,99 +267,116 @@ export default function Hero() {
         }}
       />
 
-      <div
-        className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-6 md:px-10"
-        style={{ perspective: '1200px' }}
-      >
-        {/* Title with mouse-driven 3D depth */}
-        <motion.div
-          style={{
-            rotateX,
-            rotateY,
-            x: moveX,
-            y: moveY,
-            transformStyle: 'preserve-3d',
-          }}
-          className="mb-8 text-center"
-        >
-          <h1 className="text-elegant-shadow">
-            <ScrambleRevealText
-              text="Votre vision,"
-              className="block font-playfair text-5xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-7xl lg:text-8xl"
-              delay={0}
-              scrambleDuration={0.6}
-              revealDuration={0.4}
-              glowWords={['vision']}
-              gradientWords={['Vision']}
-            />
-            <ScrambleRevealText
-              text="notre transformation."
-              className="block font-playfair text-5xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-7xl lg:text-8xl"
-              delay={0.05}
-              scrambleDuration={0.9}
-              revealDuration={0.4}
-              glowWords={['transformation']}
-              gradientWords={['transformation']}
-            />
-          </h1>
-        </motion.div>
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      {/*  Main Content                                                   */}
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+        {/* ── Text Column ── */}
+        <div ref={textColRef} className="flex w-full flex-col items-center text-center lg:max-w-xl lg:items-start lg:text-left opacity-0">
+          {/* Badge */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-4 py-1.5 text-xs font-medium tracking-wide text-[#00E87A] backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00E87A] opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00E87A]" />
+            </span>
+            Agence digitale basée à Cotonou
+          </div>
 
-        {/* Subtitle */}
-        <p
-          ref={subtitleRef}
-          className="mb-10 max-w-xl text-center font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg opacity-0"
-          style={{ willChange: 'transform, opacity' }}
-        >
-          Nous concevons des expériences digitales sur mesure qui propulsent
-          votre marque vers de nouveaux sommets.
-        </p>
+          {/* Title with mouse-driven 3D depth */}
+          <motion.div
+            style={{
+              rotateX,
+              rotateY,
+              x: moveX,
+              y: moveY,
+              transformStyle: 'preserve-3d',
+            }}
+            className="mb-6"
+          >
+            <h1 className="text-elegant-shadow">
+              <ScrambleRevealText
+                text="NOUS TRANSFORMONS VOS IDÉES EN"
+                className="block font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl lg:text-6xl"
+                delay={0}
+                scrambleDuration={0.6}
+                revealDuration={0.4}
+                glowWords={['IDÉES']}
+                gradientWords={['IDÉES']}
+              />
+              <ScrambleRevealText
+                text="PRODUITS NUMÉRIQUES PERFORMANTS"
+                className="block font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl lg:text-6xl"
+                delay={0.05}
+                scrambleDuration={0.9}
+                revealDuration={0.4}
+                glowWords={['PERFORMANTS']}
+                gradientWords={['PERFORMANTS']}
+              />
+            </h1>
+          </motion.div>
 
-        {/* CTAs */}
-        <div
-          ref={ctaGroupRef}
-          className="mb-20 flex flex-wrap items-center justify-center gap-4"
-        >
-          <button
-            className="relative overflow-hidden rounded-full bg-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] transition-transform hover:scale-[1.02] active:scale-[0.98]"
-            onClick={() => (window.location.href = '/contact')}
+          {/* Subtitle */}
+          <p
+            ref={subtitleRef}
+            className="mb-8 max-w-lg font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg opacity-0"
+            style={{ willChange: 'transform, opacity' }}
           >
-            <span className="relative z-10">Démarrer un projet</span>
-            <span
-              ref={ctaShimmerRef}
-              className="pointer-events-none absolute inset-0 block"
-              style={{
-                background:
-                  'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%)',
-                width: '40%',
-              }}
-            />
-          </button>
-          <a
-            href="#portfolio"
-            className="rounded-full border border-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4] transition-colors hover:bg-[#00E87A]/10"
+            Nous concevons des expériences digitales sur mesure qui propulsent
+            votre marque vers de nouveaux sommets.
+          </p>
+
+          {/* CTAs */}
+          <div
+            ref={ctaGroupRef}
+            className="mb-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
           >
-            Voir nos réalisations
-          </a>
+            <button
+              className="relative overflow-hidden rounded-full bg-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              onClick={() => (window.location.href = '/contact')}
+            >
+              <span className="relative z-10">Démarrer un projet</span>
+              <span
+                ref={ctaShimmerRef}
+                className="pointer-events-none absolute inset-0 block"
+                style={{
+                  background:
+                    'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%)',
+                  width: '40%',
+                }}
+              />
+            </button>
+            <a
+              href="#portfolio"
+              className="rounded-full border border-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4] transition-colors hover:bg-[#00E87A]/10"
+            >
+              Voir nos réalisations
+            </a>
+          </div>
+
+          {/* Stats */}
+          <div
+            ref={statsRef}
+            className="grid w-full max-w-md grid-cols-3 gap-4 border-t border-[#00E87A]/10 pt-6 sm:gap-6 sm:pt-8 lg:max-w-sm"
+          >
+            {STATS.map((stat) => (
+              <div key={stat.label} className="text-center lg:text-left">
+                <span
+                  data-count={stat.value}
+                  className="block font-dm-mono text-2xl font-bold text-[#00E87A] md:text-3xl"
+                >
+                  0
+                </span>
+                <span className="mt-1 block font-dm-sans text-[10px] font-medium uppercase tracking-widest text-[#4B5563] dark:text-[#6B7280]">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Stats */}
-        <div
-          ref={statsRef}
-          className="grid w-full max-w-2xl grid-cols-3 gap-6 border-t border-[#00E87A]/10 pt-8"
-        >
-          {STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <span
-                data-count={stat.value}
-                className="block font-dm-mono text-2xl font-bold text-[#00E87A] md:text-3xl"
-              >
-                0
-              </span>
-              <span className="mt-1 block font-dm-sans text-[10px] font-medium uppercase tracking-widest text-[#4B5563] dark:text-[#6B7280]">
-                {stat.label}
-              </span>
-            </div>
-          ))}
+        {/* ── Orbital Animation Column ── */}
+        <div className="flex w-full items-center justify-center lg:w-auto lg:justify-end">
+          <OrbitalAnimation />
         </div>
       </div>
     </section>

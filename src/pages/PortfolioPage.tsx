@@ -198,7 +198,7 @@ export default function PortfolioPage() {
               {STATS.map((stat, i) => (
                 <div key={stat.label} className="flex flex-col items-center">
                   <span
-                    ref={(el) => (statNumberRefs.current[i] = el)}
+                    ref={(el) => { statNumberRefs.current[i] = el }}
                     className="font-dm-mono text-3xl font-bold text-[#00E87A] md:text-4xl"
                   >
                     0{stat.suffix}
