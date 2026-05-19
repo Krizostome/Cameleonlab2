@@ -46,9 +46,6 @@ const FacebookIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   </svg>
 )
 
-/* ═══════════════════════════════════════════════════════════════════ */
-/*  Share dropdown                                                    */
-/* ═══════════════════════════════════════════════════════════════════ */
 
 function ShareDropdown({ title, url }: { title: string; url: string }) {
   const [open, setOpen] = useState(false)
@@ -514,13 +511,7 @@ export default function ArticleDetail() {
       {/* ── Minimal Header ── */}
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-transparent bg-[#F7FFF9]/80 dark:bg-[#060C0A]/80 backdrop-blur-xl transition-colors duration-300">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
-          <button
-            onClick={handleBack}
-            className="group flex items-center gap-2 font-dm-sans text-sm font-medium text-[#071510]/70 dark:text-[#F0FAF4]/70 transition-colors hover:text-[#00E87A]"
-          >
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-            <span className="hidden sm:inline">Articles</span>
-          </button>
+          
           <Link
             to="/"
             className="font-bricolage text-lg font-bold tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-xl"

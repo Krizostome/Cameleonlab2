@@ -93,15 +93,7 @@ export default function BlogNewsletter() {
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center text-center">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
-              className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#00E87A]/10 ring-1 ring-[#00E87A]/20"
-            >
-              <Sparkles className="h-6 w-6 text-[#00E87A]" />
-            </motion.div>
+            
 
             <h2 className="mb-4 font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
               Restez inspiré

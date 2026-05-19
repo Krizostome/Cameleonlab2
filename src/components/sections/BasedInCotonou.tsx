@@ -86,7 +86,7 @@ export default function BasedInCotonou() {
                 <motion.div style={{ y: imageY }} className="h-[115%] w-full">
                   <img
                     src="/images/amazone.jpg"
-                    alt="Cotonou, Bénin — Côte atlantique africaine"
+                    alt="Cotonou, Bénin — place de l'amazone"
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     loading="lazy"
                   />

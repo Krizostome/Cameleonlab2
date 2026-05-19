@@ -88,15 +88,7 @@ export default function ContactPage() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back link */}
-          <div className="mb-8">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 font-dm-sans text-sm text-[#071510]/60 dark:text-[#F0FAF4]/60 hover:text-[#00E87A] transition-colors duration-300"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Retour à l'accueil
-            </Link>
-          </div>
+          
 
           {/* Header */}
           <div ref={titleRef} className="text-center mb-12 md:mb-16">

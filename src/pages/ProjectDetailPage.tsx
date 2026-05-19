@@ -1,118 +1,46 @@
 "use client"
 
-import { useEffect, useRef, useMemo } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
+import { Link, useParams } from "react-router-dom"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, ExternalLink, Target, Lightbulb, Cpu, BarChart3, Users, Calendar, FolderOpen } from "lucide-react"
 import Navbar from "../components/layout/Navbar"
 import Footer from "../components/layout/Footer"
 import { PROJECTS } from "../data/projects"
 
 gsap.registerPlugin(ScrollTrigger)
 
-/* ── Helper : extrait un nombre d'une chaîne et anime un compteur ── */
-function animateCountUp(el: HTMLElement, targetStr: string) {
-  const match = targetStr.match(/([0-9\s,.]+)/)
-  if (!match) {
-    gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" })
-    return
-  }
-
-  const raw = match[1].replace(/\s/g, "").replace(/,/g, ".")
-  const num = parseFloat(raw)
-  if (isNaN(num)) {
-    gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" })
-    return
-  }
-
-  const isInt = Number.isInteger(num)
-  const obj = { val: 0 }
-
-  gsap.to(obj, {
-    val: num,
-    duration: 2,
-    ease: "power2.out",
-    scrollTrigger: { trigger: el, start: "top 85%", once: true },
-    onUpdate: () => {
-      const formatted = isInt ? Math.round(obj.val).toLocaleString("fr-FR") : obj.val.toFixed(1)
-      el.textContent = targetStr.replace(match[1], formatted)
-    },
-  })
-}
-
 export default function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>()
+  const project = PROJECTS.find((p) => p.slug === slug)
+  const allProjects = PROJECTS
+  const currentIndex = allProjects.findIndex((p) => p.slug === slug)
+  const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length]
+  const nextProject = allProjects[(currentIndex + 1) % allProjects.length]
 
-  const projectIndex = useMemo(() => PROJECTS.findIndex((p) => p.slug === slug), [slug])
-  const project = projectIndex >= 0 ? PROJECTS[projectIndex] : null
+  const containerRef = useRef<HTMLDivElement>(null)
+  const heroRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
-  const prevProject =
-    projectIndex >= 0 ? PROJECTS[(projectIndex - 1 + PROJECTS.length) % PROJECTS.length] : null
-  const nextProject =
-    projectIndex >= 0 ? PROJECTS[(projectIndex + 1) % PROJECTS.length] : null
-
-  const heroRef = useRef<HTMLElement>(null)
-  const infoRef = useRef<HTMLElement>(null)
-  const navRef = useRef<HTMLElement>(null)
-  const metricValueRefs = useRef<(HTMLSpanElement | null)[]>([])
+  useEffect(() => { window.scrollTo(0, 0) }, [slug])
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [slug])
-
-  /** Animations GSAP montage */
-  useEffect(() => {
+    if (!project || !containerRef.current) return
     if (typeof window === "undefined") return
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (prefersReduced) return
-    if (!project) return
 
     const ctx = gsap.context(() => {
-      /* A) Hero — fadeUp stagger */
-      const heroEls = heroRef.current?.querySelectorAll(".hero-animate")
-      if (heroEls) {
-        gsap.fromTo(
-          heroEls,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: "expo.out", delay: 0.2 }
-        )
+      if (heroRef.current) {
+        gsap.fromTo(heroRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1, ease: "expo.out" })
       }
-
-      /* B) Infos — fadeIn droite/gauche */
-      if (infoRef.current) {
-        const leftCol = infoRef.current.querySelector(".info-left")
-        const rightCol = infoRef.current.querySelector(".info-right")
-        if (leftCol) {
-          gsap.fromTo(leftCol, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.9, ease: "expo.out", delay: 0.4 })
-        }
-        if (rightCol) {
-          gsap.fromTo(rightCol, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.9, ease: "expo.out", delay: 0.5 })
-        }
-      }
-
-      /* C) Métriques visuelles — countUp */
-      metricValueRefs.current.forEach((el) => {
-        if (!el) return
-        const target = el.dataset.value || ""
-        animateCountUp(el, target)
+      gsap.fromTo(".detail-section", { opacity: 0, y: 50 }, {
+        opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "expo.out",
+        scrollTrigger: { trigger: ".detail-section", start: "top 85%", once: true },
       })
-
-      /* D) Navigation — slide depuis bas */
-      if (navRef.current) {
-        gsap.fromTo(
-          navRef.current,
-          { opacity: 0, y: 60 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "expo.out",
-            scrollTrigger: { trigger: navRef.current, start: "top 90%", once: true },
-          }
-        )
-      }
-    })
+    }, containerRef)
 
     return () => ctx.revert()
   }, [project])
@@ -121,294 +49,256 @@ export default function ProjectDetailPage() {
     return (
       <>
         <Navbar />
-        <main className="flex min-h-[60vh] items-center justify-center bg-[#1A1410]">
-          <div className="text-center">
-            <h1 className="mb-4 font-playfair text-3xl text-[#FAF6EE]">Projet introuvable</h1>
-            <Link
-              to="/portfolio"
-              className="inline-flex items-center gap-2 font-bricolage text-sm font-semibold text-[#C8A96E]"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Tous les projets
-            </Link>
-          </div>
+        <main className="flex min-h-screen flex-col items-center justify-center bg-[#F7FFF9] pt-24 dark:bg-[#060C0A]">
+          <h1 className="font-playfair text-4xl font-bold text-[#071510] dark:text-[#F0FAF4]">Projet introuvable</h1>
+          <p className="mt-4 font-dm-sans text-[#6B7280]">Ce projet n'existe pas.</p>
+          <Link to="/portfolio" className="mt-8 inline-flex items-center gap-2 text-[#00E87A] hover:underline">
+            <ArrowLeft className="h-4 w-4" /> Voir tous les projets
+          </Link>
         </main>
         <Footer />
       </>
     )
   }
 
+  const getServiceIcon = (label: string) => {
+    if (label.includes("Stratégie")) return <Target className="h-5 w-5" />
+    if (label.includes("UX") || label.includes("Design")) return <Lightbulb className="h-5 w-5" />
+    if (label.includes("Développement") || label.includes("Dev")) return <Cpu className="h-5 w-5" />
+    if (label.includes("SEO")) return <BarChart3 className="h-5 w-5" />
+    return <FolderOpen className="h-5 w-5" />
+  }
+
   return (
     <>
       <Navbar />
+      <main className="relative min-h-screen bg-[#F7FFF9] dark:bg-[#060C0A]">
+        <div ref={containerRef}>
+          {/* ═══════════════════════════════════════════ */}
+          {/*  HERO PROJET                               */}
+          {/* ═══════════════════════════════════════════ */}
+          <section ref={heroRef} className="relative overflow-hidden pt-28 pb-10 md:pt-36 md:pb-16">
+            {/* Halo — light */}
+            <div
+              className="pointer-events-none absolute right-0 top-0 block h-[500px] w-[500px] -translate-y-1/4 translate-x-1/4 rounded-full opacity-[0.06] dark:hidden"
+              style={{ background: "radial-gradient(ellipse, rgba(0,232,122,0.6) 0%, transparent 65%)", filter: "blur(100px)" }}
+            />
+            {/* Halo — dark */}
+            <div
+              className="pointer-events-none absolute right-0 top-0 hidden h-[500px] w-[500px] -translate-y-1/4 translate-x-1/4 rounded-full opacity-[0.08] dark:block"
+              style={{ background: "radial-gradient(ellipse, rgba(0,232,122,0.5) 0%, transparent 65%)", filter: "blur(100px)" }}
+            />
 
-      <main>
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  A) HERO PROJECT — palette beige doré                     */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section ref={heroRef} className="relative h-[70vh] min-h-[500px] overflow-hidden">
-          <img src={project.image} alt={project.imageAlt} className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-[#1A1410]/60" />
-
-          <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-12 md:px-10 md:pb-16 lg:pb-20">
-            <span
-              className="hero-animate mb-4 inline-block w-fit rounded-full border border-[#C8A96E]/40 bg-[#1A1410]/60 px-4 py-1.5 font-bricolage text-[11px] font-semibold uppercase tracking-[0.15em] text-[#C8A96E] backdrop-blur-sm"
-              style={{ fontFamily: "'Satoshi', sans-serif" }}
-            >
-              {project.category}
-            </span>
-
-            <h1
-              className="hero-animate mb-6 max-w-3xl font-playfair font-black text-[#FAF6EE]"
+            {/* Grain */}
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.025]"
               style={{
-                fontFamily: "'Outfit', sans-serif",
-                fontSize: "clamp(2.5rem, 6vw, 5rem)",
-                lineHeight: 1.1,
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                mixBlendMode: "overlay",
               }}
-            >
-              {project.title}
-            </h1>
+            />
 
-            <div className="hero-animate flex flex-wrap items-center gap-4 md:gap-6">
-              <span className="font-dm-mono text-sm font-medium text-[#FAF6EE]/80" style={{ fontFamily: "'Satoshi', sans-serif" }}>
-                {project.client}
-              </span>
-              <span className="hidden h-1 w-1 rounded-full bg-[#C8A96E]/50 md:block" />
-              <span className="font-dm-mono text-sm text-[#FAF6EE]/60" style={{ fontFamily: "'Satoshi', sans-serif" }}>
-                {project.year}
-              </span>
-              <span className="hidden h-1 w-1 rounded-full bg-[#C8A96E]/50 md:block" />
-              <span className="font-dm-mono text-sm text-[#FAF6EE]/60" style={{ fontFamily: "'Satoshi', sans-serif" }}>
-                {project.duration}
-              </span>
-            </div>
-          </div>
-        </section>
+            <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-10">
+              {/* Retour */}
+              <Link
+                to="/portfolio"
+                className="mb-8 inline-flex items-center gap-2 font-bricolage text-sm font-medium uppercase tracking-wider text-[#00E87A] transition-opacity hover:opacity-70"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Projets
+              </Link>
 
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  B) INFOS PROJET                                          */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section ref={infoRef} className="bg-[#F5EDD6] py-16 dark:bg-[#1A1410] md:py-24">
-          <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
-              {/* Col gauche */}
-              <div className="info-left">
-                <h2
-                  className="mb-6 font-playfair text-2xl font-bold text-[#1A1410] dark:text-[#FAF6EE] md:text-3xl"
-                  style={{ fontFamily: "'Outfit', sans-serif" }}
-                >
-                  À propos du projet
-                </h2>
-                <p className="mb-8 font-dm-sans text-base font-light leading-relaxed text-[#7C6E5A]">
-                  {project.fullDescription}
-                </p>
-
-                <div className="mb-6">
-                  <h3
-                    className="mb-3 font-bricolage text-xs font-semibold uppercase tracking-[0.2em] text-[#7C6E5A]"
-                    style={{ fontFamily: "'Satoshi', sans-serif" }}
+              {/* Tags + Title */}
+              <div className="mb-6 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-3 py-1 font-bricolage text-[10px] font-semibold uppercase tracking-wider text-[#00E87A]"
                   >
-                    Technologies
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-[#C8A96E]/20 bg-white px-3 py-1 font-dm-sans text-xs font-medium text-[#8B6914] dark:border-[#C8A96E]/20 dark:bg-[#201A10]"
-                      >
-                        {tech}
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <h1
+                className="mb-6 max-w-4xl font-playfair font-black text-[#071510] dark:text-[#F0FAF4]"
+                style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.05 }}
+              >
+                {project.title}
+              </h1>
+
+              <p className="mb-10 max-w-2xl font-dm-sans text-lg font-light leading-relaxed text-[#6B7280]">
+                {project.fullDescription}
+              </p>
+
+              {/* Meta Row */}
+              <div className="flex flex-wrap gap-x-8 gap-y-4 border-t border-[#00E87A]/10 pt-6">
+                <div className="flex items-center gap-2 text-[#6B7280] dark:text-[#9CA3AF]">
+                  <Users className="h-4 w-4 text-[#00E87A]" />
+                  <span className="font-dm-sans text-sm font-medium">{project.client}</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#6B7280] dark:text-[#9CA3AF]">
+                  <Calendar className="h-4 w-4 text-[#00E87A]" />
+                  <span className="font-dm-sans text-sm font-medium">{project.year}</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#6B7280] dark:text-[#9CA3AF]">
+                  <FolderOpen className="h-4 w-4 text-[#00E87A]" />
+                  <span className="font-dm-sans text-sm font-medium capitalize">{project.category}</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Image */}
+          <section className="relative mx-auto max-w-6xl px-6 md:px-10 pb-16 md:pb-24">
+            <div
+              ref={imageRef}
+              className={`relative overflow-hidden rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4] transition-all duration-700 dark:bg-[#071510] ${
+                imageLoaded ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={project.image}
+                alt={project.imageAlt}
+                className="h-auto w-full object-cover"
+                onLoad={() => setImageLoaded(true)}
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#F7FFF9]/50 to-transparent dark:from-[#060C0A]/50" />
+            </div>
+          </section>
+
+          {/* ═══════════════════════════════════════════ */}
+          {/*  CONTENU PROJET                            */}
+          {/* ═══════════════════════════════════════════ */}
+          <section className="relative mx-auto max-w-5xl px-6 md:px-10 pb-24">
+            {/* Équation */}
+            {project.equation && (
+              <div className="detail-section mb-16 text-center">
+                <div className="mx-auto inline-block rounded-2xl border border-[#00E87A]/10 bg-white/70 px-8 py-6 backdrop-blur-sm dark:bg-[#071510]/70">
+                  <div className="flex flex-wrap items-center justify-center gap-4 font-bricolage text-lg text-[#00E87A] md:text-xl">
+                    {project.equation.map((item, i) => (
+                      <span key={i} className={i % 2 === 1 ? "text-[#071510]/40 dark:text-[#F0FAF4]/40" : ""}>
+                        {item}
                       </span>
                     ))}
                   </div>
                 </div>
               </div>
+            )}
 
-              {/* Col droite */}
-              <div className="info-right">
-                <h2
-                  className="mb-6 font-playfair text-2xl font-bold text-[#1A1410] dark:text-[#FAF6EE] md:text-3xl"
-                  style={{ fontFamily: "'Outfit', sans-serif" }}
-                >
-                  Résultats
-                </h2>
+            {/* Challenge + Solution */}
+            <div className="detail-section mb-16 grid gap-8 md:grid-cols-2">
+              <div className="rounded-2xl border border-[#00E87A]/10 bg-white/70 p-6 dark:bg-[#071510]/50 md:p-8">
+                <div className="mb-4 flex items-center gap-2 font-bricolage text-sm font-bold uppercase tracking-wider text-[#00E87A]">
+                  <Lightbulb className="h-4 w-4" />
+                  Le défi
+                </div>
+                <p className="font-dm-sans text-base font-light leading-relaxed text-[#6B7280] dark:text-[#9CA3AF]">{project.challenge}</p>
+              </div>
+              <div className="rounded-2xl border border-[#00E87A]/10 bg-white/70 p-6 dark:bg-[#071510]/50 md:p-8">
+                <div className="mb-4 flex items-center gap-2 font-bricolage text-sm font-bold uppercase tracking-wider text-[#00E87A]">
+                  <Target className="h-4 w-4" />
+                  Notre solution
+                </div>
+                <p className="font-dm-sans text-base font-light leading-relaxed text-[#6B7280] dark:text-[#9CA3AF]">{project.solution}</p>
+              </div>
+            </div>
 
-                <div className="mb-8 grid grid-cols-2 gap-4">
-                  {project.results.map((r, i) => (
+            {/* Résultats */}
+            {project.results.length > 0 && (
+              <div className="detail-section mb-16">
+                <h2 className="mb-8 font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-3xl">Résultats</h2>
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {project.results.map((r) => (
                     <div
                       key={r.label}
-                      className="rounded-xl border border-[#E8D5A3] bg-white p-5 transition-shadow duration-300 hover:shadow-lg dark:border-[#C8A96E]/10 dark:bg-[#201A10]"
+                      className="group rounded-2xl border border-[#00E87A]/10 bg-white/70 p-6 transition-all duration-300 hover:border-[#00E87A]/30 dark:bg-[#071510]/50"
                     >
-                      <span
-                        ref={(el) => (metricValueRefs.current[i] = el)}
-                        data-value={r.value}
-                        className="mb-1 block font-dm-mono text-2xl font-bold text-[#C8A96E] md:text-3xl"
-                        style={{ fontFamily: "'Satoshi', sans-serif" }}
-                      >
-                        {r.value}
-                      </span>
-                      <span className="font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#7C6E5A]">
-                        {r.label}
-                      </span>
+                      <span className="font-dm-mono text-3xl font-bold text-[#00E87A] md:text-4xl">{r.value}</span>
+                      <div className="mt-1 flex items-center gap-2">
+                        <span className="font-bricolage text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">
+                          {r.label}
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
 
-                <div className="space-y-4 rounded-xl border border-[#E8D5A3] bg-white p-6 dark:border-[#C8A96E]/10 dark:bg-[#201A10]">
-                  <div className="flex justify-between border-b border-[#E8D5A3]/50 pb-3 dark:border-[#C8A96E]/10">
-                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#7C6E5A]">
-                      Client
-                    </span>
-                    <span className="font-dm-sans text-sm font-medium text-[#1A1410] dark:text-[#FAF6EE]">
-                      {project.client}
-                    </span>
-                  </div>
-                  <div className="flex justify-between border-b border-[#E8D5A3]/50 pb-3 dark:border-[#C8A96E]/10">
-                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#7C6E5A]">
-                      Année
-                    </span>
-                    <span className="font-dm-mono text-sm text-[#1A1410] dark:text-[#FAF6EE]" style={{ fontFamily: "'Satoshi', sans-serif" }}>
-                      {project.year}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#7C6E5A]">
-                      Durée
-                    </span>
-                    <span className="font-dm-mono text-sm text-[#1A1410] dark:text-[#FAF6EE]" style={{ fontFamily: "'Satoshi', sans-serif" }}>
-                      {project.duration}
-                    </span>
-                  </div>
+            {/* Services */}
+            {project.services && project.services.length > 0 && (
+              <div className="detail-section mb-16">
+                <h2 className="mb-8 font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-3xl">Services fournis</h2>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {project.services.map((service) => (
+                    <div
+                      key={service}
+                      className="flex items-center gap-3 rounded-xl border border-[#00E87A]/10 bg-white/60 px-4 py-3 dark:bg-[#071510]/40"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#00E87A]/20 text-[#00E87A]">
+                        {getServiceIcon(service)}
+                      </span>
+                      <span className="font-dm-sans text-sm font-medium text-[#071510] dark:text-[#F0FAF4]">{service}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
+            )}
+
+            {/* CTA Interne + Externe */}
+            <div className="detail-section flex flex-wrap items-center gap-4 pt-8">
+              <Link
+                to="/#contact"
+                className="inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-bricolage text-sm font-semibold uppercase tracking-wider text-[#071510] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,232,122,0.4)]"
+              >
+                Démarrer un projet <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a
+                href="/portfolio"
+                onClick={(e) => {
+                  e.preventDefault()
+                  window.open("https://cameleonlab.fr", "_blank")
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-[#00E87A]/20 px-6 py-3 font-bricolage text-sm font-semibold uppercase tracking-wider text-[#00E87A] transition-all duration-300 hover:border-[#00E87A]/40 hover:bg-[#00E87A]/5"
+              >
+                Visiter le site <ExternalLink className="h-4 w-4" />
+              </a>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  C) SECTION RÉSULTATS VISUELS — beige doré                */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="bg-[#F5EDD6] py-16 dark:bg-[#1A1410] md:py-24">
-          <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <h2
-              className="mb-12 text-center font-playfair text-2xl font-bold text-[#1A1410] dark:text-[#FAF6EE] md:text-3xl"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
-            >
-              Impact mesurable
-            </h2>
+          {/* ═══════════════════════════════════════════ */}
+          {/*  NAVIGATION PROJETS                        */}
+          {/* ═══════════════════════════════════════════ */}
+          <nav className="border-t border-[#00E87A]/10 bg-[#F7FFF9] py-12 dark:bg-[#060C0A]">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-6 md:px-10">
+              <Link
+                to={`/portfolio/${prevProject.slug}`}
+                className="group flex flex-col items-start gap-1 font-bricolage text-sm font-semibold uppercase tracking-wider text-[#00E87A] transition-opacity hover:opacity-70"
+              >
+                <span className="flex items-center gap-2 text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+                  <ArrowLeft className="h-3 w-3" /> Précédent
+                </span>
+                <span className="max-w-[140px] truncate font-dm-sans text-xs font-medium text-[#071510] group-hover:text-[#00E87A] dark:text-[#F0FAF4]">
+                  {prevProject.title}
+                </span>
+              </Link>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {project.results.map((r, i) => (
-                <div
-                  key={r.label}
-                  className="flex flex-col items-center rounded-xl border border-[#E8D5A3] bg-white p-8 text-center transition-colors duration-300 hover:border-[#C8A96E]/30 dark:border-[#C8A96E]/15 dark:bg-[#201A10]"
-                >
-                  <span
-                    ref={(el) => {
-                      if (!metricValueRefs.current[i + 3]) metricValueRefs.current[i + 3] = el
-                    }}
-                    data-value={r.value}
-                    className="mb-2 block font-dm-mono text-4xl font-bold text-[#C8A96E] md:text-5xl"
-                    style={{ fontFamily: "'Satoshi', sans-serif" }}
-                  >
-                    {r.value}
-                  </span>
-                  <span className="font-dm-sans text-xs font-medium uppercase tracking-wider text-[#7C6E5A]">
-                    {r.label}
-                  </span>
-                </div>
-              ))}
+              <Link
+                to={`/portfolio/${nextProject.slug}`}
+                className="group flex flex-col items-end gap-1 font-bricolage text-sm font-semibold uppercase tracking-wider text-[#00E87A] transition-opacity hover:opacity-70"
+              >
+                <span className="flex items-center gap-2 text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+                  Suivant <ArrowRight className="h-3 w-3" />
+                </span>
+                <span className="max-w-[140px] truncate font-dm-sans text-xs font-medium text-[#071510] group-hover:text-[#00E87A] dark:text-[#F0FAF4]">
+                  {nextProject.title}
+                </span>
+              </Link>
             </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  D) NAVIGATION PROJET SUIVANT/PRÉCÉDENT                   */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section ref={navRef} className="bg-[#F5EDD6] py-16 dark:bg-[#1A1410] md:py-24">
-          <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
-              {prevProject && (
-                <Link
-                  to={`/portfolio/${prevProject.slug}`}
-                  className="group relative flex flex-col overflow-hidden rounded-xl md:w-5/12"
-                >
-                  <div className="relative aspect-[16/9] overflow-hidden">
-                    <img
-                      src={prevProject.image}
-                      alt={prevProject.title}
-                      className="h-full w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-105 group-hover:opacity-80"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-[#1A1410]/40" />
-                  </div>
-                  <div className="mt-4 flex items-center gap-3">
-                    <ArrowLeft className="h-4 w-4 text-[#C8A96E] transition-transform duration-300 group-hover:-translate-x-1" />
-                    <div>
-                      <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#7C6E5A]">
-                        Projet précédent
-                      </span>
-                      <span
-                        className="font-playfair text-lg font-bold text-[#1A1410] transition-colors group-hover:text-[#8B6914] dark:text-[#FAF6EE]"
-                        style={{ fontFamily: "'Outfit', sans-serif" }}
-                      >
-                        {prevProject.title}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              )}
-
-              {nextProject && (
-                <Link
-                  to={`/portfolio/${nextProject.slug}`}
-                  className="group relative flex flex-col items-end overflow-hidden rounded-xl md:w-5/12"
-                >
-                  <div className="relative aspect-[16/9] w-full overflow-hidden">
-                    <img
-                      src={nextProject.image}
-                      alt={nextProject.title}
-                      className="h-full w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-105 group-hover:opacity-80"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-[#1A1410]/40" />
-                  </div>
-                  <div className="mt-4 flex items-center gap-3 text-right">
-                    <div>
-                      <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#7C6E5A]">
-                        Projet suivant
-                      </span>
-                      <span
-                        className="font-playfair text-lg font-bold text-[#1A1410] transition-colors group-hover:text-[#8B6914] dark:text-[#FAF6EE]"
-                        style={{ fontFamily: "'Outfit', sans-serif" }}
-                      >
-                        {nextProject.title}
-                      </span>
-                    </div>
-                    <ArrowRight className="h-4 w-4 text-[#C8A96E] transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </Link>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  E) CTA RETOUR PORTFOLIO                                  */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="bg-[#F5EDD6] pb-16 text-center dark:bg-[#1A1410] md:pb-24">
-          <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <Link
-              to="/portfolio"
-              className="inline-flex items-center gap-3 rounded-full bg-[#C8A96E] px-8 py-3.5 font-bricolage text-sm font-semibold text-[#1A1410] transition-all duration-300 hover:bg-[#8B6914] hover:text-[#FAF6EE] hover:shadow-[0_8px_24px_rgba(139,105,20,0.3)]"
-              style={{ fontFamily: "'Satoshi', sans-serif" }}
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Voir tous les projets
-            </Link>
-          </div>
-        </section>
+          </nav>
+        </div>
       </main>
-
       <Footer />
     </>
   )
