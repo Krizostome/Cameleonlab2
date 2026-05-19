@@ -785,6 +785,16 @@ export default function ContactWizard() {
     return () => ctx.revert()
   }, [currentStep, direction])
 
+  /* ── Scroll to top of wizard on step change ── */
+  useEffect(() => {
+    if (!stepContainerRef.current) return
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    stepContainerRef.current.scrollIntoView({
+      behavior: prefersReduced ? 'auto' : 'smooth',
+      block: 'start',
+    })
+  }, [currentStep])
+
   /* ── Shake animation on error ── */
   useEffect(() => {
     if (!shakeError || !stepContainerRef.current) return

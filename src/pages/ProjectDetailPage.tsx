@@ -249,7 +249,7 @@ export default function ProjectDetailPage() {
             {/* CTA Interne + Externe */}
             <div className="detail-section flex flex-wrap items-center gap-4 pt-8">
               <Link
-                to="/#contact"
+                to="/contact"
                 className="inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-bricolage text-sm font-semibold uppercase tracking-wider text-[#071510] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,232,122,0.4)]"
               >
                 Démarrer un projet <ArrowRight className="h-4 w-4" />
