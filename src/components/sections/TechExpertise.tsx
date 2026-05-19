@@ -1,35 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import {
-  ReactIcon,
-  LaravelIcon,
-  TypeScriptIcon,
-  JavaScriptIcon,
-  NextJsIcon,
-  NodeJsIcon,
-  TailwindIcon,
-  DockerIcon,
-  PostgreSQLIcon,
-  MySQLIcon,
-  MongoDBIcon,
-  AWSIcon,
-  GitIcon,
-  FigmaIcon,
-  FramerMotionIcon,
-  N8nIcon,
-  DevOpsIcon,
-  IaMcpIcon,
-} from '../icons/tech'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { ArrowUpRight } from 'lucide-react'
 
 /* ───────────────────────────────────────────────────────────────────── */
-/*  Data                                                                 */
+/*  Data — icons are loaded from public/images/                          */
 /* ───────────────────────────────────────────────────────────────────── */
 
 interface TechItem {
   name: string
   description: string
-  Icon: React.FC<{ className?: string }>
+  iconPath: string | null
   iconSizeClass: string
   color: string
 }
@@ -39,7 +19,7 @@ const TECHS: TechItem[] = [
     name: 'React',
     description:
       "Développement d'interfaces utilisateur dynamiques, performantes et réactives avec une architecture moderne orientée composants.",
-    Icon: ReactIcon,
+    iconPath: '/images/React.svg',
     iconSizeClass: 'w-9 h-9',
     color: '#61DAFB',
   },
@@ -47,7 +27,7 @@ const TECHS: TechItem[] = [
     name: 'Laravel',
     description:
       "Création d'applications web robustes, sécurisées et évolutives avec une architecture backend moderne et élégante.",
-    Icon: LaravelIcon,
+    iconPath: '/images/Laravel.svg',
     iconSizeClass: 'w-9 h-9',
     color: '#FF2D20',
   },
@@ -55,7 +35,7 @@ const TECHS: TechItem[] = [
     name: 'TypeScript',
     description:
       "Code typé, maintenable et sans erreurs en production pour des projets d'envergure avec une qualité enterprise.",
-    Icon: TypeScriptIcon,
+    iconPath: '/images/TypeScript.svg',
     iconSizeClass: 'w-10 h-10',
     color: '#3178C6',
   },
@@ -63,7 +43,7 @@ const TECHS: TechItem[] = [
     name: 'JavaScript',
     description:
       "Langage fondamental du web moderne pour des applications interactives riches, rapides et compatibles universellement.",
-    Icon: JavaScriptIcon,
+    iconPath: '/images/JavaScript.svg',
     iconSizeClass: 'w-10 h-10',
     color: '#F7DF1E',
   },
@@ -71,7 +51,7 @@ const TECHS: TechItem[] = [
     name: 'Next.js',
     description:
       'React full-stack avec rendu hybride SSR/SSG, performances optimales et architecture orientée production.',
-    Icon: NextJsIcon,
+    iconPath: '/images/Next.js.svg',
     iconSizeClass: 'w-10 h-10',
     color: '#F0FAF4',
   },
@@ -79,23 +59,23 @@ const TECHS: TechItem[] = [
     name: 'Node.js',
     description:
       'APIs rapides et temps réel côté serveur avec un écosystème mature et une scalabilité horizontale éprouvée.',
-    Icon: NodeJsIcon,
+    iconPath: '/images/Node.js.svg',
     iconSizeClass: 'w-10 h-10',
     color: '#339933',
   },
   {
-    name: 'Tailwind CSS',
+    name: 'Vue.js',
     description:
-      'Design système utilitaire rapide, cohérent et ultra-maintenable pour des interfaces pixel-perfect sans effort.',
-    Icon: TailwindIcon,
+      'Framework progressif et accessible pour des interfaces réactives, légères et facilement intégrables dans n\'importe quel projet.',
+    iconPath: '/images/Vue.js.svg',
     iconSizeClass: 'w-10 h-10',
-    color: '#06B6D4',
+    color: '#42B883',
   },
   {
     name: 'Docker',
     description:
       'Conteneurisation des applications pour faciliter le déploiement, assurer une isolation parfaite et garantir la scalabilité.',
-    Icon: DockerIcon,
+    iconPath: '/images/Docker.svg',
     iconSizeClass: 'w-11 h-11',
     color: '#2496ED',
   },
@@ -103,7 +83,7 @@ const TECHS: TechItem[] = [
     name: 'PostgreSQL',
     description:
       'Base de données relationnelle avancée, fiable et open-source idéale pour les applications complexes et exigeantes.',
-    Icon: PostgreSQLIcon,
+    iconPath: '/images/PostgresSQL.svg',
     iconSizeClass: 'w-10 h-10',
     color: '#4169E1',
   },
@@ -111,7 +91,7 @@ const TECHS: TechItem[] = [
     name: 'MySQL',
     description:
       'Solution relationnelle éprouvée pour vos données structurées, avec une performance optimale et une fiabilité reconnue.',
-    Icon: MySQLIcon,
+    iconPath: '/images/MySQL.svg',
     iconSizeClass: 'w-10 h-10',
     color: '#00758F',
   },
@@ -119,23 +99,23 @@ const TECHS: TechItem[] = [
     name: 'MongoDB',
     description:
       'Flexibilité des données avec la base NoSQL documentaire leader, parfaite pour les architectures modernes et agiles.',
-    Icon: MongoDBIcon,
+    iconPath: '/images/MongoDB.svg',
     iconSizeClass: 'w-9 h-9',
     color: '#47A248',
   },
   {
-    name: 'AWS',
+    name: 'Vercel',
     description:
-      'Infrastructure cloud performante pour le stockage, le computing et l\'automatisation de services à l\'échelle mondiale.',
-    Icon: AWSIcon,
+      'Déploiement instantané, previews automatiques et edge network global pour des performances web optimales.',
+    iconPath: '/images/Vercel.svg',
     iconSizeClass: 'w-11 h-11',
-    color: '#FF9900',
+    color: '#F0FAF4',
   },
   {
     name: 'Git',
     description:
       'Versioning professionnel, collaboration fluide en équipe et traçabilité complète de chaque évolution du projet.',
-    Icon: GitIcon,
+    iconPath: '/images/Git.svg',
     iconSizeClass: 'w-10 h-10',
     color: '#F05032',
   },
@@ -143,41 +123,41 @@ const TECHS: TechItem[] = [
     name: 'Figma',
     description:
       'Design collaboratif en temps réel, prototypes interactifs et systèmes de design cohérents de bout en bout.',
-    Icon: FigmaIcon,
+    iconPath: '/images/Figma.svg',
     iconSizeClass: 'w-9 h-9',
     color: '#F24E1E',
   },
   {
-    name: 'Framer Motion',
+    name: 'Flutter',
     description:
-      'Animations fluides et interactions premium pour des expériences utilisateur mémorables et engageantes.',
-    Icon: FramerMotionIcon,
+      'Applications mobiles cross-platform avec un seul codebase, performances natives et interfaces fluides sur iOS et Android.',
+    iconPath: '/images/Flutter.svg',
     iconSizeClass: 'w-9 h-9',
-    color: '#0055FF',
+    color: '#02569B',
   },
   {
-    name: 'n8n',
+    name: 'Firebase',
     description:
-      "Automatisation intelligente de vos workflows métiers complexes avec une orchestration visuelle puissante.",
-    Icon: N8nIcon,
+      'Backend as a service avec authentification, base de données temps réel, stockage et hosting pour un développement rapide.',
+    iconPath: '/images/Firebase.svg',
     iconSizeClass: 'w-10 h-10',
-    color: '#FF6D5A',
+    color: '#FFCA28',
   },
   {
-    name: 'DevOps',
+    name: 'Python',
     description:
-      'CI/CD, monitoring continu et déploiement industrialisé pour une livraison rapide, fiable et sans interruption.',
-    Icon: DevOpsIcon,
+      'Langage polyvalent pour l\'IA, le data engineering et les backends robustes avec une syntaxe claire et un écosystème riche.',
+    iconPath: '/images/Python.svg',
     iconSizeClass: 'w-10 h-10',
-    color: '#00E87A',
+    color: '#3776AB',
   },
   {
-    name: 'IA / MCP',
+    name: 'WordPress',
     description:
-      "Intégration d'IA générative, agents autonomes et protocoles Model Context Protocol pour des applications intelligentes.",
-    Icon: IaMcpIcon,
+      'CMS leader mondial pour des sites vitrines, blogs et e-commerce personnalisables avec des milliers d\'extensions.',
+    iconPath: '/images/WordPress.svg',
     iconSizeClass: 'w-10 h-10',
-    color: '#A855F7',
+    color: '#21759B',
   },
 ]
 
@@ -194,7 +174,7 @@ function TechCard({
   index: number
   isCenter: boolean
 }) {
-  const { Icon, iconSizeClass, color, name, description } = tech
+  const { iconPath, iconSizeClass, color, name, description } = tech
 
   return (
     <div
@@ -222,9 +202,18 @@ function TechCard({
 
       {/* Logo */}
       <div className="relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/60 shadow-sm backdrop-blur-md transition-transform duration-500 group-hover:scale-110 dark:border-white/5 dark:bg-[#071510]/60 sm:h-16 sm:w-16">
-        <div className={iconSizeClass}>
-          <Icon className="h-full w-full" />
-        </div>
+        {iconPath ? (
+          <img
+            src={iconPath}
+            alt={name}
+            className={`${iconSizeClass} object-contain`}
+            loading="lazy"
+          />
+        ) : (
+          <span className="font-playfair text-lg font-bold text-[#00E87A]">
+            {name.charAt(0)}
+          </span>
+        )}
       </div>
 
       {/* Content */}

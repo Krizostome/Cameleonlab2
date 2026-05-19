@@ -1,21 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
-import {
-  ReactIcon,
-  LaravelIcon,
-  TypeScriptIcon,
-  NextJsIcon,
-  NodeJsIcon,
-  TailwindIcon,
-  DockerIcon,
-  PostgreSQLIcon,
-  MySQLIcon,
-  MongoDBIcon,
-  AWSIcon,
-  GitIcon,
-  FigmaIcon,
-  FramerMotionIcon,
-  N8nIcon,
-} from '../icons/tech'
+import { useEffect, useMemo, useState } from 'react'
 
 /* ───────────────────────────────────────────────────────────────────── */
 /*  Types                                                                */
@@ -23,7 +6,7 @@ import {
 
 interface OrbitNode {
   name: string
-  logo: ReactNode
+  iconPath: string
 }
 
 interface OrbitConfig {
@@ -34,7 +17,7 @@ interface OrbitConfig {
 }
 
 /* ───────────────────────────────────────────────────────────────────── */
-/*  Data                                                                 */
+/*  Data — icons loaded from public/images/                              */
 /* ───────────────────────────────────────────────────────────────────── */
 
 const ORBITS: OrbitConfig[] = [
@@ -43,11 +26,11 @@ const ORBITS: OrbitConfig[] = [
     duration: 20,
     direction: 'cw',
     nodes: [
-      { name: 'React', logo: <ReactIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'Node.js', logo: <NodeJsIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'TypeScript', logo: <TypeScriptIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'Git', logo: <GitIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'Figma', logo: <FigmaIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
+      { name: 'React', iconPath: '/images/React.svg' },
+      { name: 'Node.js', iconPath: '/images/Node.js.svg' },
+      { name: 'TypeScript', iconPath: '/images/TypeScript.svg' },
+      { name: 'Git', iconPath: '/images/Git.svg' },
+      { name: 'Figma', iconPath: '/images/Figma.svg' },
     ],
   },
   {
@@ -55,11 +38,11 @@ const ORBITS: OrbitConfig[] = [
     duration: 30,
     direction: 'ccw',
     nodes: [
-      { name: 'Next.js', logo: <NextJsIcon className="h-5 w-5 sm:h-6 sm:w-6 text-[#071510] dark:text-[#F0FAF4]" /> },
-      { name: 'Laravel', logo: <LaravelIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'Docker', logo: <DockerIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'Tailwind', logo: <TailwindIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'MongoDB', logo: <MongoDBIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
+      { name: 'Next.js', iconPath: '/images/Next.js.svg' },
+      { name: 'Laravel', iconPath: '/images/Laravel.svg' },
+      { name: 'Docker', iconPath: '/images/Docker.svg' },
+      { name: 'Vue.js', iconPath: '/images/Vue.js.svg' },
+      { name: 'MongoDB', iconPath: '/images/MongoDB.svg' },
     ],
   },
   {
@@ -67,11 +50,11 @@ const ORBITS: OrbitConfig[] = [
     duration: 45,
     direction: 'cw',
     nodes: [
-      { name: 'PostgreSQL', logo: <PostgreSQLIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'MySQL', logo: <MySQLIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'AWS', logo: <AWSIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'n8n', logo: <N8nIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
-      { name: 'Framer', logo: <FramerMotionIcon className="h-5 w-5 sm:h-6 sm:w-6" /> },
+      { name: 'PostgreSQL', iconPath: '/images/PostgresSQL.svg' },
+      { name: 'MySQL', iconPath: '/images/MySQL.svg' },
+      { name: 'Vercel', iconPath: '/images/Vercel.svg' },
+      { name: 'Firebase', iconPath: '/images/Firebase.svg' },
+      { name: 'Flutter', iconPath: '/images/Flutter.svg' },
     ],
   },
 ]
@@ -204,8 +187,13 @@ export default function OrbitalAnimation() {
                           background: 'radial-gradient(circle, rgba(0,232,122,0.15) 0%, transparent 70%)',
                         }}
                       />
-                      <div className="relative z-10 flex h-full w-full items-center justify-center text-[#071510] dark:text-[#F0FAF4]">
-                        {node.logo}
+                      <div className="relative z-10 flex h-full w-full items-center justify-center p-1.5 sm:p-2">
+                        <img
+                          src={node.iconPath}
+                          alt={node.name}
+                          className="h-full w-full object-contain"
+                          loading="lazy"
+                        />
                       </div>
                     </div>
                   </div>

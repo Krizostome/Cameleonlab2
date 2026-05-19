@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Hero from './components/sections/Hero'
-import Marquee from './components/sections/Marquee'
+import NosRealisations from './components/sections/NosRealisations'
 import BasedInCotonou from './components/sections/BasedInCotonou'
 import Services from './components/sections/Services'
-import Portfolio from './components/sections/Portfolio'
 import Process from './components/sections/Process'
 import TechExpertise from './components/sections/TechExpertise'
 import Testimonials from './components/sections/Testimonials'
@@ -23,12 +22,11 @@ function HomePage() {
     <>
       <Navbar />
       <Hero />
-      <Marquee />
+      <NosRealisations />
+      <TechExpertise />
       <BasedInCotonou />
       <Services />
-      <Portfolio />
       <Process />
-      <TechExpertise />
       <Team />
       <Testimonials />
       <FAQ />
