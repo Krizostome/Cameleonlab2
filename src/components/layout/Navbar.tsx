@@ -140,14 +140,14 @@ export default function Navbar() {
     return () => ctx.revert()
   }, [mobileOpen])
 
-  const linkClass = 'nav-link-underline font-dm-sans text-sm font-medium text-[#071510]/90 dark:text-[#F0FAF4]/90 transition-colors hover:text-[#00E87A]'
+  const linkClass = 'nav-link-underline font-["Outfit"] text-sm font-medium text-[#071510]/90 dark:text-[#F0FAF4]/90 transition-colors hover:text-[#00E87A]'
 
   return (
     <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${scrolled ? 'bg-[#F7FFF9]/80 dark:bg-[#060C0A]/80 backdrop-blur-xl border-[#00E87A]/20' : 'bg-transparent border-transparent'}`} aria-label="Navigation principale">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
         {/* Logo */}
         <Link ref={logoRef} to="/" className="flex items-center gap-2 opacity-0" style={{ willChange: 'transform, opacity' }}>
-          <span className="font-bricolage text-xl font-bold tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-2xl">CameleonLab</span>
+          <span className="font-['Outfit'] text-xl font-bold tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-2xl">CameleonLab</span>
         </Link>
 
         {/* Desktop links */}
@@ -161,7 +161,7 @@ export default function Navbar() {
         <div className="hidden md:block"><ThemeToggle /></div>
 
         {/* CTA */}
-        <Link ref={ctaRef} to="/contact" className="relative hidden overflow-hidden rounded-full bg-[#00E87A] px-6 py-2.5 font-bricolage text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] md:block opacity-0" style={{ willChange: 'transform, opacity' }}>
+          <Link ref={ctaRef} to="/contact" className="relative hidden overflow-hidden rounded-full bg-[#00E87A] px-6 py-2.5 font-['Outfit'] text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] md:block opacity-0" style={{ willChange: 'transform, opacity' }}>
           <span className="relative z-10">Démarrer un projet</span>
           <span ref={shimmerRef} className="pointer-events-none absolute inset-0 block" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%)', width: '40%' }} />
         </Link>
@@ -178,13 +178,13 @@ export default function Navbar() {
       <div id="mobile-menu" ref={mobileMenuRef} className="overflow-hidden md:hidden" style={{ height: 0, opacity: 0 }}>
         <div className="flex flex-col gap-4 px-6 pb-6 pt-5 bg-[#F7FFF9]/95 dark:bg-[#060C0A]/95 backdrop-blur-xl border-t border-black/10 dark:border-white/10 rounded-b-2xl shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
           {NAV_LINKS.map((link) => (
-            <SmartNavLink key={link.href + link.label} link={link} className="font-dm-sans text-base font-medium text-[#071510]/90 dark:text-[#F0FAF4]/90 transition-colors hover:text-[#00E87A]" onClick={() => setMobileOpen(false)} />
+            <SmartNavLink key={link.href + link.label} link={link} className="font-['Outfit'] text-base font-medium text-[#071510]/90 dark:text-[#F0FAF4]/90 transition-colors hover:text-[#00E87A]" onClick={() => setMobileOpen(false)} />
           ))}
           <div className="flex items-center justify-between py-2">
             <span className="text-sm text-[#071510]/60 dark:text-[#F0FAF4]/60 font-dm-sans">Thème</span>
             <ThemeToggle />
           </div>
-          <Link to="/contact" className="mt-2 w-full rounded-full bg-[#00E87A] px-6 py-3 font-bricolage text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] text-center block" onClick={() => setMobileOpen(false)}>
+          <Link to="/contact" className="mt-2 w-full rounded-full bg-[#00E87A] px-6 py-3 font-['Outfit'] text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] text-center block" onClick={() => setMobileOpen(false)}>
             Démarrer un projet
           </Link>
         </div>

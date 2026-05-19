@@ -231,7 +231,7 @@ export default function Hero() {
               scrambleDuration={0.6}
               revealDuration={0.4}
               glowWords={['vision']}
-              gradientWords={['Vi']}
+              gradientWords={['Vision']}
             />
             <ScrambleRevealText
               text="notre transformation."
@@ -240,7 +240,7 @@ export default function Hero() {
               scrambleDuration={0.9}
               revealDuration={0.4}
               glowWords={['transformation']}
-              gradientWords={['tra']}
+              gradientWords={['transformation']}
             />
           </h1>
         </motion.div>

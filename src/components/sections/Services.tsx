@@ -311,7 +311,7 @@ export default function Services() {
               </div>
 
               {/* Title */}
-              <h3 className="mb-3 font-inter text-lg font-semibold text-[#071510] dark:text-[#F0FAF4] md:text-xl">
+              <h3 className="mb-3 font-['Outfit'] text-lg font-semibold text-[#071510] dark:text-[#F0FAF4] md:text-xl">
                 {service.title}
               </h3>
 
