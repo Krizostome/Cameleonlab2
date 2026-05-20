@@ -372,10 +372,12 @@ function BentoCard({
   project,
   index,
   className = '',
+  isLarge = false,
 }: {
   project: Project
   index: number
   className?: string
+  isLarge?: boolean
 }) {
   const cardRef = useRef<HTMLAnchorElement>(null)
   const [isFocused, setIsFocused] = useState(false)
@@ -411,7 +413,7 @@ function BentoCard({
       <Link
         ref={cardRef}
         to={`/portfolio/${project.slug}`}
-        className="group relative block h-full overflow-hidden rounded-2xl border border-[#00E87A]/10 bg-[var(--bg-card)] transition-all duration-500 hover:border-[#00E87A]/30 hover:shadow-[0_8px_40px_rgba(0,232,122,0.12)]"
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#00E87A]/10 bg-[var(--bg-card)] transition-all duration-500 hover:border-[#00E87A]/30 hover:shadow-[0_8px_40px_rgba(0,232,122,0.12)]"
         style={{
           rotateX,
           rotateY,
@@ -420,7 +422,7 @@ function BentoCard({
         }}
       >
         {/* Image */}
-        <div className="relative h-48 overflow-hidden sm:h-56 md:h-64">
+        <div className={`relative overflow-hidden ${isLarge ? 'h-56 sm:h-64 md:h-72 lg:h-80' : 'h-48 sm:h-52 md:h-56'}`}>
           <img
             src={project.image}
             alt={project.imageAlt}
@@ -439,16 +441,16 @@ function BentoCard({
         </div>
 
         {/* Content */}
-        <div className="relative p-5 md:p-6">
-          <h4 className="mb-2 font-['Outfit'] text-xl font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <div className="relative flex flex-1 flex-col p-5 md:p-6">
+          <h4 className="mb-1.5 font-['Outfit'] text-lg font-bold text-[#071510] dark:text-[#F0FAF4] md:text-xl">
             {project.title}
           </h4>
-          <p className="mb-4 line-clamp-2 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
+          <p className="mb-3 line-clamp-2 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
             {project.description}
           </p>
 
           {/* Technologies */}
-          <div className="mb-4 flex flex-wrap gap-1.5">
+          <div className="mb-3 flex flex-wrap gap-1.5">
             {project.technologies.slice(0, 3).map((tech) => (
               <span
                 key={tech}
@@ -460,8 +462,8 @@ function BentoCard({
           </div>
 
           {/* Link */}
-          <span className="inline-flex items-center gap-1.5 font-['Satoshi'] text-xs font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
-            Voir <ArrowRight className="h-3 w-3" />
+          <span className="mt-auto inline-flex items-center gap-1.5 font-['Satoshi'] text-xs font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
+            Voir le projet <ArrowRight className="h-3 w-3" />
           </span>
         </div>
 
@@ -495,50 +497,39 @@ function BentoCard({
 /* ═══════════════════════════════════════════════════════════════════ */
 
 function BentoGrid({ projects }: { projects: Project[] }) {
-  // Layout:
-  // Row 1: [large (spans 2 rows)] [small]
-  // Row 2:                    [small]
-  // Row 3: [medium] [medium]
-
-  const large = projects[0]
-  const small1 = projects[1]
-  const small2 = projects[2]
-  const med1 = projects[3]
-  const med2 = projects[4]
+  // Layout: 3 columns x 2 rows, all cards same height
+  const p1 = projects[0]
+  const p2 = projects[1]
+  const p3 = projects[2]
+  const p4 = projects[3]
+  const p5 = projects[4]
 
   return (
     <div className="relative z-10 mb-24 md:mb-32">
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2">
-        {/* Large card - spans 2 rows on lg */}
-        {large && (
-          <div className="lg:col-span-1 lg:row-span-2">
-            <BentoCard project={large} index={0} className="h-full" />
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {p1 && (
+          <div>
+            <BentoCard project={p1} index={0} className="h-full" isLarge />
           </div>
         )}
-
-        {/* Top right small */}
-        {small1 && (
-          <div className="lg:col-span-1 lg:row-span-1">
-            <BentoCard project={small1} index={1} className="h-full" />
+        {p2 && (
+          <div>
+            <BentoCard project={p2} index={1} className="h-full" />
           </div>
         )}
-
-        {/* Bottom right small */}
-        {small2 && (
-          <div className="lg:col-span-1 lg:row-span-1">
-            <BentoCard project={small2} index={2} className="h-full" />
+        {p3 && (
+          <div>
+            <BentoCard project={p3} index={2} className="h-full" />
           </div>
         )}
-
-        {/* Bottom row medium cards */}
-        {med1 && (
-          <div className="lg:col-span-1 lg:row-span-1">
-            <BentoCard project={med1} index={3} className="h-full" />
+        {p4 && (
+          <div>
+            <BentoCard project={p4} index={3} className="h-full" />
           </div>
         )}
-        {med2 && (
-          <div className="lg:col-span-1 lg:row-span-1">
-            <BentoCard project={med2} index={4} className="h-full" />
+        {p5 && (
+          <div>
+            <BentoCard project={p5} index={4} className="h-full" />
           </div>
         )}
       </div>

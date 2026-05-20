@@ -88,23 +88,23 @@ const variants = {
     opacity: 1,
   },
   prev: {
-    scale: 0.88,
-    x: '-12%',
-    y: -15,
-    rotateY: 8,
-    opacity: 0.35,
+    scale: 0.9,
+    x: '-14%',
+    y: -8,
+    rotateY: 10,
+    opacity: 0.45,
   },
   next: {
-    scale: 0.88,
-    x: '12%',
-    y: -15,
-    rotateY: -8,
-    opacity: 0.35,
+    scale: 0.9,
+    x: '14%',
+    y: -8,
+    rotateY: -10,
+    opacity: 0.45,
   },
   hidden: {
-    scale: 0.8,
+    scale: 0.82,
     x: '0%',
-    y: -30,
+    y: -20,
     rotateY: 0,
     opacity: 0,
   },
@@ -265,13 +265,15 @@ export default function Portfolio() {
             style={{ perspective: '1200px' }}
           >
             {/* Depth shadow */}
-            <div className="pointer-events-none absolute inset-8 rounded-2xl bg-[#00E87A]/5 blur-3xl" />
+            <div className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-[#00E87A]/[0.03] blur-3xl" />
+            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-[#00E87A]/10" />
 
             <div className="relative h-full w-full overflow-hidden rounded-2xl">
               {filteredProjects.map((project, idx) => {
                 const position = getCardPosition(idx, activeIndex, filteredProjects.length)
                 const zIndex =
                   position === 'active' ? 30 : position === 'prev' || position === 'next' ? 20 : 10
+                const isActive = position === 'active'
 
                 return (
                   <motion.div
@@ -285,23 +287,52 @@ export default function Portfolio() {
                     }}
                     style={{ transformStyle: 'preserve-3d', zIndex }}
                   >
-                    <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-white/82 dark:bg-[#071510] shadow-2xl">
+                    <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-white/82 dark:bg-[#071510] shadow-2xl shadow-black/20 dark:shadow-black/40 border border-white/10">
                       <img
                         src={project.image}
                         alt={project.title}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
+
+                      {/* Bottom gradient overlay with project info */}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071510]/80 via-[#071510]/20 to-transparent" />
+
+                      {/* Active slide info overlay */}
+                      <AnimatePresence>
+                        {isActive && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="absolute bottom-0 left-0 right-0 p-6 md:p-8"
+                          >
+                            <div className="flex flex-wrap gap-2 mb-3">
+                              {project.categories.map((cat) => (
+                                <span
+                                  key={cat}
+                                  className="rounded-full border border-[#00E87A]/30 bg-[#00E87A]/10 px-2.5 py-0.5 font-['Satoshi'] text-[10px] font-medium uppercase tracking-wider text-[#00E87A] backdrop-blur-sm"
+                                >
+                                  {cat}
+                                </span>
+                              ))}
+                            </div>
+                            <h4 className="font-['Outfit'] text-xl md:text-2xl font-bold text-white drop-shadow-lg">
+                              {project.title}
+                            </h4>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
                       {/* Light reflection */}
                       <div
                         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         style={{
                           background:
-                            'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, transparent 100%)',
+                            'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%, transparent 100%)',
                         }}
                       />
-                      {/* Hover overlay */}
-                      <div className="pointer-events-none absolute inset-0 bg-[#00E87A]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     </div>
                   </motion.div>
                 )
@@ -314,8 +345,23 @@ export default function Portfolio() {
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.4, ease: [0.19, 1, 0.22, 1] }}
-            className="flex flex-col"
+            className="flex flex-col justify-center"
           >
+            {/* Slide counter */}
+            <div className="mb-8 flex items-center gap-4">
+              <span className="font-['Outfit'] text-5xl font-bold text-[#00E87A]/20 dark:text-[#00E87A]/15 md:text-6xl">
+                {String(activeIndex + 1).padStart(2, '0')}
+              </span>
+              <div className="flex flex-col">
+                <span className="font-['Satoshi'] text-xs uppercase tracking-wider text-[#071510]/40 dark:text-[#F0FAF4]/40">
+                  Projet
+                </span>
+                <span className="font-['Satoshi'] text-xs text-[#071510]/40 dark:text-[#F0FAF4]/40">
+                  sur {String(filteredProjects.length).padStart(2, '0')}
+                </span>
+              </div>
+            </div>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${filter}-${activeIndex}`}
@@ -324,7 +370,7 @@ export default function Portfolio() {
                 exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
                 transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
               >
-                <div className="mb-6 flex flex-wrap gap-2">
+                <div className="mb-5 flex flex-wrap gap-2">
                   {currentProject.categories.map((cat) => (
                     <span
                       key={cat}
@@ -335,54 +381,55 @@ export default function Portfolio() {
                   ))}
                 </div>
 
-                <h3 className="mb-4 font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
+                <h3 className="mb-5 font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl lg:text-[2.75rem] leading-tight">
                   <WordReveal text={currentProject.title} />
                 </h3>
 
-                <p className="mb-8 font-['Satoshi'] text-base leading-relaxed text-[#071510]/75 dark:text-[#F0FAF4]/75">
+                <p className="mb-10 font-['Satoshi'] text-base leading-relaxed text-[#071510]/75 dark:text-[#F0FAF4]/75 max-w-md">
                   <WordReveal text={currentProject.description} />
                 </p>
 
                 <a
                   href={currentProject.link}
-                  className="group/link inline-flex items-center gap-3 font-['Satoshi'] text-sm font-semibold text-[#00E87A] transition-colors hover:text-[#00E87A]-deep"
+                  className="group/link inline-flex items-center gap-3 rounded-full bg-[#00E87A] px-7 py-3.5 font-['Satoshi'] text-sm font-semibold text-[#071510] transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,232,122,0.3)] hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  <span className="relative">
-                    Voir projet
-                    <span className="absolute bottom-0 left-0 h-px w-0 bg-current transition-all duration-300 group-hover/link:w-full" />
-                  </span>
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#00E87A]/30 transition-all duration-300 group-hover/link:scale-105 group-hover/link:border-[#00E87A]/60 group-hover/link:bg-[#00E87A]/10">
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
+                  <span>Voir le projet</span>
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#071510]/10 transition-transform duration-300 group-hover/link:translate-x-0.5">
+                    <ArrowRight className="h-3 w-3 text-[#071510]" />
                   </span>
                 </a>
               </motion.div>
             </AnimatePresence>
 
+            {/* Elegant separator */}
+            <div className="my-10 h-px w-full bg-gradient-to-r from-[#00E87A]/20 via-[#00E87A]/10 to-transparent" />
+
             {/* Navigation */}
-            <div className="mt-12 flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <button
                 onClick={goPrev}
                 aria-label="Projet précédent"
-                className="group/btn flex h-12 w-12 items-center justify-center rounded-full border border-[#00E87A]/20 transition-all duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/5 hover:shadow-[0_0_20px_rgba(0,232,122,0.15)]"
+                className="group/btn flex h-14 w-14 items-center justify-center rounded-full border border-[#00E87A]/20 bg-[#00E87A]/[0.02] transition-all duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/5 hover:shadow-[0_0_24px_rgba(0,232,122,0.12)]"
               >
-                <ArrowLeft className="h-4 w-4 text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors group-hover/btn:text-[#00E87A]" />
+                <ArrowLeft className="h-5 w-5 text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors group-hover/btn:text-[#00E87A]" />
               </button>
               <button
                 onClick={goNext}
                 aria-label="Projet suivant"
-                className="group/btn flex h-12 w-12 items-center justify-center rounded-full border border-[#00E87A]/20 transition-all duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/5 hover:shadow-[0_0_20px_rgba(0,232,122,0.15)]"
+                className="group/btn flex h-14 w-14 items-center justify-center rounded-full border border-[#00E87A]/20 bg-[#00E87A]/[0.02] transition-all duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/5 hover:shadow-[0_0_24px_rgba(0,232,122,0.12)]"
               >
-                <ArrowRight className="h-4 w-4 text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors group-hover/btn:text-[#00E87A]" />
+                <ArrowRight className="h-5 w-5 text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors group-hover/btn:text-[#00E87A]" />
               </button>
-              <div className="ml-auto flex gap-2">
+
+              <div className="ml-auto flex items-center gap-3">
                 {filteredProjects.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveIndex(i)}
-                    className={`h-1.5 rounded-full transition-all duration-500 ${
+                    className={`rounded-full transition-all duration-500 ${
                       i === activeIndex
-                        ? 'w-8 bg-[#00E87A]'
-                        : 'w-2 bg-[#071510]/20 dark:bg-[#F0FAF4]/20 hover:bg-[#071510]/40 dark:bg-[#F0FAF4]/40'
+                        ? 'h-2 w-8 bg-[#00E87A]'
+                        : 'h-2 w-2 bg-[#071510]/15 dark:bg-[#F0FAF4]/15 hover:bg-[#071510]/30 dark:hover:bg-[#F0FAF4]/30'
                     }`}
                     aria-label={`Aller au projet ${i + 1}`}
                   />
