@@ -273,7 +273,7 @@ export default function CTASection() {
           variants={itemVariants}
           className="font-['Satoshi'] text-[11px] md:text-xs uppercase tracking-[0.25em] text-[#00E87A]/80 mb-6 md:mb-8"
         >
-          — Construisons quelque chose d’exceptionnel
+          Devis Gratuit Sous 48h
         </motion.p>
 
         {/* Main Title — Letter reveal */}
@@ -282,7 +282,7 @@ export default function CTASection() {
           className="font-['Outfit'] font-extrabold text-[#071510] dark:text-[#F0FAF4] leading-[1.05] mb-8 md:mb-10"
           style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.2rem)" }}
         >
-          <LetterReveal text="Transformons votre vision digitale en une expérience mémorable." />
+          <LetterReveal text="Vous avez un projet en tête ?" />
         </h2>
 
         {/* Description */}
@@ -290,8 +290,7 @@ export default function CTASection() {
           variants={itemVariants}
           className="font-['Satoshi'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-12 md:mb-14"
         >
-          Nous concevons des expériences digitales modernes, élégantes et
-          performantes pour les marques ambitieuses.
+          Décrivez votre projet et recevez une estimation personnalisée.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -306,7 +305,7 @@ export default function CTASection() {
             whileTap={shouldReduce ? {} : { scale: 0.98 }}
             className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-['Satoshi'] font-semibold text-[14px] tracking-wide text-[#071510] dark:text-[#F0FAF4] bg-[#00E87A] overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(0,232,122,0.35)] w-full sm:w-auto"
           >
-            <span className="relative z-10">Démarrer un projet</span>
+            <span className="relative z-10">Parlons-en ensemble</span>
             {/* Shimmer */}
             <motion.span
               className="absolute inset-0 z-0 pointer-events-none"
@@ -341,7 +340,7 @@ export default function CTASection() {
           variants={itemVariants}
           className="mt-10 md:mt-12 font-['Satoshi'] text-[11px] text-[#4B5563] dark:text-[#6B7280]/60 tracking-wide"
         >
-          Réponse sous 24h · Devis gratuit · Sans engagement
+          Sans engagement, réponse garantie sous 48h.
         </motion.p>
       </motion.div>
     </section>
