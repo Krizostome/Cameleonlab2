@@ -288,7 +288,7 @@ export default function Hero() {
             <h1 className="text-elegant-shadow">
               <ScrambleRevealText
                 text="NOUS TRANSFORMONS VOS IDÉES EN"
-                className="block font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl lg:text-6xl"
+                className="block font-['Outfit'] text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-3xl md:text-4xl lg:text-5xl leading-tight"
                 delay={0}
                 scrambleDuration={0.6}
                 revealDuration={0.4}
@@ -297,7 +297,7 @@ export default function Hero() {
               />
               <ScrambleRevealText
                 text="PRODUITS NUMÉRIQUES PERFORMANTS"
-                className="block font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl lg:text-6xl"
+                className="block font-['Outfit'] text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-3xl md:text-4xl lg:text-5xl leading-tight"
                 delay={0.05}
                 scrambleDuration={0.9}
                 revealDuration={0.4}
