@@ -147,7 +147,7 @@ function SectionHeader() {
       {/* Title */}
       <motion.h2
         variants={itemVariants}
-        className="mb-6 max-w-4xl font-playfair text-4xl font-bold leading-[1.1] tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
+        className="mb-6 max-w-4xl font-['Outfit'] text-4xl font-bold leading-[1.1] tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
       >
         Des projets qui transforment des{' '}
         <span className="text-glow text-[#00E87A]">idées</span> en expériences
@@ -157,7 +157,7 @@ function SectionHeader() {
       {/* Subtitle */}
       <motion.p
         variants={itemVariants}
-        className="max-w-xl font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg"
+        className="max-w-xl font-['Satoshi'] text-base font-light leading-relaxed text-[#374151] dark:text-[#9CA3AF] md:text-lg"
       >
         Nous créons des solutions numériques performantes qui répondent à des
         besoins réels.
@@ -224,15 +224,15 @@ function FeaturedProject({ project }: { project: Project }) {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
           className="flex flex-col"
         >
-          <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-3 py-1 font-dm-sans text-[10px] font-semibold uppercase tracking-widest text-[#00E87A]">
+          <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-3 py-1 font-['Satoshi'] text-[10px] font-semibold uppercase tracking-widest text-[#00E87A]">
             {project.category}
           </span>
 
-          <h3 className="mb-4 font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl lg:text-5xl">
+          <h3 className="mb-4 font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl lg:text-5xl">
             {project.title}
           </h3>
 
-          <p className="mb-6 max-w-md font-dm-sans text-base leading-relaxed text-[#4B5563] dark:text-[#6B7280]">
+          <p className="mb-6 max-w-md font-['Satoshi'] text-base leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
             {project.fullDescription}
           </p>
 
@@ -241,7 +241,7 @@ function FeaturedProject({ project }: { project: Project }) {
             {project.services?.slice(0, 4).map((svc) => (
               <li
                 key={svc}
-                className="flex items-center gap-2 font-dm-sans text-sm text-[#071510]/70 dark:text-[#F0FAF4]/70"
+                className="flex items-center gap-2 font-['Satoshi'] text-sm text-[#071510]/80 dark:text-[#F0FAF4]/80"
               >
                 <span className="h-1 w-1 rounded-full bg-[#00E87A]" />
                 {svc}
@@ -254,7 +254,7 @@ function FeaturedProject({ project }: { project: Project }) {
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="rounded-md border border-[#00E87A]/15 bg-[#00E87A]/5 px-2.5 py-1 font-dm-mono text-[11px] font-medium text-[#00E87A]"
+                className="rounded-md border border-[#00E87A]/15 bg-[#00E87A]/5 px-2.5 py-1 font-['Satoshi'] text-[11px] font-medium text-[#00E87A]"
               >
                 {tech}
               </span>
@@ -265,10 +265,10 @@ function FeaturedProject({ project }: { project: Project }) {
           <div className="mb-8 flex gap-6">
             {project.results.map((r) => (
               <div key={r.label} className="flex flex-col">
-                <span className="font-dm-mono text-2xl font-bold text-[#00E87A]">
+                <span className="font-['Satoshi'] text-2xl font-bold text-[#00E87A]">
                   {r.value}
                 </span>
-                <span className="font-dm-sans text-[10px] uppercase tracking-wider text-[#4B5563] dark:text-[#6B7280]">
+                <span className="font-['Satoshi'] text-[10px] uppercase tracking-wider text-[#374151] dark:text-[#9CA3AF]">
                   {r.label}
                 </span>
               </div>
@@ -279,14 +279,14 @@ function FeaturedProject({ project }: { project: Project }) {
           <div className="flex flex-wrap items-center gap-4">
             <Link
               to={`/portfolio/${project.slug}`}
-              className="group inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-bricolage text-sm font-extrabold text-[#071510] transition-all hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(0,232,122,0.35)] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-['Satoshi'] text-sm font-extrabold text-[#071510] transition-all hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(0,232,122,0.35)] active:scale-[0.98]"
             >
               Voir le projet
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>
             <Link
               to={`/portfolio/${project.slug}`}
-              className="inline-flex items-center gap-2 rounded-full border border-[#071510]/10 px-6 py-3 font-bricolage text-sm font-bold text-[#071510] transition-colors hover:bg-[#071510]/5 dark:border-[#F0FAF4]/10 dark:text-[#F0FAF4] dark:hover:bg-[#F0FAF4]/5"
+              className="inline-flex items-center gap-2 rounded-full border border-[#071510]/10 px-6 py-3 font-['Satoshi'] text-sm font-bold text-[#071510] transition-colors hover:bg-[#071510]/5 dark:border-[#F0FAF4]/10 dark:text-[#F0FAF4] dark:hover:bg-[#F0FAF4]/5"
             >
               Étude de cas
             </Link>
@@ -432,7 +432,7 @@ function BentoCard({
 
           {/* Category badge */}
           <div className="absolute left-4 top-4">
-            <span className="rounded-full border border-[#00E87A]/20 bg-[#060C0A]/50 px-3 py-1 font-dm-sans text-[10px] font-semibold uppercase tracking-widest text-[#00E87A] backdrop-blur-sm">
+            <span className="rounded-full border border-[#00E87A]/20 bg-[#060C0A]/50 px-3 py-1 font-['Satoshi'] text-[10px] font-semibold uppercase tracking-widest text-[#00E87A] backdrop-blur-sm">
               {project.category}
             </span>
           </div>
@@ -440,10 +440,10 @@ function BentoCard({
 
         {/* Content */}
         <div className="relative p-5 md:p-6">
-          <h4 className="mb-2 font-playfair text-xl font-bold text-[#071510] dark:text-[#F0FAF4]">
+          <h4 className="mb-2 font-['Outfit'] text-xl font-bold text-[#071510] dark:text-[#F0FAF4]">
             {project.title}
           </h4>
-          <p className="mb-4 line-clamp-2 font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280]">
+          <p className="mb-4 line-clamp-2 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
             {project.description}
           </p>
 
@@ -452,7 +452,7 @@ function BentoCard({
             {project.technologies.slice(0, 3).map((tech) => (
               <span
                 key={tech}
-                className="rounded-md border border-[#00E87A]/10 bg-[#00E87A]/5 px-2 py-0.5 font-dm-mono text-[10px] font-medium text-[#00E87A]"
+                className="rounded-md border border-[#00E87A]/10 bg-[#00E87A]/5 px-2 py-0.5 font-['Satoshi'] text-[10px] font-medium text-[#00E87A]"
               >
                 {tech}
               </span>
@@ -460,7 +460,7 @@ function BentoCard({
           </div>
 
           {/* Link */}
-          <span className="inline-flex items-center gap-1.5 font-bricolage text-xs font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
+          <span className="inline-flex items-center gap-1.5 font-['Satoshi'] text-xs font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
             Voir <ArrowRight className="h-3 w-3" />
           </span>
         </div>
@@ -641,7 +641,7 @@ function OnlineProjectsRow() {
       transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
       className="relative z-10"
     >
-      <h3 className="mb-8 font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-3xl">
+      <h3 className="mb-8 font-['Outfit'] text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-3xl">
         Découvrir d'autres projets
       </h3>
 
@@ -674,10 +674,10 @@ function OnlineProjectsRow() {
                     {item.logo}
                   </span>
                   <div>
-                    <h4 className="font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+                    <h4 className="font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
                       {item.name}
                     </h4>
-                    <span className="inline-flex items-center gap-1.5 font-dm-sans text-[10px] font-medium text-[#00E87A]">
+                    <span className="inline-flex items-center gap-1.5 font-['Satoshi'] text-[10px] font-medium text-[#00E87A]">
                       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#00E87A]" />
                       En ligne
                     </span>
@@ -686,12 +686,12 @@ function OnlineProjectsRow() {
               </div>
 
               {/* Description */}
-              <p className="font-dm-sans text-xs leading-relaxed text-[#4B5563] dark:text-[#6B7280]">
+              <p className="font-['Satoshi'] text-xs leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
                 {item.description}
               </p>
 
               {/* CTA */}
-              <span className="mt-auto inline-flex items-center gap-1.5 font-bricolage text-xs font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
+              <span className="mt-auto inline-flex items-center gap-1.5 font-['Satoshi'] text-xs font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
                 Visiter le site
                 <ExternalLink className="h-3 w-3" />
               </span>

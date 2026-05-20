@@ -214,16 +214,16 @@ export default function Portfolio() {
           className="mb-16 flex flex-col items-start justify-between gap-6 md:mb-20 md:flex-row md:items-end"
         >
           <div>
-            <span className="mb-3 inline-block font-dm-sans text-xs font-medium uppercase tracking-[0.25em] text-[#00E87A]/70">
+            <span className="mb-3 inline-block font-['Satoshi'] text-xs font-medium uppercase tracking-[0.25em] text-[#00E87A]/70">
               — Projets sélectionnés
             </span>
-            <h2 className="font-playfair text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
+            <h2 className="font-['Outfit'] text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
               Nos <span className="text-glow text-[#00E87A]">réalisations</span>
             </h2>
           </div>
           <Link
             to="/portfolio"
-            className="group inline-flex items-center gap-2 font-dm-sans text-sm font-medium text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors hover:text-[#00E87A]"
+            className="group inline-flex items-center gap-2 font-['Satoshi'] text-sm font-medium text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors hover:text-[#00E87A]"
           >
             Voir tout
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
@@ -243,10 +243,10 @@ export default function Portfolio() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`rounded-full border px-5 py-2 font-dm-sans text-xs font-medium uppercase tracking-wider transition-all duration-300 ${
+              className={`rounded-full border px-5 py-2 font-['Satoshi'] text-xs font-medium uppercase tracking-wider transition-all duration-300 ${
                 filter === f
                   ? 'border-[#00E87A]/50 bg-[#00E87A]/10 text-[#00E87A] shadow-[0_0_20px_rgba(0,232,122,0.1)]'
-                  : 'border-[#00E87A]/10 text-[#071510]/50 dark:text-[#F0FAF4]/50 hover:border-[#00E87A]/30 hover:text-[#071510]/80 dark:text-[#F0FAF4]/80'
+                  : 'border-[#00E87A]/10 text-[#071510]/80 dark:text-[#F0FAF4]/80 hover:border-[#00E87A]/30 hover:text-[#071510]/80 dark:text-[#F0FAF4]/80'
               }`}
             >
               {f}
@@ -328,24 +328,24 @@ export default function Portfolio() {
                   {currentProject.categories.map((cat) => (
                     <span
                       key={cat}
-                      className="rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-3 py-1 font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#00E87A]"
+                      className="rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-3 py-1 font-['Satoshi'] text-[10px] font-medium uppercase tracking-wider text-[#00E87A]"
                     >
                       {cat}
                     </span>
                   ))}
                 </div>
 
-                <h3 className="mb-4 font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
+                <h3 className="mb-4 font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
                   <WordReveal text={currentProject.title} />
                 </h3>
 
-                <p className="mb-8 font-dm-sans text-base leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
+                <p className="mb-8 font-['Satoshi'] text-base leading-relaxed text-[#071510]/75 dark:text-[#F0FAF4]/75">
                   <WordReveal text={currentProject.description} />
                 </p>
 
                 <a
                   href={currentProject.link}
-                  className="group/link inline-flex items-center gap-3 font-dm-sans text-sm font-semibold text-[#00E87A] transition-colors hover:text-[#00E87A]-deep"
+                  className="group/link inline-flex items-center gap-3 font-['Satoshi'] text-sm font-semibold text-[#00E87A] transition-colors hover:text-[#00E87A]-deep"
                 >
                   <span className="relative">
                     Voir projet
@@ -365,14 +365,14 @@ export default function Portfolio() {
                 aria-label="Projet précédent"
                 className="group/btn flex h-12 w-12 items-center justify-center rounded-full border border-[#00E87A]/20 transition-all duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/5 hover:shadow-[0_0_20px_rgba(0,232,122,0.15)]"
               >
-                <ArrowLeft className="h-4 w-4 text-[#071510]/70 dark:text-[#F0FAF4]/70 transition-colors group-hover/btn:text-[#00E87A]" />
+                <ArrowLeft className="h-4 w-4 text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors group-hover/btn:text-[#00E87A]" />
               </button>
               <button
                 onClick={goNext}
                 aria-label="Projet suivant"
                 className="group/btn flex h-12 w-12 items-center justify-center rounded-full border border-[#00E87A]/20 transition-all duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/5 hover:shadow-[0_0_20px_rgba(0,232,122,0.15)]"
               >
-                <ArrowRight className="h-4 w-4 text-[#071510]/70 dark:text-[#F0FAF4]/70 transition-colors group-hover/btn:text-[#00E87A]" />
+                <ArrowRight className="h-4 w-4 text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors group-hover/btn:text-[#00E87A]" />
               </button>
               <div className="ml-auto flex gap-2">
                 {filteredProjects.map((_, i) => (

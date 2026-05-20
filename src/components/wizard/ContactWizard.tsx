@@ -192,10 +192,10 @@ function ProgressBar({ currentStep, totalSteps }: { currentStep: number; totalSt
 
       {/* Mobile: compact */}
       <div className="md:hidden flex items-center gap-3 mb-4">
-        <span className="font-bricolage text-sm font-bold text-[#00E87A]">
+        <span className="font-['Satoshi'] text-sm font-bold text-[#00E87A]">
           Étape {currentStep}/{totalSteps}
         </span>
-        <span className="text-xs text-[#071510]/50 dark:text-[#F0FAF4]/50 font-dm-sans">
+        <span className="text-xs text-[#071510]/80 dark:text-[#F0FAF4]/80 font-['Satoshi']">
           {STEPS[currentStep - 1]?.label}
         </span>
       </div>
@@ -231,10 +231,10 @@ function StepProjectType({
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <h3 className="font-playfair text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
+        <h3 className="font-['Outfit'] text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
           Quel type de projet ?
         </h3>
-        <p className="font-dm-sans text-sm text-[#4B5563] dark:text-[#6B7280]">
+        <p className="font-['Satoshi'] text-sm text-[#374151] dark:text-[#9CA3AF]">
           Sélectionnez la catégorie qui correspond le mieux à votre besoin
         </p>
       </div>
@@ -256,16 +256,16 @@ function StepProjectType({
                 className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 ${
                   isSelected
                     ? 'bg-[#00E87A] text-[#071510] shadow-[0_0_16px_rgba(0,232,122,0.35)]'
-                    : 'bg-[#071510]/5 dark:bg-[#F0FAF4]/5 text-[#071510]/50 dark:text-[#F0FAF4]/50 group-hover:text-[#00E87A]'
+                    : 'bg-[#071510]/5 dark:bg-[#F0FAF4]/5 text-[#071510]/80 dark:text-[#F0FAF4]/80 group-hover:text-[#00E87A]'
                 }`}
               >
                 {type.icon}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="font-bricolage font-semibold text-[#071510] dark:text-[#F0FAF4] text-sm md:text-base mb-0.5">
+                <div className="font-['Satoshi'] font-semibold text-[#071510] dark:text-[#F0FAF4] text-sm md:text-base mb-0.5">
                   {type.label}
                 </div>
-                <div className="font-dm-sans text-xs text-[#4B5563] dark:text-[#6B7280]">
+                <div className="font-['Satoshi'] text-xs text-[#374151] dark:text-[#9CA3AF]">
                   {type.desc}
                 </div>
               </div>
@@ -280,7 +280,7 @@ function StepProjectType({
       </div>
 
       {error && (
-        <p className="text-center text-xs text-red-400 font-dm-sans flex items-center justify-center gap-1">
+        <p className="text-center text-xs text-red-400 font-['Satoshi'] flex items-center justify-center gap-1">
           <AlertCircle className="w-3 h-3" /> {error}
         </p>
       )}
@@ -304,10 +304,10 @@ function StepProjectInfo({
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <h3 className="font-playfair text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
+        <h3 className="font-['Outfit'] text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
           Parlez-nous de votre projet
         </h3>
-        <p className="font-dm-sans text-sm text-[#4B5563] dark:text-[#6B7280]">
+        <p className="font-['Satoshi'] text-sm text-[#374151] dark:text-[#9CA3AF]">
           Ces informations nous aident à mieux comprendre votre vision
         </p>
       </div>
@@ -315,7 +315,7 @@ function StepProjectInfo({
       <div className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block font-dm-sans text-xs font-medium text-[#071510]/70 dark:text-[#F0FAF4]/70 mb-2 uppercase tracking-wider">
+            <label className="block font-['Satoshi'] text-xs font-medium text-[#071510]/80 dark:text-[#F0FAF4]/80 mb-2 uppercase tracking-wider">
               Nom du projet *
             </label>
             <input
@@ -323,18 +323,18 @@ function StepProjectInfo({
               value={data.projectName}
               onChange={(e) => onChange('projectName', e.target.value)}
               placeholder="Mon super projet"
-              className={`w-full px-4 py-3 rounded-xl bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] border font-dm-sans text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#071510]/30 dark:placeholder:text-[#F0FAF4]/30 outline-none transition-all duration-300 focus:border-[#00E87A]/50 focus:shadow-[0_0_20px_rgba(0,232,122,0.08)] ${
+              className={`w-full px-4 py-3 rounded-xl bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] border font-['Satoshi'] text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#071510]/30 dark:placeholder:text-[#F0FAF4]/30 outline-none transition-all duration-300 focus:border-[#00E87A]/50 focus:shadow-[0_0_20px_rgba(0,232,122,0.08)] ${
                 errors.projectName ? 'border-red-400/50' : 'border-[#071510]/8 dark:border-[#F0FAF4]/8'
               }`}
             />
             {errors.projectName && (
-              <p className="mt-1.5 text-xs text-red-400 font-dm-sans flex items-center gap-1">
+              <p className="mt-1.5 text-xs text-red-400 font-['Satoshi'] flex items-center gap-1">
                 <AlertCircle className="w-3 h-3" /> {errors.projectName}
               </p>
             )}
           </div>
           <div>
-            <label className="block font-dm-sans text-xs font-medium text-[#071510]/70 dark:text-[#F0FAF4]/70 mb-2 uppercase tracking-wider">
+            <label className="block font-['Satoshi'] text-xs font-medium text-[#071510]/80 dark:text-[#F0FAF4]/80 mb-2 uppercase tracking-wider">
               Entreprise
             </label>
             <input
@@ -342,13 +342,13 @@ function StepProjectInfo({
               value={data.company}
               onChange={(e) => onChange('company', e.target.value)}
               placeholder="Nom de votre entreprise"
-              className="w-full px-4 py-3 rounded-xl bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] border border-[#071510]/8 dark:border-[#F0FAF4]/8 font-dm-sans text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#071510]/30 dark:placeholder:text-[#F0FAF4]/30 outline-none transition-all duration-300 focus:border-[#00E87A]/50 focus:shadow-[0_0_20px_rgba(0,232,122,0.08)]"
+              className="w-full px-4 py-3 rounded-xl bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] border border-[#071510]/8 dark:border-[#F0FAF4]/8 font-['Satoshi'] text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#071510]/30 dark:placeholder:text-[#F0FAF4]/30 outline-none transition-all duration-300 focus:border-[#00E87A]/50 focus:shadow-[0_0_20px_rgba(0,232,122,0.08)]"
             />
           </div>
         </div>
 
         <div>
-          <label className="block font-dm-sans text-xs font-medium text-[#071510]/70 dark:text-[#F0FAF4]/70 mb-2 uppercase tracking-wider">
+          <label className="block font-['Satoshi'] text-xs font-medium text-[#071510]/80 dark:text-[#F0FAF4]/80 mb-2 uppercase tracking-wider">
             Email *
           </label>
           <input
@@ -356,19 +356,19 @@ function StepProjectInfo({
             value={data.email}
             onChange={(e) => onChange('email', e.target.value)}
             placeholder="vous@entreprise.com"
-            className={`w-full px-4 py-3 rounded-xl bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] border font-dm-sans text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#071510]/30 dark:placeholder:text-[#F0FAF4]/30 outline-none transition-all duration-300 focus:border-[#00E87A]/50 focus:shadow-[0_0_20px_rgba(0,232,122,0.08)] ${
+            className={`w-full px-4 py-3 rounded-xl bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] border font-['Satoshi'] text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#071510]/30 dark:placeholder:text-[#F0FAF4]/30 outline-none transition-all duration-300 focus:border-[#00E87A]/50 focus:shadow-[0_0_20px_rgba(0,232,122,0.08)] ${
               errors.email ? 'border-red-400/50' : 'border-[#071510]/8 dark:border-[#F0FAF4]/8'
             }`}
           />
           {errors.email && (
-            <p className="mt-1.5 text-xs text-red-400 font-dm-sans flex items-center gap-1">
+            <p className="mt-1.5 text-xs text-red-400 font-['Satoshi'] flex items-center gap-1">
               <AlertCircle className="w-3 h-3" /> {errors.email}
             </p>
           )}
         </div>
 
         <div>
-          <label className="block font-dm-sans text-xs font-medium text-[#071510]/70 dark:text-[#F0FAF4]/70 mb-2 uppercase tracking-wider">
+          <label className="block font-['Satoshi'] text-xs font-medium text-[#071510]/80 dark:text-[#F0FAF4]/80 mb-2 uppercase tracking-wider">
             Description du projet *
           </label>
           <textarea
@@ -376,19 +376,19 @@ function StepProjectInfo({
             onChange={(e) => onChange('description', e.target.value)}
             placeholder="Décrivez votre projet, vos objectifs, votre cible... (min. 20 caractères)"
             rows={5}
-            className={`w-full px-4 py-3 rounded-xl bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] border font-dm-sans text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#071510]/30 dark:placeholder:text-[#F0FAF4]/30 outline-none transition-all duration-300 focus:border-[#00E87A]/50 focus:shadow-[0_0_20px_rgba(0,232,122,0.08)] resize-none ${
+            className={`w-full px-4 py-3 rounded-xl bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] border font-['Satoshi'] text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#071510]/30 dark:placeholder:text-[#F0FAF4]/30 outline-none transition-all duration-300 focus:border-[#00E87A]/50 focus:shadow-[0_0_20px_rgba(0,232,122,0.08)] resize-none ${
               errors.description ? 'border-red-400/50' : 'border-[#071510]/8 dark:border-[#F0FAF4]/8'
             }`}
           />
           <div className="flex items-center justify-between mt-1.5">
             {errors.description ? (
-              <p className="text-xs text-red-400 font-dm-sans flex items-center gap-1">
+              <p className="text-xs text-red-400 font-['Satoshi'] flex items-center gap-1">
                 <AlertCircle className="w-3 h-3" /> {errors.description}
               </p>
             ) : (
               <span />
             )}
-            <span className="text-[10px] text-[#071510]/30 dark:text-[#F0FAF4]/30 font-dm-mono">
+            <span className="text-[10px] text-[#071510]/30 dark:text-[#F0FAF4]/30 font-['Satoshi']">
               {data.description.length} caractères
             </span>
           </div>
@@ -414,10 +414,10 @@ function StepFeatures({
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <h3 className="font-playfair text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
+        <h3 className="font-['Outfit'] text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
           Fonctionnalités souhaitées
         </h3>
-        <p className="font-dm-sans text-sm text-[#4B5563] dark:text-[#6B7280]">
+        <p className="font-['Satoshi'] text-sm text-[#374151] dark:text-[#9CA3AF]">
           Sélectionnez tout ce dont vous avez besoin
         </p>
       </div>
@@ -445,8 +445,8 @@ function StepFeatures({
                 {feature.icon}
               </div>
               <span
-                className={`font-dm-sans text-xs font-medium transition-colors ${
-                  isSelected ? 'text-[#00E87A]' : 'text-[#071510]/70 dark:text-[#F0FAF4]/70'
+                className={`font-['Satoshi'] text-xs font-medium transition-colors ${
+                  isSelected ? 'text-[#00E87A]' : 'text-[#071510]/80 dark:text-[#F0FAF4]/80'
                 }`}
               >
                 {feature.label}
@@ -462,7 +462,7 @@ function StepFeatures({
       </div>
 
       {error && (
-        <p className="text-center text-xs text-red-400 font-dm-sans flex items-center justify-center gap-1">
+        <p className="text-center text-xs text-red-400 font-['Satoshi'] flex items-center justify-center gap-1">
           <AlertCircle className="w-3 h-3" /> {error}
         </p>
       )}
@@ -486,10 +486,10 @@ function StepBudget({
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <h3 className="font-playfair text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
+        <h3 className="font-['Outfit'] text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
           Quel est votre budget ?
         </h3>
-        <p className="font-dm-sans text-sm text-[#4B5563] dark:text-[#6B7280]">
+        <p className="font-['Satoshi'] text-sm text-[#374151] dark:text-[#9CA3AF]">
           Cela nous aide à orienter nos recommandations
         </p>
       </div>
@@ -517,10 +517,10 @@ function StepBudget({
                 {isSelected && <Check className="w-3.5 h-3.5 text-[#071510]" />}
               </div>
               <div className="flex-1">
-                <div className="font-bricolage font-semibold text-[#071510] dark:text-[#F0FAF4] text-sm md:text-base">
+                <div className="font-['Satoshi'] font-semibold text-[#071510] dark:text-[#F0FAF4] text-sm md:text-base">
                   {budget.label}
                 </div>
-                <div className="font-dm-sans text-xs text-[#4B5563] dark:text-[#6B7280]">
+                <div className="font-['Satoshi'] text-xs text-[#374151] dark:text-[#9CA3AF]">
                   {budget.desc}
                 </div>
               </div>
@@ -535,7 +535,7 @@ function StepBudget({
       </div>
 
       {error && (
-        <p className="text-center text-xs text-red-400 font-dm-sans flex items-center justify-center gap-1">
+        <p className="text-center text-xs text-red-400 font-['Satoshi'] flex items-center justify-center gap-1">
           <AlertCircle className="w-3 h-3" /> {error}
         </p>
       )}
@@ -559,10 +559,10 @@ function StepTimeline({
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <h3 className="font-playfair text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
+        <h3 className="font-['Outfit'] text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
           Timeline souhaitée
         </h3>
-        <p className="font-dm-sans text-sm text-[#4B5563] dark:text-[#6B7280]">
+        <p className="font-['Satoshi'] text-sm text-[#374151] dark:text-[#9CA3AF]">
           Quand aimeriez-vous voir votre projet voir le jour ?
         </p>
       </div>
@@ -590,10 +590,10 @@ function StepTimeline({
                 {timeline.icon}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="font-bricolage font-semibold text-[#071510] dark:text-[#F0FAF4] text-sm md:text-base">
+                <div className="font-['Satoshi'] font-semibold text-[#071510] dark:text-[#F0FAF4] text-sm md:text-base">
                   {timeline.label}
                 </div>
-                <div className="font-dm-sans text-xs text-[#4B5563] dark:text-[#6B7280]">
+                <div className="font-['Satoshi'] text-xs text-[#374151] dark:text-[#9CA3AF]">
                   {timeline.desc}
                 </div>
               </div>
@@ -608,7 +608,7 @@ function StepTimeline({
       </div>
 
       {error && (
-        <p className="text-center text-xs text-red-400 font-dm-sans flex items-center justify-center gap-1">
+        <p className="text-center text-xs text-red-400 font-['Satoshi'] flex items-center justify-center gap-1">
           <AlertCircle className="w-3 h-3" /> {error}
         </p>
       )}
@@ -631,12 +631,12 @@ function StepSummary({ data }: { data: FormData }) {
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00E87A]/10 border border-[#00E87A]/20 mb-4">
           <Sparkles className="w-3.5 h-3.5 text-[#00E87A]" />
-          <span className="font-dm-sans text-xs font-medium text-[#00E87A]">Presque terminé</span>
+          <span className="font-['Satoshi'] text-xs font-medium text-[#00E87A]">Presque terminé</span>
         </div>
-        <h3 className="font-playfair text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
+        <h3 className="font-['Outfit'] text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-2">
           Récapitulatif
         </h3>
-        <p className="font-dm-sans text-sm text-[#4B5563] dark:text-[#6B7280]">
+        <p className="font-['Satoshi'] text-sm text-[#374151] dark:text-[#9CA3AF]">
           Vérifiez vos informations avant d'envoyer
         </p>
       </div>
@@ -673,11 +673,11 @@ function SummaryItem({
 }) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 p-3 md:p-4 rounded-xl bg-[#071510]/[0.02] dark:bg-[#F0FAF4]/[0.02] border border-[#071510]/5 dark:border-[#F0FAF4]/5">
-      <span className="font-dm-sans text-[11px] uppercase tracking-wider text-[#071510]/40 dark:text-[#F0FAF4]/40 font-medium sm:w-32 flex-shrink-0">
+      <span className="font-['Satoshi'] text-[11px] uppercase tracking-wider text-[#071510]/40 dark:text-[#F0FAF4]/40 font-medium sm:w-32 flex-shrink-0">
         {label}
       </span>
       <span
-        className={`font-dm-sans text-sm text-[#071510] dark:text-[#F0FAF4] ${
+        className={`font-['Satoshi'] text-sm text-[#071510] dark:text-[#F0FAF4] ${
           multiline ? 'leading-relaxed' : ''
         }`}
       >
@@ -697,13 +697,13 @@ function SuccessScreen() {
       <div className="w-20 h-20 rounded-full bg-[#00E87A]/10 border border-[#00E87A]/20 flex items-center justify-center mb-6 animate-pulse">
         <Check className="w-10 h-10 text-[#00E87A]" />
       </div>
-      <h3 className="font-playfair text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-3">
+      <h3 className="font-['Outfit'] text-2xl md:text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] mb-3">
         Message envoyé avec succès !
       </h3>
-      <p className="font-dm-sans text-sm text-[#4B5563] dark:text-[#6B7280] max-w-md mx-auto mb-8">
+      <p className="font-['Satoshi'] text-sm text-[#374151] dark:text-[#9CA3AF] max-w-md mx-auto mb-8">
         Nous avons bien reçu votre demande. Notre équipe vous contactera sous 24h pour discuter de votre projet.
       </p>
-      <div className="flex items-center gap-2 text-xs text-[#00E87A] font-dm-mono">
+      <div className="flex items-center gap-2 text-xs text-[#00E87A] font-['Satoshi']">
         <Timer className="w-3.5 h-3.5" />
         <span>Réponse sous 24h</span>
       </div>
@@ -970,9 +970,9 @@ export default function ContactWizard() {
         <button
           onClick={handlePrev}
           disabled={!canGoPrev}
-          className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bricolage text-sm font-semibold transition-all duration-300 ${
+          className={`flex items-center gap-2 px-5 py-3 rounded-xl font-['Satoshi'] text-sm font-semibold transition-all duration-300 ${
             canGoPrev
-              ? 'text-[#071510]/70 dark:text-[#F0FAF4]/70 hover:text-[#00E87A] hover:bg-[#00E87A]/5'
+              ? 'text-[#071510]/80 dark:text-[#F0FAF4]/80 hover:text-[#00E87A] hover:bg-[#00E87A]/5'
               : 'text-[#071510]/20 dark:text-[#F0FAF4]/20 cursor-not-allowed'
           }`}
         >
@@ -983,7 +983,7 @@ export default function ContactWizard() {
         {currentStep < totalSteps ? (
           <button
             onClick={handleNext}
-            className={`group relative flex items-center gap-2 px-7 py-3 rounded-full font-bricolage text-sm font-bold transition-all duration-300 overflow-hidden ${
+            className={`group relative flex items-center gap-2 px-7 py-3 rounded-full font-['Satoshi'] text-sm font-bold transition-all duration-300 overflow-hidden ${
               canGoNext
                 ? 'bg-[#00E87A] text-[#071510] hover:shadow-[0_0_30px_rgba(0,232,122,0.35)] hover:scale-[1.02]'
                 : 'bg-[#071510]/10 dark:bg-[#F0FAF4]/10 text-[#071510]/30 dark:text-[#F0FAF4]/30'
@@ -1005,7 +1005,7 @@ export default function ContactWizard() {
         ) : (
           <button
             onClick={handleSubmit}
-            className="group relative flex items-center gap-2 px-7 py-3 rounded-full font-bricolage text-sm font-bold bg-[#00E87A] text-[#071510] hover:shadow-[0_0_30px_rgba(0,232,122,0.35)] hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+            className="group relative flex items-center gap-2 px-7 py-3 rounded-full font-['Satoshi'] text-sm font-bold bg-[#00E87A] text-[#071510] hover:shadow-[0_0_30px_rgba(0,232,122,0.35)] hover:scale-[1.02] transition-all duration-300 overflow-hidden"
           >
             <span className="relative z-10">Envoyer</span>
             <Send className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-0.5" />

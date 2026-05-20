@@ -222,7 +222,7 @@ export default function BlogHero() {
           className="mb-6 flex items-center gap-3"
         >
           <div className="h-px w-8 bg-[#00E87A]/40" />
-          <span className="font-dm-mono text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280] dark:text-[#F0FAF4]/50">
+          <span className="font-['Satoshi'] text-xs font-medium uppercase tracking-[0.2em] text-[#374151] dark:text-[#F0FAF4]/80">
             Blog CameleonLab
           </span>
           <div className="h-px w-8 bg-[#00E87A]/40" />
@@ -232,18 +232,18 @@ export default function BlogHero() {
         <h1 className="mb-6 text-center">
           <AnimatedTitle
             text="Insights"
-            className="block font-playfair text-5xl font-bold leading-[1.1] md:text-7xl lg:text-8xl"
+            className="block font-['Outfit'] text-5xl font-bold leading-[1.1] md:text-7xl lg:text-8xl"
           />
           <AnimatedTitle
             text="& Articles"
-            className="block font-playfair text-5xl font-bold leading-[1.1] md:text-7xl lg:text-8xl"
+            className="block font-['Outfit'] text-5xl font-bold leading-[1.1] md:text-7xl lg:text-8xl"
           />
         </h1>
 
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="mb-10 max-w-xl text-center font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#F0FAF4]/60 md:text-lg opacity-0"
+          className="mb-10 max-w-xl text-center font-['Satoshi'] text-base font-light leading-relaxed text-[#374151] dark:text-[#F0FAF4]/75 md:text-lg opacity-0"
           style={{ willChange: 'transform, opacity, filter' }}
         >
           Plongez dans nos réflexions sur le design, le développement et l'innovation digitale. 
@@ -255,7 +255,7 @@ export default function BlogHero() {
           {tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-4 py-1.5 font-dm-sans text-xs font-medium text-[#00E87A] backdrop-blur-sm dark:bg-[#00E87A]/10"
+              className="rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-4 py-1.5 font-['Satoshi'] text-xs font-medium text-[#00E87A] backdrop-blur-sm dark:bg-[#00E87A]/10"
             >
               {tag}
             </span>

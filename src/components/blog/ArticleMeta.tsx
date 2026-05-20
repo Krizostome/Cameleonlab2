@@ -74,7 +74,7 @@ export default function ArticleMeta({ post, variant = 'card', showDate = false }
     <div className={`flex flex-wrap items-center gap-2 ${isRow ? 'mb-2' : 'mb-3'}`}>
       {/* Category badge */}
       <span
-        className={`rounded-full bg-[#00E87A]/8 font-dm-mono font-medium uppercase tracking-wider text-[#00E87A] ${
+        className={`rounded-full bg-[#00E87A]/8 font-['Satoshi'] font-medium uppercase tracking-wider text-[#00E87A] ${
           isRow ? 'px-2.5 py-0.5 text-[10px]' : 'px-3 py-1 text-[10px]'
         }`}
       >
@@ -83,7 +83,7 @@ export default function ArticleMeta({ post, variant = 'card', showDate = false }
 
       {/* Read time */}
       <span
-        className={`flex items-center gap-1 font-dm-sans text-[#6B7280] ${
+        className={`flex items-center gap-1 font-['Satoshi'] text-[#374151] ${
           isRow ? 'text-[10px]' : 'text-[11px]'
         }`}
       >
@@ -93,7 +93,7 @@ export default function ArticleMeta({ post, variant = 'card', showDate = false }
 
       {/* Date */}
       {showDate && (
-        <span className="font-dm-sans text-[10px] text-[#6B7280]">
+        <span className="font-['Satoshi'] text-[10px] text-[#374151]">
           {new Date(post.date).toLocaleDateString('fr-FR', {
             day: 'numeric',
             month: 'short',
@@ -107,7 +107,7 @@ export default function ArticleMeta({ post, variant = 'card', showDate = false }
 
       {/* Views */}
       <motion.span
-        className={`flex items-center gap-1 font-dm-sans text-[#6B7280] transition-colors duration-300 hover:text-[#00E87A]/70 ${
+        className={`flex items-center gap-1 font-['Satoshi'] text-[#374151] transition-colors duration-300 hover:text-[#00E87A]/70 ${
           isRow ? 'text-[10px]' : 'text-[11px]'
         }`}
         whileHover={{ scale: 1.05 }}
@@ -133,8 +133,8 @@ export default function ArticleMeta({ post, variant = 'card', showDate = false }
       <motion.button
         type="button"
         onClick={handleLike}
-        className={`group flex items-center gap-1 font-dm-sans transition-colors duration-300 ${
-          liked ? 'text-[#00E87A]' : 'text-[#6B7280] hover:text-[#00E87A]'
+        className={`group flex items-center gap-1 font-['Satoshi'] transition-colors duration-300 ${
+          liked ? 'text-[#00E87A]' : 'text-[#374151] hover:text-[#00E87A]'
         } ${isRow ? 'text-[10px]' : 'text-[11px]'}`}
         whileTap={{ scale: 0.85 }}
         aria-label={liked ? 'Retirer le like' : 'Aimer cet article'}

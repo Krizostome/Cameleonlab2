@@ -94,24 +94,24 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
           clipPath: "inset(100% 0 0 0)",
         }}
       >
-        <p className="mb-4 font-dm-sans text-sm font-light leading-relaxed text-[#F0FAF4]/80">
+        <p className="mb-4 font-['Satoshi'] text-sm font-light leading-relaxed text-[#F0FAF4]/80">
           {project.description}
         </p>
         <div className="mb-4 flex flex-wrap gap-4">
           {project.results.slice(0, 2).map((r) => (
             <div key={r.label} className="flex flex-col">
-              <span className="font-dm-mono text-lg font-bold text-[#00E87A]">{r.value}</span>
-              <span className="font-dm-sans text-[10px] uppercase tracking-wider text-[#F0FAF4]/50">{r.label}</span>
+              <span className="font-['Satoshi'] text-lg font-bold text-[#00E87A]">{r.value}</span>
+              <span className="font-['Satoshi'] text-[10px] uppercase tracking-wider text-[#F0FAF4]/50">{r.label}</span>
             </div>
           ))}
         </div>
-        <span className="inline-flex items-center gap-2 font-bricolage text-xs font-semibold uppercase tracking-wider text-[#00E87A]">
+        <span className="inline-flex items-center gap-2 font-['Satoshi'] text-xs font-semibold uppercase tracking-wider text-[#00E87A]">
           Voir le projet <span>→</span>
         </span>
       </div>
 
       {/* Project number */}
-      <div className="pointer-events-none absolute left-4 top-4 font-dm-mono text-2xl font-bold text-[#00E87A] opacity-80 md:text-3xl">
+      <div className="pointer-events-none absolute left-4 top-4 font-['Satoshi'] text-2xl font-bold text-[#00E87A] opacity-80 md:text-3xl">
         {project.number}
       </div>
 
@@ -120,7 +120,7 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
         {project.tags.slice(0, 2).map((tag) => (
           <span
             key={tag}
-            className="rounded-full border border-[#00E87A]/25 bg-[#060C0A]/50 px-2.5 py-1 font-bricolage text-[10px] font-semibold uppercase tracking-wider text-[#00E87A] backdrop-blur-sm"
+            className="rounded-full border border-[#00E87A]/25 bg-[#060C0A]/50 px-2.5 py-1 font-['Satoshi'] text-[10px] font-semibold uppercase tracking-wider text-[#00E87A] backdrop-blur-sm"
           >
             {tag}
           </span>
@@ -129,10 +129,10 @@ export default function ProjectCard({ project, index, className = "" }: ProjectC
 
       {/* Bottom info */}
       <div ref={bottomInfoRef} className="pointer-events-none absolute bottom-0 left-0 right-0 p-5 transition-all duration-500 md:p-6">
-        <p className="mb-1 font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#00E87A]">
+        <p className="mb-1 font-['Satoshi'] text-[11px] font-medium uppercase tracking-wider text-[#00E87A]">
           {project.client}
         </p>
-        <h3 className="font-playfair text-xl font-bold text-[#F0FAF4] md:text-2xl">
+        <h3 className="font-['Outfit'] text-xl font-bold text-[#F0FAF4] md:text-2xl">
           {project.title}
         </h3>
       </div>

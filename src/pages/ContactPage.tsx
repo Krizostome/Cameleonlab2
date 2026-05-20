@@ -95,13 +95,13 @@ export default function ContactPage() {
           
 
             <h1
-              className="font-playfair font-extrabold text-[#071510] dark:text-[#F0FAF4] leading-[1.1] mb-5"
+              className="font-['Outfit'] font-extrabold text-[#071510] dark:text-[#F0FAF4] leading-[1.1] mb-5"
               style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
             >
               Configurons votre projet ensemble
             </h1>
 
-            <p className="font-dm-sans text-[#4B5563] dark:text-[#6B7280] max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+            <p className="font-['Satoshi'] text-[#374151] dark:text-[#9CA3AF] max-w-xl mx-auto text-base md:text-lg leading-relaxed">
               Un formulaire intelligent pour comprendre vos besoins et vous proposer la meilleure solution.
             </p>
           </div>
@@ -127,7 +127,7 @@ export default function ContactPage() {
 
           {/* Trust micro-copy */}
           <div className="mt-10 md:mt-12 text-center">
-            <p className="font-dm-mono text-[11px] text-[#4B5563] dark:text-[#6B7280]/60 tracking-wide">
+            <p className="font-['Satoshi'] text-[11px] text-[#374151] dark:text-[#9CA3AF]/60 tracking-wide">
               Réponse sous 24h · Devis gratuit · Sans engagement
             </p>
           </div>

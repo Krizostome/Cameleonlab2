@@ -210,7 +210,7 @@ function TechCard({
             loading="lazy"
           />
         ) : (
-          <span className="font-playfair text-lg font-bold text-[#00E87A]">
+          <span className="font-['Outfit'] text-lg font-bold text-[#00E87A]">
             {name.charAt(0)}
           </span>
         )}
@@ -218,10 +218,10 @@ function TechCard({
 
       {/* Content */}
       <div className="relative z-10 flex flex-col">
-        <h3 className="mb-2 font-playfair text-xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-2xl">
+        <h3 className="mb-2 font-['Outfit'] text-xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-2xl">
           {name}
         </h3>
-        <p className="mb-6 font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#9CA3AF]">
+        <p className="mb-6 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
           {description}
         </p>
 
@@ -414,10 +414,10 @@ export default function TechExpertise() {
         <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#00E87A]">
           Notre stack
         </div>
-        <h2 className="mb-4 font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl">
+        <h2 className="mb-4 font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl">
           Technologies & Expertises
         </h2>
-        <p className="mx-auto max-w-xl font-dm-sans text-base font-light text-[#4B5563] dark:text-[#6B7280] md:text-lg">
+        <p className="mx-auto max-w-xl font-['Satoshi'] text-base font-light text-[#374151] dark:text-[#9CA3AF] md:text-lg">
           Un écosystème technologique moderne et cohérent pour donner vie à vos projets les plus ambitieux.
         </p>
       </div>

@@ -181,7 +181,7 @@ export default function Navbar() {
             <SmartNavLink key={link.href + link.label} link={link} className="font-['Outfit'] text-base font-medium text-[#071510]/90 dark:text-[#F0FAF4]/90 transition-colors hover:text-[#00E87A]" onClick={() => setMobileOpen(false)} />
           ))}
           <div className="flex items-center justify-between py-2">
-            <span className="text-sm text-[#071510]/60 dark:text-[#F0FAF4]/60 font-dm-sans">Thème</span>
+            <span className="text-sm text-[#071510]/75 dark:text-[#F0FAF4]/75 font-['Satoshi']">Thème</span>
             <ThemeToggle />
           </div>
           <Link to="/contact" className="mt-2 w-full rounded-full bg-[#00E87A] px-6 py-3 font-['Outfit'] text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] text-center block" onClick={() => setMobileOpen(false)}>

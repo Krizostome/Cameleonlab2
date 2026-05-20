@@ -288,7 +288,7 @@ export default function CTASection() {
         {/* Description */}
         <motion.p
           variants={itemVariants}
-          className="font-['Satoshi'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-12 md:mb-14"
+          className="font-['Satoshi'] font-light text-[#374151] dark:text-[#9CA3AF] max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-12 md:mb-14"
         >
           Décrivez votre projet et recevez une estimation personnalisée.
         </motion.p>
@@ -338,7 +338,7 @@ export default function CTASection() {
         {/* Trust micro-copy */}
         <motion.p
           variants={itemVariants}
-          className="mt-10 md:mt-12 font-['Satoshi'] text-[11px] text-[#4B5563] dark:text-[#6B7280]/60 tracking-wide"
+          className="mt-10 md:mt-12 font-['Satoshi'] text-[11px] text-[#374151] dark:text-[#9CA3AF]/60 tracking-wide"
         >
           Sans engagement, réponse garantie sous 48h.
         </motion.p>

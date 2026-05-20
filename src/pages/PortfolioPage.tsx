@@ -165,7 +165,7 @@ export default function PortfolioPage() {
             {/* Label */}
             <span
               ref={labelRef}
-              className="mb-6 inline-flex items-center gap-3 font-bricolage text-[11px] font-semibold uppercase tracking-[0.22em] text-[#00E87A] opacity-0"
+              className="mb-6 inline-flex items-center gap-3 font-['Satoshi'] text-[11px] font-semibold uppercase tracking-[0.22em] text-[#00E87A] opacity-0"
             >
               <span className="h-px w-6 bg-[#00E87A]" />
               Portfolio
@@ -175,7 +175,7 @@ export default function PortfolioPage() {
             {/* Titre */}
             <h1
               ref={titleRef}
-              className="mb-6 max-w-4xl font-playfair font-black text-[#071510] dark:text-[#F0FAF4]"
+              className="mb-6 max-w-4xl font-['Outfit'] font-black text-[#071510] dark:text-[#F0FAF4]"
               style={{ fontSize: "clamp(3rem, 8vw, 6rem)", lineHeight: 1.05 }}
             >
               {TITLE_WORDS.map((word, i) => (
@@ -188,7 +188,7 @@ export default function PortfolioPage() {
             {/* Sous-titre */}
             <p
               ref={subtitleRef}
-              className="mb-14 max-w-lg font-dm-sans text-base font-light leading-relaxed text-[#6B7280] opacity-0 md:text-lg"
+              className="mb-14 max-w-lg font-['Satoshi'] text-base font-light leading-relaxed text-[#374151] opacity-0 md:text-lg"
             >
               De l'idée au produit livré — voici quelques projets qui illustrent notre façon de travailler.
             </p>
@@ -199,11 +199,11 @@ export default function PortfolioPage() {
                 <div key={stat.label} className="flex flex-col items-center">
                   <span
                     ref={(el) => { statNumberRefs.current[i] = el }}
-                    className="font-dm-mono text-3xl font-bold text-[#00E87A] md:text-4xl"
+                    className="font-['Satoshi'] text-3xl font-bold text-[#00E87A] md:text-4xl"
                   >
                     0{stat.suffix}
                   </span>
-                  <span className="mt-1 font-dm-sans text-[11px] font-medium uppercase tracking-wider text-[#071510]/60 dark:text-[#F0FAF4]/60">
+                  <span className="mt-1 font-['Satoshi'] text-[11px] font-medium uppercase tracking-wider text-[#071510]/75 dark:text-[#F0FAF4]/75">
                     {stat.label}
                   </span>
                 </div>

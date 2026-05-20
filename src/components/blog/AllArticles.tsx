@@ -45,11 +45,11 @@ function ArticleRow({ post, index }: { post: BlogPost; index: number }) {
       <div className="flex flex-1 flex-col justify-center">
         <ArticleMeta post={post} variant="row" showDate />
 
-        <h3 className="mb-2 font-playfair text-base font-bold leading-snug text-[#071510] dark:text-[#F0FAF4] transition-colors group-hover:text-[#00E87A] md:text-lg">
+        <h3 className="mb-2 font-['Outfit'] text-base font-bold leading-snug text-[#071510] dark:text-[#F0FAF4] transition-colors group-hover:text-[#00E87A] md:text-lg">
           {post.title}
         </h3>
 
-        <p className="mb-2 hidden font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280] line-clamp-2 sm:block">
+        <p className="mb-2 hidden font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF] line-clamp-2 sm:block">
           {post.excerpt}
         </p>
       </div>
@@ -78,7 +78,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
     <aside className="lg:sticky lg:top-28 lg:self-start">
       {/* Categories */}
       <div className="mb-8 rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 flex items-center gap-2 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           <Tag className="h-4 w-4 text-[#00E87A]" />
           Catégories
         </h3>
@@ -89,10 +89,10 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
               href={`#category-${cat.name}`}
               className="group flex items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-[#00E87A]/5"
             >
-              <span className="font-dm-sans text-sm text-[#4B5563] dark:text-[#6B7280] group-hover:text-[#00E87A] transition-colors">
+              <span className="font-['Satoshi'] text-sm text-[#374151] dark:text-[#9CA3AF] group-hover:text-[#00E87A] transition-colors">
                 {cat.name}
               </span>
-              <span className="rounded-full bg-[#00E87A]/10 px-2 py-0.5 font-dm-mono text-[10px] text-[#00E87A]">
+              <span className="rounded-full bg-[#00E87A]/10 px-2 py-0.5 font-['Satoshi'] text-[10px] text-[#00E87A]">
                 {cat.count}
               </span>
             </a>
@@ -102,21 +102,21 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
 
       {/* Popular posts */}
       <div className="mb-8 rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 flex items-center gap-2 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           <TrendingUp className="h-4 w-4 text-[#00E87A]" />
           Populaires
         </h3>
         <div className="flex flex-col gap-4">
           {popularPosts.map((post, i) => (
             <Link key={post.id} to={`/blog/${post.slug}`} className="group flex gap-3">
-              <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-[#00E87A]/10 font-dm-mono text-[10px] font-bold text-[#00E87A]">
+              <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-[#00E87A]/10 font-['Satoshi'] text-[10px] font-bold text-[#00E87A]">
                 {i + 1}
               </span>
               <div>
-                <h4 className="font-dm-sans text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
+                <h4 className="font-['Satoshi'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
                   {post.title}
                 </h4>
-                <span className="mt-1 block font-dm-sans text-[10px] text-[#6B7280]">
+                <span className="mt-1 block font-['Satoshi'] text-[10px] text-[#374151]">
                   {post.readTime} de lecture
                 </span>
               </div>
@@ -127,7 +127,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
 
       {/* Tags */}
       <div className="mb-8 rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           Tags
         </h3>
         <div className="flex flex-wrap gap-2">
@@ -135,7 +135,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
             <a
               key={tag}
               href={`#tag-${tag}`}
-              className="rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-3 py-1 font-dm-sans text-[11px] text-[#6B7280] transition-all hover:border-[#00E87A]/30 hover:text-[#00E87A] hover:bg-[#00E87A]/10"
+              className="rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-3 py-1 font-['Satoshi'] text-[11px] text-[#374151] transition-all hover:border-[#00E87A]/30 hover:text-[#00E87A] hover:bg-[#00E87A]/10"
             >
               {tag}
             </a>
@@ -145,15 +145,15 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
 
       {/* CTA Card */}
       <div className="rounded-2xl border border-[#00E87A]/20 bg-[#071510] p-6 text-center dark:bg-[#071510]/80">
-        <h3 className="mb-2 font-bricolage text-base font-bold text-[#F0FAF4]">
+        <h3 className="mb-2 font-['Satoshi'] text-base font-bold text-[#F0FAF4]">
           Un projet en tête ?
         </h3>
-        <p className="mb-5 font-dm-sans text-xs leading-relaxed text-[#6B7280]">
+        <p className="mb-5 font-['Satoshi'] text-xs leading-relaxed text-[#374151]">
           Discutons de votre vision et construisons ensemble quelque chose d'exceptionnel.
         </p>
         <motion.a
           href="/contact"
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-[#00E87A] px-5 py-2.5 font-bricolage text-xs font-extrabold text-[#071510] transition-all hover:shadow-[0_0_20px_rgba(0,232,122,0.3)]"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-[#00E87A] px-5 py-2.5 font-['Satoshi'] text-xs font-extrabold text-[#071510] transition-all hover:shadow-[0_0_20px_rgba(0,232,122,0.3)]"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -164,12 +164,12 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
 
       {/* Mini contact */}
       <div className="mt-8 rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-3 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-3 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           CameleonLab
         </h3>
         <div className="flex items-start gap-2">
           <MapPin className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-[#00E87A]" />
-          <span className="font-dm-sans text-xs text-[#6B7280]">
+          <span className="font-['Satoshi'] text-xs text-[#374151]">
             Agence digitale créative<br />
             Design & Développement sur mesure
           </span>
@@ -204,10 +204,10 @@ export default function AllArticles({ posts, categories, tags }: ArticleListProp
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         {/* Header */}
         <div data-reveal className="mb-12">
-          <span className="mb-2 block font-dm-mono text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]">
+          <span className="mb-2 block font-['Satoshi'] text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]">
             Archives
           </span>
-          <h2 className="font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
+          <h2 className="font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
             Tous les articles
           </h2>
         </div>
@@ -227,7 +227,7 @@ export default function AllArticles({ posts, categories, tags }: ArticleListProp
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00E87A]/15 text-[#6B7280] transition-all hover:border-[#00E87A]/40 hover:text-[#00E87A] disabled:opacity-30"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00E87A]/15 text-[#374151] transition-all hover:border-[#00E87A]/40 hover:text-[#00E87A] disabled:opacity-30"
                 >
                   ←
                 </button>
@@ -235,10 +235,10 @@ export default function AllArticles({ posts, categories, tags }: ArticleListProp
                   <button
                     key={i}
                     onClick={() => setCurrentPage(i + 1)}
-                    className={`flex h-10 w-10 items-center justify-center rounded-full font-dm-sans text-sm font-medium transition-all ${
+                    className={`flex h-10 w-10 items-center justify-center rounded-full font-['Satoshi'] text-sm font-medium transition-all ${
                       currentPage === i + 1
                         ? 'bg-[#00E87A] text-[#071510] shadow-[0_0_16px_rgba(0,232,122,0.25)]'
-                        : 'border border-[#00E87A]/15 text-[#6B7280] hover:border-[#00E87A]/40 hover:text-[#00E87A]'
+                        : 'border border-[#00E87A]/15 text-[#374151] hover:border-[#00E87A]/40 hover:text-[#00E87A]'
                     }`}
                   >
                     {i + 1}
@@ -247,7 +247,7 @@ export default function AllArticles({ posts, categories, tags }: ArticleListProp
                 <button
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00E87A]/15 text-[#6B7280] transition-all hover:border-[#00E87A]/40 hover:text-[#00E87A] disabled:opacity-30"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00E87A]/15 text-[#374151] transition-all hover:border-[#00E87A]/40 hover:text-[#00E87A] disabled:opacity-30"
                 >
                   →
                 </button>

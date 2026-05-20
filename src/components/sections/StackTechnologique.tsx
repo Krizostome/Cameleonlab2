@@ -267,7 +267,7 @@ function TechModal({ tech, onClose }: { tech: Tech; onClose: () => void }) {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-[#071510]/50 dark:text-[#F0FAF4]/50 transition-colors hover:bg-[rgba(0,232,122,0.1)] hover:text-[#00E87A]"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-[#071510]/80 dark:text-[#F0FAF4]/80 transition-colors hover:bg-[rgba(0,232,122,0.1)] hover:text-[#00E87A]"
           aria-label="Fermer"
         >
           <X className="h-4 w-4" />
@@ -289,19 +289,19 @@ function TechModal({ tech, onClose }: { tech: Tech; onClose: () => void }) {
         </div>
 
         {/* Name */}
-        <h3 className="mb-2 text-center font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-2 text-center font-['Outfit'] text-2xl font-bold text-[#071510] dark:text-[#F0FAF4]">
           {tech.name}
         </h3>
 
         {/* Category badge */}
         <div className="mb-4 flex justify-center">
-          <span className="inline-block rounded-full border border-[rgba(0,232,122,0.2)] bg-[rgba(0,232,122,0.08)] px-3 py-1 font-dm-sans text-[10px] font-medium uppercase tracking-[0.15em] text-[#00E87A]">
+          <span className="inline-block rounded-full border border-[rgba(0,232,122,0.2)] bg-[rgba(0,232,122,0.08)] px-3 py-1 font-['Satoshi'] text-[10px] font-medium uppercase tracking-[0.15em] text-[#00E87A]">
             {tech.category}
           </span>
         </div>
 
         {/* Description */}
-        <p className="text-center font-dm-sans text-sm leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
+        <p className="text-center font-['Satoshi'] text-sm leading-relaxed text-[#071510]/75 dark:text-[#F0FAF4]/75">
           {tech.description}
         </p>
       </motion.div>
@@ -387,10 +387,10 @@ function TechGridItem({
           <div className="mb-1 font-inter text-sm font-semibold text-[#071510] dark:text-[#F0FAF4]">
             {tech.name}
           </div>
-          <p className="mb-2.5 text-xs leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
+          <p className="mb-2.5 text-xs leading-relaxed text-[#071510]/75 dark:text-[#F0FAF4]/75">
             {tech.description}
           </p>
-          <span className="inline-block rounded-full border border-[rgba(0,232,122,0.2)] bg-[rgba(0,232,122,0.08)] px-2 py-0.5 font-dm-sans text-[10px] font-medium uppercase tracking-[0.15em] text-[#00E87A]">
+          <span className="inline-block rounded-full border border-[rgba(0,232,122,0.2)] bg-[rgba(0,232,122,0.08)] px-2 py-0.5 font-['Satoshi'] text-[10px] font-medium uppercase tracking-[0.15em] text-[#00E87A]">
             {tech.category}
           </span>
 
@@ -456,7 +456,7 @@ export default function StackTechnologique() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         {/* Label */}
         <motion.span
-          className="mb-6 inline-flex items-center gap-3 font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]"
+          className="mb-6 inline-flex items-center gap-3 font-['Satoshi'] text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-50px' }}
@@ -468,7 +468,7 @@ export default function StackTechnologique() {
 
         {/* Title */}
         <motion.h2
-          className="mb-6 max-w-4xl font-playfair text-4xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
+          className="mb-6 max-w-4xl font-['Outfit'] text-4xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
           initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-50px' }}
@@ -479,7 +479,7 @@ export default function StackTechnologique() {
 
         {/* Subtitle */}
         <motion.p
-          className="mb-16 max-w-xl font-dm-sans text-base leading-relaxed text-[#071510]/50 dark:text-[#F0FAF4]/50 md:mb-20"
+          className="mb-16 max-w-xl font-['Satoshi'] text-base leading-relaxed text-[#071510]/80 dark:text-[#F0FAF4]/80 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}

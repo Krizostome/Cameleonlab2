@@ -98,7 +98,7 @@ function StarRating({ rating }: { rating: 4 | 5 }) {
         <svg
           key={i}
           className={`h-3.5 w-3.5 ${
-            i < rating ? "text-[#00E87A]" : "text-[#4B5563] dark:text-[#6B7280]/40"
+            i < rating ? "text-[#00E87A]" : "text-[#374151] dark:text-[#9CA3AF]/40"
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -135,17 +135,17 @@ function TestimonialCard({ data }: { data: TestimonialData }) {
       <div className="flex flex-col gap-3.5">
         <StarRating rating={data.rating} />
 
-        <p className="font-dm-sans text-sm leading-relaxed text-[#071510] dark:text-[#E6FFF2]/90">
+        <p className="font-['Satoshi'] text-sm leading-relaxed text-[#071510] dark:text-[#E6FFF2]/90">
           &ldquo;{data.body}&rdquo;
         </p>
 
         <div className="flex items-center gap-3 pt-1">
           <Avatar name={data.name} />
           <div className="min-w-0">
-            <p className="truncate font-bricolage text-sm font-semibold text-[#071510] dark:text-[#F0FAF4]">
+            <p className="truncate font-['Satoshi'] text-sm font-semibold text-[#071510] dark:text-[#F0FAF4]">
               {data.name}
             </p>
-            <p className="truncate font-dm-sans text-xs text-[#4B5563] dark:text-[#6B7280]">
+            <p className="truncate font-['Satoshi'] text-xs text-[#374151] dark:text-[#9CA3AF]">
               {data.username} · {data.country}
             </p>
           </div>
@@ -179,13 +179,13 @@ export default function Testimonials() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
         {/* Header */}
         <div className="mb-12 text-center md:mb-16">
-          <span className="mb-4 inline-block font-bricolage text-[11px] uppercase tracking-[0.2em] text-[#00E87A]/70">
+          <span className="mb-4 inline-block font-['Satoshi'] text-[11px] uppercase tracking-[0.2em] text-[#00E87A]/70">
             — Ce que disent nos clients
           </span>
-          <h2 className="mb-4 font-playfair text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
+          <h2 className="mb-4 font-['Outfit'] text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
             Ils nous font confiance.
           </h2>
-          <p className="mx-auto max-w-xl font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg">
+          <p className="mx-auto max-w-xl font-['Satoshi'] text-base font-light leading-relaxed text-[#374151] dark:text-[#9CA3AF] md:text-lg">
             Des résultats concrets, des clients satisfaits — partout dans le monde.
           </p>
         </div>

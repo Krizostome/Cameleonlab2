@@ -95,10 +95,10 @@ export default function BlogNewsletter() {
           <div className="relative z-10 flex flex-col items-center text-center">
             
 
-            <h2 className="mb-4 font-playfair text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
+            <h2 className="mb-4 font-['Outfit'] text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
               Restez inspiré
             </h2>
-            <p className="mb-8 max-w-md font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-base">
+            <p className="mb-8 max-w-md font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF] md:text-base">
               Recevez nos meilleurs articles, tutoriels et insights directement dans votre boîte mail. 
               Pas de spam, juste du contenu de qualité.
             </p>
@@ -107,7 +107,7 @@ export default function BlogNewsletter() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex items-center gap-2 rounded-full bg-[#00E87A]/10 px-6 py-3 text-[#00E87A] font-dm-sans font-medium"
+                className="flex items-center gap-2 rounded-full bg-[#00E87A]/10 px-6 py-3 text-[#00E87A] font-['Satoshi'] font-medium"
               >
                 <Sparkles className="h-4 w-4" />
                 Merci ! Vous êtes inscrit à notre newsletter.
@@ -125,13 +125,13 @@ export default function BlogNewsletter() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="votre@email.com"
                     required
-                    className="w-full rounded-full border border-[#00E87A]/20 bg-[#F7FFF9] dark:bg-[#060C0A]/80 px-5 py-3.5 font-dm-sans text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#6B7280]/60 outline-none transition-all focus:border-[#00E87A]/50 focus:ring-2 focus:ring-[#00E87A]/10"
+                    className="w-full rounded-full border border-[#00E87A]/20 bg-[#F7FFF9] dark:bg-[#060C0A]/80 px-5 py-3.5 font-['Satoshi'] text-sm text-[#071510] dark:text-[#F0FAF4] placeholder:text-[#374151]/60 outline-none transition-all focus:border-[#00E87A]/50 focus:ring-2 focus:ring-[#00E87A]/10"
                   />
                 </div>
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#00E87A] px-6 py-3.5 font-bricolage text-sm font-extrabold text-[#071510] transition-all hover:shadow-[0_0_24px_rgba(0,232,122,0.3)] disabled:opacity-60"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#00E87A] px-6 py-3.5 font-['Satoshi'] text-sm font-extrabold text-[#071510] transition-all hover:shadow-[0_0_24px_rgba(0,232,122,0.3)] disabled:opacity-60"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -151,7 +151,7 @@ export default function BlogNewsletter() {
               </form>
             )}
 
-            <p className="mt-4 font-dm-sans text-[11px] text-[#6B7280]/70">
+            <p className="mt-4 font-['Satoshi'] text-[11px] text-[#374151]/70">
               En vous inscrivant, vous acceptez notre politique de confidentialité.
             </p>
           </div>

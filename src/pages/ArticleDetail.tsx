@@ -90,7 +90,7 @@ function ShareDropdown({ title, url }: { title: string; url: string }) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((p) => !p)}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00E87A]/15 text-[#6B7280] transition-all hover:border-[#00E87A]/40 hover:text-[#00E87A] hover:bg-[#00E87A]/5"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00E87A]/15 text-[#374151] transition-all hover:border-[#00E87A]/40 hover:text-[#00E87A] hover:bg-[#00E87A]/5"
         aria-label="Partager l'article"
       >
         <Share2 className="h-4 w-4" />
@@ -149,11 +149,11 @@ function ClapButton({ initialLikes }: { initialLikes: number }) {
       className={`flex items-center gap-2 rounded-full border px-4 py-2 transition-all duration-300 ${
         liked
           ? "border-[#00E87A]/40 bg-[#00E87A]/10 text-[#00E87A]"
-          : "border-[#00E87A]/15 text-[#6B7280] hover:border-[#00E87A]/30 hover:text-[#00E87A]"
+          : "border-[#00E87A]/15 text-[#374151] hover:border-[#00E87A]/30 hover:text-[#00E87A]"
       }`}
     >
       <Heart className={`h-4 w-4 transition-all ${liked ? "fill-[#00E87A]" : ""}`} />
-      <span className="font-dm-sans text-xs font-medium">{count}</span>
+      <span className="font-['Satoshi'] text-xs font-medium">{count}</span>
     </motion.button>
   )
 }
@@ -279,16 +279,16 @@ function ArticleSidebar({
     <aside className="space-y-8">
       {/* Reading time + meta */}
       <div className="rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 flex items-center gap-2 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           <BookOpen className="h-4 w-4 text-[#00E87A]" />
           À propos
         </h3>
         <div className="space-y-3">
-          <div className="flex items-center gap-3 text-sm text-[#4B5563] dark:text-[#6B7280]">
+          <div className="flex items-center gap-3 text-sm text-[#374151] dark:text-[#9CA3AF]">
             <Clock className="h-4 w-4 text-[#00E87A]" />
             <span>{currentPost.readTime} de lecture</span>
           </div>
-          <div className="flex items-center gap-3 text-sm text-[#4B5563] dark:text-[#6B7280]">
+          <div className="flex items-center gap-3 text-sm text-[#374151] dark:text-[#9CA3AF]">
             <Calendar className="h-4 w-4 text-[#00E87A]" />
             <span>
               {new Date(currentPost.date).toLocaleDateString("fr-FR", {
@@ -298,7 +298,7 @@ function ArticleSidebar({
               })}
             </span>
           </div>
-          <div className="flex items-center gap-3 text-sm text-[#4B5563] dark:text-[#6B7280]">
+          <div className="flex items-center gap-3 text-sm text-[#374151] dark:text-[#9CA3AF]">
             <Tag className="h-4 w-4 text-[#00E87A]" />
             <span>{currentPost.category}</span>
           </div>
@@ -308,7 +308,7 @@ function ArticleSidebar({
       {/* Similar articles */}
       {similar.length > 0 && (
         <div className="rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-          <h3 className="mb-4 flex items-center gap-2 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+          <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
             <Tag className="h-4 w-4 text-[#00E87A]" />
             Dans la même catégorie
           </h3>
@@ -328,10 +328,10 @@ function ArticleSidebar({
                   />
                 </div>
                 <div>
-                  <h4 className="font-dm-sans text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
+                  <h4 className="font-['Satoshi'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
                     {post.title}
                   </h4>
-                  <span className="mt-1 block font-dm-sans text-[10px] text-[#6B7280]">
+                  <span className="mt-1 block font-['Satoshi'] text-[10px] text-[#374151]">
                     {post.readTime}
                   </span>
                 </div>
@@ -343,21 +343,21 @@ function ArticleSidebar({
 
       {/* Popular */}
       <div className="rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 flex items-center gap-2 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           <TrendingUp className="h-4 w-4 text-[#00E87A]" />
           Populaires
         </h3>
         <div className="flex flex-col gap-4">
           {popular.map((post, i) => (
             <Link key={post.id} to={`/blog/${post.slug}`} className="group flex gap-3">
-              <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-[#00E87A]/10 font-dm-mono text-[10px] font-bold text-[#00E87A]">
+              <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-[#00E87A]/10 font-['Satoshi'] text-[10px] font-bold text-[#00E87A]">
                 {i + 1}
               </span>
               <div>
-                <h4 className="font-dm-sans text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
+                <h4 className="font-['Satoshi'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
                   {post.title}
                 </h4>
-                <span className="mt-1 block font-dm-sans text-[10px] text-[#6B7280]">
+                <span className="mt-1 block font-['Satoshi'] text-[10px] text-[#374151]">
                   {post.readTime}
                 </span>
               </div>
@@ -368,14 +368,14 @@ function ArticleSidebar({
 
       {/* Categories */}
       <div className="rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           Catégories
         </h3>
         <div className="flex flex-wrap gap-2">
           {CATEGORIES.map((cat) => (
             <span
               key={cat.name}
-              className="rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-3 py-1 font-dm-sans text-[11px] text-[#6B7280] transition-all hover:border-[#00E87A]/30 hover:text-[#00E87A] hover:bg-[#00E87A]/10 cursor-default"
+              className="rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-3 py-1 font-['Satoshi'] text-[11px] text-[#374151] transition-all hover:border-[#00E87A]/30 hover:text-[#00E87A] hover:bg-[#00E87A]/10 cursor-default"
             >
               {cat.name}
             </span>
@@ -393,15 +393,15 @@ function ArticleSidebar({
 function ArticleNotFound({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#F7FFF9] dark:bg-[#060C0A] px-6">
-      <h1 className="mb-4 font-playfair text-4xl font-bold text-[#071510] dark:text-[#F0FAF4]">
+      <h1 className="mb-4 font-['Outfit'] text-4xl font-bold text-[#071510] dark:text-[#F0FAF4]">
         Article introuvable
       </h1>
-      <p className="mb-8 max-w-md text-center font-dm-sans text-[#6B7280]">
+      <p className="mb-8 max-w-md text-center font-['Satoshi'] text-[#374151]">
         L'article que vous recherchez n'existe pas ou a été déplacé.
       </p>
         <Link
         to="/blog"
-        className="inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-bricolage text-sm font-extrabold text-[#071510] transition-all hover:shadow-[0_0_24px_rgba(0,232,122,0.3)]"
+        className="inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-['Satoshi'] text-sm font-extrabold text-[#071510] transition-all hover:shadow-[0_0_24px_rgba(0,232,122,0.3)]"
       >
         <ArrowLeft className="h-4 w-4" />
         Tous les articles
@@ -514,7 +514,7 @@ export default function ArticleDetail() {
           
           <Link
             to="/"
-            className="font-bricolage text-lg font-bold tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-xl"
+            className="font-['Satoshi'] text-lg font-bold tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-xl"
           >
             CameleonLab
           </Link>
@@ -549,10 +549,10 @@ export default function ArticleDetail() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mb-5 inline-flex items-center gap-3"
           >
-            <span className="rounded-full bg-[#00E87A]/10 px-4 py-1.5 font-dm-mono text-[11px] font-medium uppercase tracking-wider text-[#00E87A]">
+            <span className="rounded-full bg-[#00E87A]/10 px-4 py-1.5 font-['Satoshi'] text-[11px] font-medium uppercase tracking-wider text-[#00E87A]">
               {post.category}
             </span>
-            <span className="flex items-center gap-1.5 font-dm-sans text-xs text-[#6B7280]">
+            <span className="flex items-center gap-1.5 font-['Satoshi'] text-xs text-[#374151]">
               <Clock className="h-3.5 w-3.5" />
               {post.readTime}
             </span>
@@ -561,7 +561,7 @@ export default function ArticleDetail() {
           {/* Title */}
           <h1
             ref={titleRef}
-            className="mb-8 font-playfair text-3xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
+            className="mb-8 font-['Outfit'] text-3xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
             style={{ willChange: "transform, opacity, filter" }}
           >
             {post.title}
@@ -580,16 +580,16 @@ export default function ArticleDetail() {
                 className="h-10 w-10 rounded-full object-cover ring-2 ring-[#00E87A]/20"
               />
               <div>
-                <span className="block font-dm-sans text-sm font-medium text-[#071510] dark:text-[#F0FAF4]">
+                <span className="block font-['Satoshi'] text-sm font-medium text-[#071510] dark:text-[#F0FAF4]">
                   {post.author.name}
                 </span>
-                <span className="block font-dm-sans text-xs text-[#6B7280]">
+                <span className="block font-['Satoshi'] text-xs text-[#374151]">
                   {post.author.role}
                 </span>
               </div>
             </div>
             <div className="hidden h-6 w-px bg-[#00E87A]/15 sm:block" />
-            <span className="font-dm-sans text-xs text-[#6B7280]">
+            <span className="font-['Satoshi'] text-xs text-[#374151]">
               {new Date(post.date).toLocaleDateString("fr-FR", {
                 day: "numeric",
                 month: "long",
@@ -613,12 +613,12 @@ export default function ArticleDetail() {
               <ArticleContent content={post.content} />
             ) : (
               <div className="space-y-6">
-                <p className="font-dm-sans text-lg leading-relaxed text-[#071510]/80 dark:text-[#F0FAF4]/80">
+                <p className="font-['Satoshi'] text-lg leading-relaxed text-[#071510]/80 dark:text-[#F0FAF4]/80">
                   {post.excerpt}
                 </p>
                 <div className="rounded-xl border border-[#00E87A]/10 bg-[#00E87A]/[0.03] p-8 text-center">
                   <BookOpen className="mx-auto mb-3 h-8 w-8 text-[#00E87A]/50" />
-                  <p className="font-dm-sans text-sm text-[#6B7280]">
+                  <p className="font-['Satoshi'] text-sm text-[#374151]">
                     Le contenu complet de cet article sera bientôt disponible.
                   </p>
                 </div>
@@ -630,7 +630,7 @@ export default function ArticleDetail() {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-3 py-1 font-dm-sans text-[11px] text-[#6B7280] transition-all hover:border-[#00E87A]/30 hover:text-[#00E87A]"
+                  className="rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-3 py-1 font-['Satoshi'] text-[11px] text-[#374151] transition-all hover:border-[#00E87A]/30 hover:text-[#00E87A]"
                 >
                   #{tag}
                 </span>
@@ -646,11 +646,11 @@ export default function ArticleDetail() {
                   className="h-14 w-14 rounded-full object-cover ring-2 ring-[#00E87A]/20"
                 />
                 <div>
-                  <h4 className="font-bricolage text-base font-bold text-[#071510] dark:text-[#F0FAF4]">
+                  <h4 className="font-['Satoshi'] text-base font-bold text-[#071510] dark:text-[#F0FAF4]">
                     {post.author.name}
                   </h4>
-                  <p className="font-dm-sans text-xs text-[#6B7280]">{post.author.role}</p>
-                  <p className="mt-2 max-w-md font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280]">
+                  <p className="font-['Satoshi'] text-xs text-[#374151]">{post.author.role}</p>
+                  <p className="mt-2 max-w-md font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
                     Passionné(e) par la création d'expériences digitales mémorables.
                     Écrit régulièrement sur les tendances du web et du design.
                   </p>
@@ -660,7 +660,7 @@ export default function ArticleDetail() {
 
             {/* Share bar */}
             <div className="mt-10 flex items-center justify-between border-t border-[#00E87A]/10 pt-6">
-              <span className="font-dm-sans text-sm text-[#6B7280]">
+              <span className="font-['Satoshi'] text-sm text-[#374151]">
                 Partager cet article
               </span>
               <div className="flex items-center gap-2">
@@ -675,7 +675,7 @@ export default function ArticleDetail() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={s.label}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[#00E87A]/15 text-[#6B7280] transition-all hover:border-[#00E87A]/40 hover:text-[#00E87A] hover:bg-[#00E87A]/5"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[#00E87A]/15 text-[#374151] transition-all hover:border-[#00E87A]/40 hover:text-[#00E87A] hover:bg-[#00E87A]/5"
                   >
                     <s.icon className="h-4 w-4" />
                   </a>
@@ -713,23 +713,23 @@ function NextArticle({ currentPost, allPosts }: { currentPost: BlogPost; allPost
   return (
     <section className="border-t border-[#00E87A]/10 bg-[#F0FAF4]/20 dark:bg-[#071510]/20 py-16 md:py-24">
       <div className="mx-auto max-w-3xl px-6 md:px-10">
-        <span className="mb-4 block font-dm-mono text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]">
+        <span className="mb-4 block font-['Satoshi'] text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]">
           Article suivant
         </span>
         <Link to={`/blog/${nextPost.slug}`} className="group block">
-          <h3 className="mb-4 font-playfair text-2xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] transition-colors group-hover:text-[#00E87A] md:text-3xl">
+          <h3 className="mb-4 font-['Outfit'] text-2xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] transition-colors group-hover:text-[#00E87A] md:text-3xl">
             {nextPost.title}
           </h3>
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 font-dm-sans text-xs text-[#6B7280]">
+            <span className="flex items-center gap-1.5 font-['Satoshi'] text-xs text-[#374151]">
               <Clock className="h-3.5 w-3.5" />
               {nextPost.readTime}
             </span>
-            <span className="rounded-full bg-[#00E87A]/10 px-3 py-1 font-dm-mono text-[10px] font-medium uppercase tracking-wider text-[#00E87A]">
+            <span className="rounded-full bg-[#00E87A]/10 px-3 py-1 font-['Satoshi'] text-[10px] font-medium uppercase tracking-wider text-[#00E87A]">
               {nextPost.category}
             </span>
           </div>
-          <div className="mt-6 inline-flex items-center gap-2 font-dm-sans text-sm font-medium text-[#00E87A] transition-all group-hover:gap-3">
+          <div className="mt-6 inline-flex items-center gap-2 font-['Satoshi'] text-sm font-medium text-[#00E87A] transition-all group-hover:gap-3">
             Lire l'article
             <ArrowLeft className="h-4 w-4 rotate-180" />
           </div>

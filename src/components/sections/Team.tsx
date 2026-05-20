@@ -339,7 +339,7 @@ const OrbitCard = React.memo(function OrbitCard({
               {member.name}
             </h4>
             <p
-              className="text-[#6B7280] text-[10px] md:text-[11px] uppercase tracking-[0.18em] mt-1"
+              className="text-[#374151] text-[10px] md:text-[11px] uppercase tracking-[0.18em] mt-1"
               style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 400 }}
             >
               {member.role}
@@ -353,7 +353,7 @@ const OrbitCard = React.memo(function OrbitCard({
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-[#4B5563] dark:text-[#6B7280] hover:text-[#00E87A] hover:bg-[#00E87A]/10 transition-colors duration-200 bg-black/[0.04] dark:bg-white/[0.04] border border-[#00E87A]/10"
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-[#374151] dark:text-[#9CA3AF] hover:text-[#00E87A] hover:bg-[#00E87A]/10 transition-colors duration-200 bg-black/[0.04] dark:bg-white/[0.04] border border-[#00E87A]/10"
                 >
                   <s.Icon className="w-3 h-3" />
                 </a>
@@ -404,7 +404,7 @@ function SliderCard({ member }: { member: TeamMember }) {
             {member.name}
           </h4>
           <p
-            className="text-[#6B7280] text-[11px] uppercase tracking-[0.18em] mt-1"
+            className="text-[#374151] text-[11px] uppercase tracking-[0.18em] mt-1"
             style={{ fontFamily: "Satoshi, sans-serif" }}
           >
             {member.role}
@@ -416,7 +416,7 @@ function SliderCard({ member }: { member: TeamMember }) {
                 href={s.href}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center text-[#6B7280] hover:text-[#00E87A] transition-colors"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-[#374151] hover:text-[#00E87A] transition-colors"
                 style={{
                   background: "rgba(0,232,122,0.06)",
                   border: "1px solid rgba(0,232,122,0.1)",
@@ -774,7 +774,7 @@ export default function Team() {
           </motion.h2>
           <motion.p
             variants={headerItem}
-            className="font-['Satoshi'] font-light text-[#4B5563] dark:text-[#6B7280] max-w-xl mx-auto text-base md:text-lg leading-relaxed"
+            className="font-['Satoshi'] font-light text-[#374151] dark:text-[#9CA3AF] max-w-xl mx-auto text-base md:text-lg leading-relaxed"
           >
             Designers, développeurs et créatifs passionnés qui construisent des expériences mémorables.
           </motion.p>

@@ -21,7 +21,7 @@ export default function FeaturedArticle({ post }: FeaturedArticleProps) {
         {/* Section label */}
         <div data-reveal className="mb-10 flex items-center gap-3">
           <div className="h-px flex-1 bg-[#00E87A]/20" />
-          <span className="font-dm-mono text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280]">
+          <span className="font-['Satoshi'] text-xs font-medium uppercase tracking-[0.2em] text-[#374151]">
             Article à la une
           </span>
           <div className="h-px flex-1 bg-[#00E87A]/20" />
@@ -57,22 +57,22 @@ export default function FeaturedArticle({ post }: FeaturedArticleProps) {
           <div className="flex flex-1 flex-col justify-center p-8 md:p-12 lg:p-14">
             {/* Category & read time */}
             <div className="mb-5 flex items-center gap-4">
-              <span className="rounded-full bg-[#00E87A]/10 px-3 py-1 font-dm-mono text-[11px] font-medium uppercase tracking-wider text-[#00E87A]">
+              <span className="rounded-full bg-[#00E87A]/10 px-3 py-1 font-['Satoshi'] text-[11px] font-medium uppercase tracking-wider text-[#00E87A]">
                 {post.category}
               </span>
-              <span className="flex items-center gap-1.5 font-dm-sans text-xs text-[#6B7280]">
+              <span className="flex items-center gap-1.5 font-['Satoshi'] text-xs text-[#374151]">
                 <Clock className="h-3.5 w-3.5" />
                 {post.readTime} de lecture
               </span>
             </div>
 
             {/* Title */}
-            <h2 className="mb-5 font-playfair text-2xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-3xl lg:text-4xl group-hover:text-[#00E87A] transition-colors duration-300">
+            <h2 className="mb-5 font-['Outfit'] text-2xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-3xl lg:text-4xl group-hover:text-[#00E87A] transition-colors duration-300">
               {post.title}
             </h2>
 
             {/* Excerpt */}
-            <p className="mb-8 font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-base">
+            <p className="mb-8 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF] md:text-base">
               {post.excerpt}
             </p>
 
@@ -85,10 +85,10 @@ export default function FeaturedArticle({ post }: FeaturedArticleProps) {
                 loading="lazy"
               />
               <div>
-                <span className="block font-dm-sans text-sm font-medium text-[#071510] dark:text-[#F0FAF4]">
+                <span className="block font-['Satoshi'] text-sm font-medium text-[#071510] dark:text-[#F0FAF4]">
                   {post.author.name}
                 </span>
-                <span className="block font-dm-sans text-xs text-[#6B7280]">
+                <span className="block font-['Satoshi'] text-xs text-[#374151]">
                   {new Date(post.date).toLocaleDateString('fr-FR', {
                     day: 'numeric',
                     month: 'long',
@@ -101,7 +101,7 @@ export default function FeaturedArticle({ post }: FeaturedArticleProps) {
             {/* CTA */}
             <Link to={`/blog/${post.slug}`}>
               <motion.span
-                className="group/btn inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-bricolage text-sm font-extrabold text-[#071510] transition-all hover:shadow-[0_0_24px_rgba(0,232,122,0.3)]"
+                className="group/btn inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-['Satoshi'] text-sm font-extrabold text-[#071510] transition-all hover:shadow-[0_0_24px_rgba(0,232,122,0.3)]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

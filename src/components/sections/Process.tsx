@@ -117,10 +117,10 @@ export default function Process() {
           transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
           className="mb-6 text-center"
         >
-          <span className="mb-3 inline-block font-dm-sans text-xs font-medium uppercase tracking-[0.25em] text-[#00E87A]/70">
+          <span className="mb-3 inline-block font-['Satoshi'] text-xs font-medium uppercase tracking-[0.25em] text-[#00E87A]/70">
             — Notre méthode
           </span>
-          <h2 className="font-playfair text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
+          <h2 className="font-['Outfit'] text-4xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl">
             Comment on <span className="text-glow text-[#00E87A]">travaille</span>
           </h2>
         </motion.div>
@@ -129,7 +129,7 @@ export default function Process() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.19, 1, 0.22, 1] }}
-          className="mx-auto mb-16 max-w-xl text-center font-dm-sans text-base leading-relaxed text-[#071510]/50 dark:text-[#F0FAF4]/50 md:mb-20"
+          className="mx-auto mb-16 max-w-xl text-center font-['Satoshi'] text-base leading-relaxed text-[#071510]/80 dark:text-[#F0FAF4]/80 md:mb-20"
         >
           Un processus simple, clair et efficace.
         </motion.p>
@@ -142,7 +142,7 @@ export default function Process() {
           className="mb-8 hidden items-center justify-center gap-2 text-center lg:flex"
         >
           <MousePointerClick className="h-4 w-4 text-[#00E87A]/60" />
-          <span className="font-dm-sans text-xs text-[#071510]/40 dark:text-[#F0FAF4]/40">
+          <span className="font-['Satoshi'] text-xs text-[#071510]/40 dark:text-[#F0FAF4]/40">
             Cliquez sur une étape pour explorer
           </span>
         </motion.div>
@@ -174,7 +174,7 @@ export default function Process() {
                   animate={{ opacity: 0.06, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.1 }}
                   transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
-                  className="pointer-events-none select-none font-playfair text-[10rem] font-bold text-[#00E87A] md:text-[12rem]"
+                  className="pointer-events-none select-none font-['Outfit'] text-[10rem] font-bold text-[#00E87A] md:text-[12rem]"
                 >
                   0{active + 1}
                 </motion.span>
@@ -220,16 +220,16 @@ export default function Process() {
                     aria-label={`Étape ${step.id} : ${step.title}`}
                   >
                     <Icon
-                      className={`h-6 w-6 transition-colors duration-300 ${isActive ? 'text-[#00E87A]' : 'text-[#071510]/50 dark:text-[#F0FAF4]/50'}`}
+                      className={`h-6 w-6 transition-colors duration-300 ${isActive ? 'text-[#00E87A]' : 'text-[#071510]/80 dark:text-[#F0FAF4]/80'}`}
                     />
                   </motion.button>
 
                   {/* Label — positionné en dessous du cercle, centré horizontalement */}
                   <span
-                    className={`absolute left-1/2 mt-2.5 block -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-0.5 font-dm-sans text-[10px] font-semibold uppercase tracking-wider transition-all duration-300 ${
+                    className={`absolute left-1/2 mt-2.5 block -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-0.5 font-['Satoshi'] text-[10px] font-semibold uppercase tracking-wider transition-all duration-300 ${
                       isActive
                         ? 'bg-[#00E87A]/15 text-[#00E87A] opacity-100'
-                        : 'text-[#071510]/50 opacity-80 dark:text-[#F0FAF4]/50'
+                        : 'text-[#071510]/80 opacity-80 dark:text-[#F0FAF4]/80'
                     }`}
                   >
                     {step.title}
@@ -271,7 +271,7 @@ export default function Process() {
             className="relative"
           >
             {/* Large background number */}
-            <div className="pointer-events-none absolute -right-6 -top-16 select-none font-playfair text-[12rem] font-bold leading-none text-[#00E87A] opacity-[0.04] md:text-[16rem]">
+            <div className="pointer-events-none absolute -right-6 -top-16 select-none font-['Outfit'] text-[12rem] font-bold leading-none text-[#00E87A] opacity-[0.04] md:text-[16rem]">
               0{active + 1}
             </div>
 
@@ -287,16 +287,16 @@ export default function Process() {
                   <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#00E87A]/30 bg-[#00E87A]/10">
                     <currentStep.icon className="h-4 w-4 text-[#00E87A]" />
                   </span>
-                  <span className="font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]/70">
+                  <span className="font-['Satoshi'] text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]/70">
                     Étape 0{active + 1}
                   </span>
                 </div>
 
-                <h3 className="mb-5 font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
+                <h3 className="mb-5 font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
                   {currentStep.title}
                 </h3>
 
-                <p className="mb-8 font-dm-sans text-base leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
+                <p className="mb-8 font-['Satoshi'] text-base leading-relaxed text-[#071510]/75 dark:text-[#F0FAF4]/75">
                   {currentStep.description}
                 </p>
 
@@ -311,7 +311,7 @@ export default function Process() {
                         delay: idx * 0.06,
                         ease: [0.19, 1, 0.22, 1],
                       }}
-                      className="flex items-start gap-3 font-dm-sans text-sm text-[#071510]/70 dark:text-[#F0FAF4]/70"
+                      className="flex items-start gap-3 font-['Satoshi'] text-sm text-[#071510]/80 dark:text-[#F0FAF4]/80"
                     >
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00E87A]/70" />
                       {point}
@@ -386,16 +386,16 @@ export default function Process() {
                         }}
                       >
                         <Icon
-                          className={`h-4 w-4 transition-colors duration-300 ${isActive ? 'text-[#00E87A]' : 'text-[#071510]/50 dark:text-[#F0FAF4]/50'}`}
+                          className={`h-4 w-4 transition-colors duration-300 ${isActive ? 'text-[#00E87A]' : 'text-[#071510]/80 dark:text-[#F0FAF4]/80'}`}
                         />
                       </span>
 
                       {/* Title & number */}
                       <div className="flex-1">
-                        <span className="block font-dm-sans text-[10px] font-medium uppercase tracking-wider text-[#00E87A]/60">
+                        <span className="block font-['Satoshi'] text-[10px] font-medium uppercase tracking-wider text-[#00E87A]/60">
                           Étape 0{step.id}
                         </span>
-                        <span className="block font-playfair text-lg font-semibold text-[#071510] dark:text-[#F0FAF4]">
+                        <span className="block font-['Outfit'] text-lg font-semibold text-[#071510] dark:text-[#F0FAF4]">
                           {step.title}
                         </span>
                       </div>
@@ -420,14 +420,14 @@ export default function Process() {
                           className="overflow-hidden"
                         >
                           <div className="px-4 pb-2 pt-3 md:px-5">
-                            <p className="mb-5 font-dm-sans text-sm leading-relaxed text-[#071510]/60 dark:text-[#F0FAF4]/60">
+                            <p className="mb-5 font-['Satoshi'] text-sm leading-relaxed text-[#071510]/75 dark:text-[#F0FAF4]/75">
                               {step.description}
                             </p>
                             <ul className="space-y-2.5">
                               {step.points.map((point) => (
                                 <li
                                   key={point}
-                                  className="flex items-start gap-3 font-dm-sans text-sm text-[#071510]/70 dark:text-[#F0FAF4]/70"
+                                  className="flex items-start gap-3 font-['Satoshi'] text-sm text-[#071510]/80 dark:text-[#F0FAF4]/80"
                                 >
                                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00E87A]/60" />
                                   {point}

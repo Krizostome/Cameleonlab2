@@ -273,14 +273,6 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
         {/* ── Text Column ── */}
         <div ref={textColRef} className="flex w-full flex-col items-center text-center lg:max-w-xl lg:items-start lg:text-left opacity-0">
-          {/* Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-4 py-1.5 text-xs font-medium tracking-wide text-[#00E87A] backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00E87A] opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00E87A]" />
-            </span>
-            Agence digitale basée à Cotonou
-          </div>
 
           {/* Title with mouse-driven 3D depth */}
           <motion.div
@@ -296,7 +288,7 @@ export default function Hero() {
             <h1 className="text-elegant-shadow">
               <ScrambleRevealText
                 text="NOUS TRANSFORMONS VOS IDÉES EN"
-                className="block font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl lg:text-6xl"
+                className="block font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl lg:text-6xl"
                 delay={0}
                 scrambleDuration={0.6}
                 revealDuration={0.4}
@@ -305,7 +297,7 @@ export default function Hero() {
               />
               <ScrambleRevealText
                 text="PRODUITS NUMÉRIQUES PERFORMANTS"
-                className="block font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl lg:text-6xl"
+                className="block font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl lg:text-6xl"
                 delay={0.05}
                 scrambleDuration={0.9}
                 revealDuration={0.4}
@@ -318,7 +310,7 @@ export default function Hero() {
           {/* Subtitle */}
           <p
             ref={subtitleRef}
-            className="mb-8 max-w-lg font-dm-sans text-base font-light leading-relaxed text-[#4B5563] dark:text-[#6B7280] md:text-lg opacity-0"
+            className="mb-8 max-w-lg font-['Satoshi'] text-base font-light leading-relaxed text-[#374151] dark:text-[#9CA3AF] md:text-lg opacity-0"
             style={{ willChange: 'transform, opacity' }}
           >
             Nous concevons des expériences digitales sur mesure qui propulsent
@@ -331,7 +323,7 @@ export default function Hero() {
             className="mb-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
           >
             <button
-              className="relative overflow-hidden rounded-full bg-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="relative overflow-hidden rounded-full bg-[#00E87A] px-8 py-3.5 font-['Satoshi'] text-sm font-extrabold text-[#071510] dark:text-[#F0FAF4] transition-transform hover:scale-[1.02] active:scale-[0.98]"
               onClick={() => (window.location.href = '/contact')}
             >
               <span className="relative z-10">Démarrer un projet</span>
@@ -347,7 +339,7 @@ export default function Hero() {
             </button>
             <a
               href="#portfolio"
-              className="rounded-full border border-[#00E87A] px-8 py-3.5 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4] transition-colors hover:bg-[#00E87A]/10"
+              className="rounded-full border border-[#00E87A] px-8 py-3.5 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4] transition-colors hover:bg-[#00E87A]/10"
             >
               Voir nos réalisations
             </a>
@@ -362,11 +354,11 @@ export default function Hero() {
               <div key={stat.label} className="text-center lg:text-left">
                 <span
                   data-count={stat.value}
-                  className="block font-dm-mono text-2xl font-bold text-[#00E87A] md:text-3xl"
+                  className="block font-['Satoshi'] text-2xl font-bold text-[#00E87A] md:text-3xl"
                 >
                   0
                 </span>
-                <span className="mt-1 block font-dm-sans text-[10px] font-medium uppercase tracking-widest text-[#4B5563] dark:text-[#6B7280]">
+                <span className="mt-1 block font-['Satoshi'] text-[10px] font-medium uppercase tracking-widest text-[#374151] dark:text-[#9CA3AF]">
                   {stat.label}
                 </span>
               </div>

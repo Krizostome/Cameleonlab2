@@ -38,7 +38,7 @@ function ArticleCard({ post, index }: { post: BlogPost; index: number }) {
         />
         {/* Category badge */}
         <div className="absolute left-4 top-4 z-20">
-          <span className="rounded-full bg-[#00E87A]/90 px-3 py-1 font-dm-mono text-[10px] font-medium uppercase tracking-wider text-[#071510] backdrop-blur-sm">
+          <span className="rounded-full bg-[#00E87A]/90 px-3 py-1 font-['Satoshi'] text-[10px] font-medium uppercase tracking-wider text-[#071510] backdrop-blur-sm">
             {post.category}
           </span>
         </div>
@@ -54,11 +54,11 @@ function ArticleCard({ post, index }: { post: BlogPost; index: number }) {
       <div className="flex flex-1 flex-col p-6">
         <ArticleMeta post={post} variant="card" />
 
-        <h3 className="mb-3 font-playfair text-lg font-bold leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors duration-300">
+        <h3 className="mb-3 font-['Outfit'] text-lg font-bold leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors duration-300">
           {post.title}
         </h3>
 
-        <p className="mb-6 flex-1 font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280] line-clamp-3">
+        <p className="mb-6 flex-1 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF] line-clamp-3">
           {post.excerpt}
         </p>
 
@@ -71,10 +71,10 @@ function ArticleCard({ post, index }: { post: BlogPost; index: number }) {
             loading="lazy"
           />
           <div>
-            <span className="block font-dm-sans text-xs font-medium text-[#071510] dark:text-[#F0FAF4]">
+            <span className="block font-['Satoshi'] text-xs font-medium text-[#071510] dark:text-[#F0FAF4]">
               {post.author.name}
             </span>
-            <span className="block font-dm-sans text-[10px] text-[#6B7280]">
+            <span className="block font-['Satoshi'] text-[10px] text-[#374151]">
               {new Date(post.date).toLocaleDateString('fr-FR', {
                 day: 'numeric',
                 month: 'short',
@@ -98,16 +98,16 @@ export default function RecentArticles({ posts }: RecentArticlesProps) {
         {/* Header */}
         <div data-reveal className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <span className="mb-2 block font-dm-mono text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]">
+            <span className="mb-2 block font-['Satoshi'] text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A]">
               Récents
             </span>
-            <h2 className="font-playfair text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
+            <h2 className="font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl">
               Articles récents
             </h2>
           </div>
           <motion.a
             href="#all-articles"
-            className="group inline-flex items-center gap-2 font-dm-sans text-sm font-medium text-[#00E87A] transition-colors hover:text-[#00C060]"
+            className="group inline-flex items-center gap-2 font-['Satoshi'] text-sm font-medium text-[#00E87A] transition-colors hover:text-[#00C060]"
             whileHover={{ x: 4 }}
           >
             Voir tous les articles

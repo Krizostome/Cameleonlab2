@@ -115,7 +115,7 @@ export default function BasedInCotonou() {
             >
               <div className="inline-flex items-center gap-2 rounded-full border border-[#00E87A]/20 bg-white/90 dark:bg-[#071510]/90 px-4 py-2 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                 <MapPin className="h-3.5 w-3.5 text-[#00E87A]" />
-                <span className="font-dm-sans text-xs text-[#071510]/90 dark:text-[#F0FAF4]/90">
+                <span className="font-['Satoshi'] text-xs text-[#071510]/90 dark:text-[#F0FAF4]/90">
                   Cotonou, République du Bénin
                 </span>
               </div>
@@ -132,7 +132,7 @@ export default function BasedInCotonou() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-              className="mb-5 inline-flex items-center gap-2 self-start rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-4 py-1.5 font-dm-mono text-[11px] font-medium uppercase tracking-wider text-[#00E87A] backdrop-blur-sm"
+              className="mb-5 inline-flex items-center gap-2 self-start rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-4 py-1.5 font-['Satoshi'] text-[11px] font-medium uppercase tracking-wider text-[#00E87A] backdrop-blur-sm"
             >
               <MapPin className="h-3 w-3" />
               Cotonou, Bénin
@@ -144,7 +144,7 @@ export default function BasedInCotonou() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
-              className="mb-6 font-playfair text-3xl font-bold leading-[1.15] text-[#071510] dark:text-[#F0FAF4] md:text-4xl lg:text-[2.75rem]"
+              className="mb-6 font-['Outfit'] text-3xl font-bold leading-[1.15] text-[#071510] dark:text-[#F0FAF4] md:text-4xl lg:text-[2.75rem]"
             >
               Une agence digitale basée à{' '}
               <span className="text-[#00E87A]">Cotonou.</span>
@@ -156,7 +156,7 @@ export default function BasedInCotonou() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-              className="mb-4 font-dm-sans text-base leading-relaxed text-[#4B5563] dark:text-[#F0FAF4]/70 md:text-lg"
+              className="mb-4 font-['Satoshi'] text-base leading-relaxed text-[#374151] dark:text-[#F0FAF4]/80 md:text-lg"
             >
               Nous accompagnons les entreprises, marques et startups africaines avec des
               expériences digitales modernes, rapides et mémorables.
@@ -168,7 +168,7 @@ export default function BasedInCotonou() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-              className="mb-8 font-dm-sans text-sm leading-relaxed text-[#6B7280] dark:text-[#F0FAF4]/50 md:text-base"
+              className="mb-8 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#F0FAF4]/80 md:text-base"
             >
               Depuis Cotonou, nous créons des sites web, identités visuelles et solutions
               digitales qui aident les entreprises à grandir avec une image plus forte, plus
@@ -205,7 +205,7 @@ export default function BasedInCotonou() {
                     className="h-5 w-5 flex-shrink-0 text-[#00E87A]"
                     strokeWidth={1.5}
                   />
-                  <span className="font-dm-sans text-sm text-[#071510]/80 dark:text-[#F0FAF4]/80 md:text-[0.95rem]">
+                  <span className="font-['Satoshi'] text-sm text-[#071510]/80 dark:text-[#F0FAF4]/80 md:text-[0.95rem]">
                     {item}
                   </span>
                 </motion.li>
@@ -244,7 +244,7 @@ export default function BasedInCotonou() {
                     backgroundColor: 'rgba(0, 232, 122, 0.1)',
                     transition: { duration: 0.2 },
                   }}
-                  className="cursor-default rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-3.5 py-1.5 font-dm-sans text-[11px] text-[#071510]/60 dark:text-[#F0FAF4]/50"
+                  className="cursor-default rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-3.5 py-1.5 font-['Satoshi'] text-[11px] text-[#071510]/75 dark:text-[#F0FAF4]/80"
                 >
                   {tag}
                 </motion.span>
@@ -264,7 +264,7 @@ export default function BasedInCotonou() {
                 transition: { duration: 0.25 },
               }}
               whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center gap-3 self-start rounded-full border border-[#00E87A]/30 bg-[#00E87A]/10 dark:bg-[#00E87A]/8 px-7 py-3.5 font-bricolage text-sm font-semibold text-[#00E87A] backdrop-blur-sm transition-colors duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/20 dark:hover:bg-[#00E87A]/15"
+              className="group inline-flex items-center gap-3 self-start rounded-full border border-[#00E87A]/30 bg-[#00E87A]/10 dark:bg-[#00E87A]/8 px-7 py-3.5 font-['Satoshi'] text-sm font-semibold text-[#00E87A] backdrop-blur-sm transition-colors duration-300 hover:border-[#00E87A]/50 hover:bg-[#00E87A]/20 dark:hover:bg-[#00E87A]/15"
             >
               <span>Découvrir nos projets</span>
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

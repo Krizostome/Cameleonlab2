@@ -258,7 +258,7 @@ export default function Services() {
         {/* Label */}
         <span
           ref={labelRef}
-          className="mb-6 inline-flex items-center gap-3 font-dm-sans text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A] opacity-0"
+          className="mb-6 inline-flex items-center gap-3 font-['Satoshi'] text-xs font-medium uppercase tracking-[0.2em] text-[#00E87A] opacity-0"
         >
           <span className="h-px w-6 bg-[#00E87A]" />
           Ce que nous faisons
@@ -267,7 +267,7 @@ export default function Services() {
         {/* Title */}
         <h2
           ref={titleRef}
-          className="mb-16 max-w-4xl font-playfair text-4xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
+          className="mb-16 max-w-4xl font-['Outfit'] text-4xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
           style={{ perspective: '800px' }}
         >
           {titleWords.map((word, i) => (
@@ -316,14 +316,14 @@ export default function Services() {
               </h3>
 
               {/* Description */}
-              <p className="mb-6 font-dm-sans text-sm leading-relaxed text-[#4B5563] dark:text-[#6B7280]">
+              <p className="mb-6 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
                 {service.description}
               </p>
 
               {/* Link */}
               <a
                 href="#"
-                className="inline-flex items-center gap-2 font-dm-sans text-sm font-medium text-[#00E87A] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-1"
+                className="inline-flex items-center gap-2 font-['Satoshi'] text-sm font-medium text-[#00E87A] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-1"
               >
                 En savoir plus
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -338,7 +338,7 @@ export default function Services() {
         <div ref={ctaRef} className="mt-16 flex justify-center opacity-0">
           <a
             href="#"
-            className="group inline-flex items-center gap-3 rounded-full border border-[#00E87A]/30 px-8 py-3.5 font-bricolage text-sm font-bold text-[#071510] dark:text-[#F0FAF4] transition-all duration-300 hover:border-[#00E87A]/60 hover:bg-[#00E87A]/5 hover:shadow-[0_0_24px_rgba(0,232,122,0.15)]"
+            className="group inline-flex items-center gap-3 rounded-full border border-[#00E87A]/30 px-8 py-3.5 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4] transition-all duration-300 hover:border-[#00E87A]/60 hover:bg-[#00E87A]/5 hover:shadow-[0_0_24px_rgba(0,232,122,0.15)]"
           >
             Voir tous nos services
             <span className="transition-transform duration-300 group-hover:translate-x-1">

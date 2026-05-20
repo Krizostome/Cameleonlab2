@@ -219,7 +219,7 @@ function FooterLinkItem({ href, children }: { href: string; children: React.Reac
   const isAnchor = href.startsWith('#')
 
   const className =
-    'group inline-flex items-center gap-1.5 text-[#071510]/60 dark:text-[#F0FAF4]/60 hover:text-[#00E87A] transition-all duration-300 text-sm'
+    'group inline-flex items-center gap-1.5 text-[#071510]/75 dark:text-[#F0FAF4]/75 hover:text-[#00E87A] transition-all duration-300 text-sm'
 
   const inner = (
     <>
@@ -284,7 +284,7 @@ function SocialIcon({
       aria-label={label}
       whileHover={{ scale: 1.12, rotate: 4 }}
       whileTap={{ scale: 0.95 }}
-      className="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] flex items-center justify-center text-[#071510]/50 dark:text-[#F0FAF4]/50 hover:text-[#00E87A] hover:border-[#00E87A]/40 hover:bg-[#00E87A]/10 transition-colors duration-300"
+      className="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-[#071510]/[0.03] dark:bg-[#F0FAF4]/[0.03] flex items-center justify-center text-[#071510]/80 dark:text-[#F0FAF4]/80 hover:text-[#00E87A] hover:border-[#00E87A]/40 hover:bg-[#00E87A]/10 transition-colors duration-300"
     >
       <Icon className="w-4 h-4" />
     </motion.a>
@@ -360,7 +360,7 @@ export default function Footer() {
             >
               cameleon<span className="text-[#00E87A]">lab</span>
             </a>
-            <p className="text-[#071510]/50 dark:text-[#F0FAF4]/50 text-sm leading-relaxed max-w-md mb-6">
+            <p className="text-[#071510]/80 dark:text-[#F0FAF4]/80 text-sm leading-relaxed max-w-md mb-6">
               Nous créons des expériences digitales modernes, élégantes et mémorables.
             </p>
             <div className="flex items-center gap-3 mb-10">
@@ -379,7 +379,7 @@ export default function Footer() {
               <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-4 font-['Satoshi'] font-semibold">
                 Restons connectés
               </h3>
-              <p className="text-[#071510]/50 dark:text-[#F0FAF4]/50 text-sm leading-relaxed mb-4 max-w-md">
+              <p className="text-[#071510]/80 dark:text-[#F0FAF4]/80 text-sm leading-relaxed mb-4 max-w-md">
                 Recevez nos actualités, inspirations et conseils digitaux directement dans votre boîte mail.
               </p>
               <form onSubmit={handleSubmit} className="flex gap-2 max-w-md">
@@ -389,7 +389,7 @@ export default function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Saisissez votre adresse email..."
-                    className="w-full px-4 py-2.5 rounded-lg bg-[#071510]/[0.04] dark:bg-[#F0FAF4]/[0.04] border border-black/10 dark:border-white/10 text-[#071510] dark:text-[#F0FAF4] text-sm placeholder:text-[#4B5563] dark:text-[#6B7280]/50 focus:outline-none focus:border-[#00E87A]/40 focus:bg-[#00E87A]/[0.04] transition-all duration-300 backdrop-blur-sm"
+                    className="w-full px-4 py-2.5 rounded-lg bg-[#071510]/[0.04] dark:bg-[#F0FAF4]/[0.04] border border-black/10 dark:border-white/10 text-[#071510] dark:text-[#F0FAF4] text-sm placeholder:text-[#374151] dark:text-[#9CA3AF]/50 focus:outline-none focus:border-[#00E87A]/40 focus:bg-[#00E87A]/[0.04] transition-all duration-300 backdrop-blur-sm"
                   />
                 </div>
                 <motion.button
