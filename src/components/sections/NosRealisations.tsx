@@ -1,163 +1,67 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ExternalLink } from 'lucide-react'
-import { PROJECTS, type Project } from '../../data/projects'
+import { ArrowRight, Check } from 'lucide-react'
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  Data helpers                                                      */
+/*  Animation variants                                               */
 /* ═══════════════════════════════════════════════════════════════════ */
 
-const FEATURED = PROJECTS.find((p) => p.featured) ?? PROJECTS[0]
-const SECONDARY = PROJECTS.filter((p) => p.id !== FEATURED.id).slice(0, 5)
-const ONLINE_PROJECTS = [
-  {
-    id: 'online-1',
-    name: 'PayFlow Africa',
-    logo: '💳',
-    description: 'Paiement mobile pour PME africaines',
-    url: '#',
-    color: '#00E87A',
-  },
-  {
-    id: 'online-2',
-    name: 'EduAfrique',
-    logo: '🎓',
-    description: 'Plateforme e-learning francophone',
-    url: '#',
-    color: '#8B5CF6',
-  },
-  {
-    id: 'online-3',
-    name: 'QuickDeli',
-    logo: '🍔',
-    description: 'Livraison à domicile Abidjan',
-    url: '#',
-    color: '#F59E0B',
-  },
-  {
-    id: 'online-4',
-    name: 'Clinique Santé Plus',
-    logo: '🏥',
-    description: 'Site vitrine médical Dakar',
-    url: '#',
-    color: '#EF4444',
-  },
-  {
-    id: 'online-5',
-    name: 'AgroGold',
-    logo: '🌾',
-    description: 'Export agro-industriel Bénin',
-    url: '#',
-    color: '#10B981',
-  },
-  {
-    id: 'online-6',
-    name: 'StockPro',
-    logo: '📦',
-    description: 'Gestion de stock hors-ligne',
-    url: '#',
-    color: '#3B82F6',
-  },
-]
+const bezierEasing = [0.19, 1, 0.22, 1] as const
 
-/* ═══════════════════════════════════════════════════════════════════ */
-/*  Custom hooks                                                      */
-/* ═══════════════════════════════════════════════════════════════════ */
+const fadeUp = {
+  hidden: { opacity: 0, y: 30, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.7, ease: bezierEasing },
+  },
+}
 
-function useMouseTilt(ref: React.RefObject<HTMLElement | null>, intensity = 4) {
-  const rotateX = useMotionValue(0)
-  const rotateY = useMotionValue(0)
-
-  const springConfig = { stiffness: 120, damping: 20, mass: 0.5 }
-  const rX = useSpring(rotateX, springConfig)
-  const rY = useSpring(rotateY, springConfig)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const onMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect()
-      const x = (e.clientX - rect.left) / rect.width - 0.5
-      const y = (e.clientY - rect.top) / rect.height - 0.5
-      rotateY.set(x * intensity)
-      rotateX.set(-y * intensity)
-    }
-    const onLeave = () => {
-      rotateY.set(0)
-      rotateX.set(0)
-    }
-    el.addEventListener('mousemove', onMove)
-    el.addEventListener('mouseleave', onLeave)
-    return () => {
-      el.removeEventListener('mousemove', onMove)
-      el.removeEventListener('mouseleave', onLeave)
-    }
-  }, [ref, intensity, rotateX, rotateY])
-
-  return { rotateX: rX, rotateY: rY }
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+  },
 }
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  Header                                                            */
+/*  Section Header                                                   */
 /* ═══════════════════════════════════════════════════════════════════ */
 
 function SectionHeader() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
-    },
-  }
-
   return (
     <motion.div
       ref={ref}
-      variants={containerVariants}
+      variants={staggerContainer}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
-      className="relative z-10 mb-16 md:mb-24"
+      className="relative z-10 mb-20 text-center md:mb-28"
     >
-      {/* Badge */}
-      <motion.div variants={itemVariants} className="mb-6">
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-4 py-1.5 text-xs font-medium tracking-wide text-[#00E87A] backdrop-blur-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00E87A] opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00E87A]" />
-          </span>
+      <motion.div variants={fadeUp} className="mb-6 inline-flex">
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-4 py-1.5 font-['Satoshi'] text-xs font-medium tracking-wide text-[#00E87A]">
+          <span className="text-sm leading-none">+</span>
           Nos Réalisations
         </span>
       </motion.div>
 
-      {/* Title */}
       <motion.h2
-        variants={itemVariants}
-        className="mb-6 max-w-4xl font-['Outfit'] text-4xl font-bold leading-[1.1] tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
+        variants={fadeUp}
+        className="mx-auto mb-6 max-w-4xl font-['Outfit'] text-4xl font-bold leading-[1.1] tracking-tight text-[#071510] dark:text-[#F0FAF4] md:text-5xl lg:text-6xl"
       >
-        Des projets qui transforment des{' '}
-        <span className="text-glow text-[#00E87A]">idées</span> en expériences
-        digitales
+        Des projets concrets qui font la différence pour nos{' '}
+        <span className="text-glow text-[#00E87A]">clients</span>
       </motion.h2>
 
-      {/* Subtitle */}
       <motion.p
-        variants={itemVariants}
-        className="max-w-xl font-['Satoshi'] text-base font-light leading-relaxed text-[#374151] dark:text-[#9CA3AF] md:text-lg"
+        variants={fadeUp}
+        className="mx-auto max-w-2xl font-['Satoshi'] text-base font-light leading-relaxed text-[#374151] dark:text-[#9CA3AF] md:text-lg"
       >
         Nous créons des solutions numériques performantes qui répondent à des
         besoins réels.
@@ -167,589 +71,335 @@ function SectionHeader() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  Featured Project                                                  */
+/*  Featured Project                                                 */
 /* ═══════════════════════════════════════════════════════════════════ */
 
-function FeaturedProject({ project }: { project: Project }) {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const imageContainerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
-
-  const { rotateX, rotateY } = useMouseTilt(imageContainerRef, 6)
-
-  // Floating animation values
-  const floatY = useMotionValue(0)
-  const floatX = useMotionValue(0)
-
-  useEffect(() => {
-    let raf: number
-    let start: number | null = null
-    const duration = 6000
-    const animate = (t: number) => {
-      if (!start) start = t
-      const p = (t - start) / duration
-      floatY.set(Math.sin(p * Math.PI * 2) * 8)
-      floatX.set(Math.cos(p * Math.PI * 2) * 4)
-      raf = requestAnimationFrame(animate)
-    }
-    raf = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(raf)
-  }, [floatX, floatY])
-
-  const springFloatY = useSpring(floatY, { stiffness: 40, damping: 15 })
-  const springFloatX = useSpring(floatX, { stiffness: 40, damping: 15 })
+function FeaturedProject() {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <motion.div
-      ref={sectionRef}
-      initial={{ opacity: 0, y: 60 }}
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
-      className="relative z-10 mb-20 md:mb-28"
+      className="relative z-10 mb-16 md:mb-24"
     >
-      {/* Subtle halo behind featured */}
-      <div
-        className="pointer-events-none absolute -left-[10%] -top-[10%] h-[80%] w-[50%] rounded-full opacity-40 blur-[120px]"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 70%)',
-        }}
-      />
-
-      <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        {/* Left column: info */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
-          className="flex flex-col"
-        >
-          <span className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-3 py-1 font-['Satoshi'] text-[10px] font-semibold uppercase tracking-widest text-[#00E87A]">
-            {project.category}
-          </span>
-
-          <h3 className="mb-4 font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-4xl lg:text-5xl">
-            {project.title}
-          </h3>
-
-          <p className="mb-6 max-w-md font-['Satoshi'] text-base leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
-            {project.fullDescription}
-          </p>
-
-          {/* Features */}
-          <ul className="mb-6 space-y-2">
-            {project.services?.slice(0, 4).map((svc) => (
-              <li
-                key={svc}
-                className="flex items-center gap-2 font-['Satoshi'] text-sm text-[#071510]/80 dark:text-[#F0FAF4]/80"
-              >
-                <span className="h-1 w-1 rounded-full bg-[#00E87A]" />
-                {svc}
-              </li>
-            ))}
-          </ul>
-
-          {/* Technologies */}
-          <div className="mb-8 flex flex-wrap gap-2">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-md border border-[#00E87A]/15 bg-[#00E87A]/5 px-2.5 py-1 font-['Satoshi'] text-[11px] font-medium text-[#00E87A]"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {/* Stats */}
-          <div className="mb-8 flex gap-6">
-            {project.results.map((r) => (
-              <div key={r.label} className="flex flex-col">
-                <span className="font-['Satoshi'] text-2xl font-bold text-[#00E87A]">
-                  {r.value}
-                </span>
-                <span className="font-['Satoshi'] text-[10px] uppercase tracking-wider text-[#374151] dark:text-[#9CA3AF]">
-                  {r.label}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Buttons */}
-          <div className="flex flex-wrap items-center gap-4">
-            <Link
-              to={`/portfolio/${project.slug}`}
-              className="group inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-6 py-3 font-['Satoshi'] text-sm font-extrabold text-[#071510] transition-all hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(0,232,122,0.35)] active:scale-[0.98]"
-            >
-              Voir le projet
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              to={`/portfolio/${project.slug}`}
-              className="inline-flex items-center gap-2 rounded-full border border-[#071510]/10 px-6 py-3 font-['Satoshi'] text-sm font-bold text-[#071510] transition-colors hover:bg-[#071510]/5 dark:border-[#F0FAF4]/10 dark:text-[#F0FAF4] dark:hover:bg-[#F0FAF4]/5"
-            >
-              Étude de cas
-            </Link>
-          </div>
-        </motion.div>
-
-        {/* Right column: mockups */}
-        <motion.div
-          ref={imageContainerRef}
-          initial={{ opacity: 0, x: 40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.35, ease: [0.19, 1, 0.22, 1] }}
-          className="relative flex items-center justify-center"
-          style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
-        >
+      <div className="group relative overflow-hidden rounded-[2rem] border border-[#00E87A]/8 bg-white/60 backdrop-blur-xl transition-all duration-700 hover:border-[#00E87A]/18 hover:shadow-[0_24px_80px_rgba(0,0,0,0.08)] dark:bg-white/[0.03] dark:hover:shadow-[0_24px_80px_rgba(0,0,0,0.25)]">
+        <div className="grid grid-cols-1 items-center gap-10 p-8 md:gap-12 md:p-12 lg:grid-cols-2 lg:p-16">
+          {/* LEFT — Text */}
           <motion.div
-            style={{
-              rotateX,
-              rotateY,
-              x: springFloatX,
-              y: springFloatY,
-              transformStyle: 'preserve-3d',
-            }}
-            className="relative w-full max-w-lg"
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
+            className="flex flex-col"
           >
-            {/* Desktop mockup */}
-            <div className="relative z-10 overflow-hidden rounded-2xl border border-[#00E87A]/10 bg-[#071510] shadow-[0_24px_80px_rgba(0,0,0,0.35)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.55)]">
-              <div className="flex items-center gap-1.5 border-b border-[#00E87A]/10 bg-[#0a1a14] px-3 py-2">
+            <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-[#00E87A]/20 bg-[#00E87A]/5 px-3 py-1 font-['Satoshi'] text-[10px] font-semibold uppercase tracking-widest text-[#00E87A]">
+              Solution E-commerce WhatsApp
+            </span>
+
+            <h3 className="mb-5 font-['Outfit'] text-3xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-4xl lg:text-[2.6rem]">
+              Hortensia AI – La digitalisation complète de votre business via WhatsApp
+            </h3>
+
+            <p className="mb-8 max-w-md font-['Satoshi'] text-base leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
+              Une plateforme tout-en-un qui transforme WhatsApp en un véritable
+              canal de vente. Gestion de catalogue, paiements intégrés et
+              assistance IA disponible 24h/24.
+            </p>
+
+            <ul className="mb-10 space-y-3">
+              {[
+                'Catalogue produits & services personnalisable',
+                'Paiement intégré WhatsApp',
+                'Chatbot IA 24/7',
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 font-['Satoshi'] text-sm text-[#071510]/80 dark:text-[#F0FAF4]/80"
+                >
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#00E87A]/10">
+                    <Check className="h-3 w-3 text-[#00E87A]" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                to="#"
+                className="group/btn inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-7 py-3 font-['Satoshi'] text-sm font-extrabold text-[#071510] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(0,232,122,0.35)] active:scale-[0.98]"
+              >
+                En savoir plus
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
+              </Link>
+              <Link
+                to="#"
+                className="inline-flex items-center gap-2 rounded-full border border-[#071510]/10 px-7 py-3 font-['Satoshi'] text-sm font-bold text-[#071510] transition-all duration-300 hover:bg-[#071510]/5 dark:border-[#F0FAF4]/10 dark:text-[#F0FAF4] dark:hover:bg-[#F0FAF4]/5"
+              >
+                Étude de cas
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* RIGHT — Mockup */}
+          <motion.div
+            initial={{ opacity: 0, x: 30, scale: 0.97 }}
+            animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+            transition={{ duration: 1, delay: 0.35, ease: [0.19, 1, 0.22, 1] }}
+            className="relative flex items-center justify-center"
+          >
+            <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-[#00E87A]/10 bg-[#071510] shadow-[0_24px_80px_rgba(0,0,0,0.18)] transition-all duration-700 group-hover:shadow-[0_32px_96px_rgba(0,0,0,0.22)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.45)] dark:group-hover:shadow-[0_32px_96px_rgba(0,0,0,0.55)]">
+              {/* Browser chrome */}
+              <div className="flex items-center gap-1.5 border-b border-[#00E87A]/10 bg-[#0a1a14] px-4 py-2.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
                 <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
                 <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
+                <div className="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-center text-[10px] text-white/30">
+                  hortensia.ai
+                </div>
               </div>
+              {/* Screenshot */}
               <div className="relative overflow-hidden">
                 <img
-                  src={project.image}
-                  alt={project.imageAlt}
-                  className="h-auto w-full object-cover transition-transform duration-[8s] ease-out hover:scale-105"
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80"
+                  alt="Interface Hortensia AI"
+                  className="h-auto w-full object-cover transition-transform duration-[8s] ease-out group-hover:scale-[1.02]"
                   loading="eager"
                 />
-                {/* Subtle overlay gradient */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060C0A]/40 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060C0A]/30 via-transparent to-transparent" />
               </div>
             </div>
 
-            {/* Mobile mockup floating */}
-            <motion.div
-              animate={{
-                y: [0, -12, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="absolute -bottom-6 -right-4 z-20 w-28 overflow-hidden rounded-xl border border-[#00E87A]/15 bg-[#071510] shadow-[0_16px_48px_rgba(0,0,0,0.4)] md:-right-8 md:w-36"
-              style={{ transform: 'translateZ(40px)' }}
-            >
-              <div className="flex items-center justify-center gap-1 border-b border-[#00E87A]/10 bg-[#0a1a14] py-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#00E87A]/40" />
-              </div>
+            {/* Decorative subtle glow */}
+            <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] bg-[#00E87A]/[0.03] blur-3xl" />
+          </motion.div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/*  Secondary Cards                                                  */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+function SecondaryCards() {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
+
+  const cards = [
+    {
+      tag: 'Fintech',
+      title: 'Souvtech Invest – Trouvez des financements adaptés à votre projet',
+      description:
+        'Plateforme de mise en relation entre investisseurs et entrepreneurs africains. Matching algorithmique et due diligence automatisée.',
+      image:
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+      alt: 'Dashboard Souvtech Invest',
+    },
+    {
+      tag: 'Services',
+      title: 'Souv Patrimoine – Gestion et conseil patrimonial digitalisé',
+      description:
+        'Application web de conseil en gestion de patrimoine avec simulation de scenarii, rendez-vous en ligne et suivi documentaire sécurisé.',
+      image:
+        'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
+      alt: 'Interface Souv Patrimoine',
+    },
+  ]
+
+  return (
+    <div ref={ref} className="relative z-10 mb-16 grid grid-cols-1 gap-8 md:mb-24 md:grid-cols-2 lg:gap-10">
+      {cards.map((card, i) => (
+        <motion.div
+          key={card.title}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{
+            duration: 0.8,
+            delay: i * 0.15,
+            ease: [0.19, 1, 0.22, 1],
+          }}
+        >
+          <Link
+            to="#"
+            className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-[#00E87A]/8 bg-white/60 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#00E87A]/18 hover:shadow-[0_16px_56px_rgba(0,0,0,0.08)] dark:bg-white/[0.03] dark:hover:shadow-[0_16px_56px_rgba(0,0,0,0.22)]"
+          >
+            {/* Image */}
+            <div className="relative h-52 overflow-hidden sm:h-56 md:h-64">
               <img
-                src={project.image}
-                alt={`${project.imageAlt} mobile`}
-                className="h-auto w-full object-cover"
+                src={card.image}
+                alt={card.alt}
+                className="h-full w-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
                 loading="lazy"
               />
-            </motion.div>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060C0A]/80 via-[#060C0A]/20 to-transparent" />
 
-            {/* Decorative glow */}
-            <div className="pointer-events-none absolute -inset-8 -z-10 rounded-3xl bg-[#00E87A]/5 blur-3xl" />
-          </motion.div>
-        </motion.div>
-      </div>
-    </motion.div>
-  )
-}
+              <div className="absolute left-5 top-5">
+                <span className="rounded-full border border-[#00E87A]/20 bg-[#060C0A]/50 px-3 py-1 font-['Satoshi'] text-[10px] font-semibold uppercase tracking-widest text-[#00E87A] backdrop-blur-sm">
+                  {card.tag}
+                </span>
+              </div>
+            </div>
 
-/* ═══════════════════════════════════════════════════════════════════ */
-/*  Bento Grid Card                                                   */
-/* ═══════════════════════════════════════════════════════════════════ */
+            {/* Content */}
+            <div className="flex flex-1 flex-col p-6 md:p-8">
+              <h4 className="mb-2 font-['Outfit'] text-xl font-bold leading-snug text-[#071510] dark:text-[#F0FAF4] md:text-2xl">
+                {card.title}
+              </h4>
+              <p className="mb-6 line-clamp-2 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
+                {card.description}
+              </p>
 
-function BentoCard({
-  project,
-  index,
-  className = '',
-  isLarge = false,
-}: {
-  project: Project
-  index: number
-  className?: string
-  isLarge?: boolean
-}) {
-  const cardRef = useRef<HTMLAnchorElement>(null)
-  const [isFocused, setIsFocused] = useState(false)
-
-  const { rotateX, rotateY } = useMouseTilt(cardRef, 5)
-
-  // Intersection observer for center focus
-  useEffect(() => {
-    const el = cardRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsFocused(entry.isIntersecting && entry.intersectionRatio > 0.6)
-      },
-      { threshold: [0.4, 0.6, 0.8] }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.1,
-        ease: [0.19, 1, 0.22, 1],
-      }}
-      className={className}
-    >
-      <Link
-        ref={cardRef}
-        to={`/portfolio/${project.slug}`}
-        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#00E87A]/10 bg-[var(--bg-card)] transition-all duration-500 hover:border-[#00E87A]/30 hover:shadow-[0_8px_40px_rgba(0,232,122,0.12)]"
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-          willChange: 'transform',
-        }}
-      >
-        {/* Image */}
-        <div className={`relative overflow-hidden ${isLarge ? 'h-56 sm:h-64 md:h-72 lg:h-80' : 'h-48 sm:h-52 md:h-56'}`}>
-          <img
-            src={project.image}
-            alt={project.imageAlt}
-            className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-            loading="lazy"
-          />
-          {/* Gradient overlay */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060C0A]/90 via-[#060C0A]/20 to-transparent" />
-
-          {/* Category badge */}
-          <div className="absolute left-4 top-4">
-            <span className="rounded-full border border-[#00E87A]/20 bg-[#060C0A]/50 px-3 py-1 font-['Satoshi'] text-[10px] font-semibold uppercase tracking-widest text-[#00E87A] backdrop-blur-sm">
-              {project.category}
-            </span>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="relative flex flex-1 flex-col p-5 md:p-6">
-          <h4 className="mb-1.5 font-['Outfit'] text-lg font-bold text-[#071510] dark:text-[#F0FAF4] md:text-xl">
-            {project.title}
-          </h4>
-          <p className="mb-3 line-clamp-2 font-['Satoshi'] text-sm leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
-            {project.description}
-          </p>
-
-          {/* Technologies */}
-          <div className="mb-3 flex flex-wrap gap-1.5">
-            {project.technologies.slice(0, 3).map((tech) => (
-              <span
-                key={tech}
-                className="rounded-md border border-[#00E87A]/10 bg-[#00E87A]/5 px-2 py-0.5 font-['Satoshi'] text-[10px] font-medium text-[#00E87A]"
-              >
-                {tech}
+              <span className="mt-auto inline-flex items-center gap-2 font-['Satoshi'] text-sm font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
+                Voir le site
+                <ArrowRight className="h-4 w-4" />
               </span>
-            ))}
-          </div>
+            </div>
 
-          {/* Link */}
-          <span className="mt-auto inline-flex items-center gap-1.5 font-['Satoshi'] text-xs font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
-            Voir le projet <ArrowRight className="h-3 w-3" />
-          </span>
-        </div>
-
-        {/* Glow border on hover */}
-        <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-          <div
-            className="absolute inset-0 rounded-2xl"
-            style={{
-              boxShadow: 'inset 0 0 0 1px rgba(0,232,122,0.2), 0 0 30px rgba(0,232,122,0.08)',
-            }}
-          />
-        </div>
-
-        {/* Focus state (center screen) */}
-        <motion.div
-          className="pointer-events-none absolute inset-0 rounded-2xl"
-          animate={{
-            boxShadow: isFocused
-              ? '0 0 60px rgba(0,232,122,0.1), inset 0 0 0 1px rgba(0,232,122,0.15)'
-              : '0 0 0px rgba(0,232,122,0)',
-          }}
-          transition={{ duration: 0.6 }}
-        />
-      </Link>
-    </motion.div>
-  )
-}
-
-/* ═══════════════════════════════════════════════════════════════════ */
-/*  Bento Grid                                                        */
-/* ═══════════════════════════════════════════════════════════════════ */
-
-function BentoGrid({ projects }: { projects: Project[] }) {
-  // Layout: 3 columns x 2 rows, all cards same height
-  const p1 = projects[0]
-  const p2 = projects[1]
-  const p3 = projects[2]
-  const p4 = projects[3]
-  const p5 = projects[4]
-
-  return (
-    <div className="relative z-10 mb-24 md:mb-32">
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {p1 && (
-          <div>
-            <BentoCard project={p1} index={0} className="h-full" isLarge />
-          </div>
-        )}
-        {p2 && (
-          <div>
-            <BentoCard project={p2} index={1} className="h-full" />
-          </div>
-        )}
-        {p3 && (
-          <div>
-            <BentoCard project={p3} index={2} className="h-full" />
-          </div>
-        )}
-        {p4 && (
-          <div>
-            <BentoCard project={p4} index={3} className="h-full" />
-          </div>
-        )}
-        {p5 && (
-          <div>
-            <BentoCard project={p5} index={4} className="h-full" />
-          </div>
-        )}
-      </div>
+            {/* Hover glow border */}
+            <div className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+              <div
+                className="absolute inset-0 rounded-[2rem]"
+                style={{
+                  boxShadow:
+                    'inset 0 0 0 1px rgba(0,232,122,0.15), 0 0 40px rgba(0,232,122,0.06)',
+                }}
+              />
+            </div>
+          </Link>
+        </motion.div>
+      ))}
     </div>
   )
 }
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  Online Projects Row                                               */
+/*  Combined Section: Gallery + More Projects                         */
 /* ═══════════════════════════════════════════════════════════════════ */
 
-function OnlineProjectsRow() {
-  const rowRef = useRef<HTMLDivElement>(null)
-  const innerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(rowRef, { once: true, margin: '-80px' })
+function MoreProjectsSection() {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const items = useMemo(() => [...ONLINE_PROJECTS, ...ONLINE_PROJECTS], [])
-  const [isDragging, setIsDragging] = useState(false)
-  const [dragStart, setDragStart] = useState(0)
-  const [scrollStart, setScrollStart] = useState(0)
-
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    if (!rowRef.current) return
-    setIsDragging(true)
-    setDragStart(e.clientX)
-    setScrollStart(rowRef.current.scrollLeft)
-  }, [])
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (!isDragging || !rowRef.current) return
-      const dx = e.clientX - dragStart
-      rowRef.current.scrollLeft = scrollStart - dx
-    },
-    [isDragging, dragStart, scrollStart]
-  )
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false)
-  }, [])
-
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    const el = rowRef.current
-    if (!el) return
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      e.preventDefault()
-      el.scrollLeft += e.deltaY
-    }
-    // Loop check after wheel
-    if (el.scrollLeft >= el.scrollWidth / 2) {
-      el.scrollLeft = 0
-    } else if (el.scrollLeft <= 0) {
-      el.scrollLeft = el.scrollWidth / 2
-    }
-  }, [])
-
-  // Touch support
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (!rowRef.current) return
-    setIsDragging(true)
-    setDragStart(e.touches[0].clientX)
-    setScrollStart(rowRef.current.scrollLeft)
-  }, [])
-
-  const handleTouchMove = useCallback(
-    (e: React.TouchEvent) => {
-      if (!isDragging || !rowRef.current) return
-      const dx = e.touches[0].clientX - dragStart
-      rowRef.current.scrollLeft = scrollStart - dx
-    },
-    [isDragging, dragStart, scrollStart]
-  )
-
-  const handleTouchEnd = useCallback(() => {
-    setIsDragging(false)
-  }, [])
-
-  // Auto-scroll (very slow)
-  useEffect(() => {
-    const el = rowRef.current
-    if (!el || isDragging) return
-    let raf: number
-    const speed = 0.4
-    const step = () => {
-      el.scrollLeft += speed
-      // Loop when reaching half (duplicated content)
-      if (el.scrollLeft >= el.scrollWidth / 2) {
-        el.scrollLeft = 0
-      }
-      raf = requestAnimationFrame(step)
-    }
-    raf = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(raf)
-  }, [isDragging])
+  const sites = [
+    'site1.com',
+    'site2.com',
+    'site3.com',
+    'site4.com',
+    'site5.com',
+    'site6.com',
+    'site7.com',
+  ]
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-      className="relative z-10"
+      transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
+      className="relative z-10 mb-16 md:mb-24"
     >
-      <h3 className="mb-8 font-['Outfit'] text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] md:text-3xl">
-        Découvrir d'autres projets
-      </h3>
+      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+        {/* ── LEFT: Compact Gallery ── */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.19, 1, 0.22, 1] }}
+          className="order-2 lg:order-1"
+        >
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            {/* Row 1 */}
+            <div className="group relative overflow-hidden rounded-xl border border-transparent bg-[#071510]/[0.04] transition-all duration-500 hover:scale-[1.04] hover:border-[#00E87A]/15 hover:bg-[#00E87A]/[0.05] hover:shadow-[0_0_20px_rgba(0,232,122,0.08)] dark:bg-white/[0.04] dark:hover:bg-[#00E87A]/[0.06]">
+              <div className="aspect-square" />
+            </div>
+            <div className="group relative overflow-hidden rounded-xl border border-transparent bg-[#071510]/[0.04] transition-all duration-500 hover:scale-[1.04] hover:border-[#00E87A]/15 hover:bg-[#00E87A]/[0.05] hover:shadow-[0_0_20px_rgba(0,232,122,0.08)] dark:bg-white/[0.04] dark:hover:bg-[#00E87A]/[0.06]">
+              <div className="aspect-square" />
+            </div>
+            <div className="group relative overflow-hidden rounded-xl border border-transparent bg-[#071510]/[0.04] transition-all duration-500 hover:scale-[1.04] hover:border-[#00E87A]/15 hover:bg-[#00E87A]/[0.05] hover:shadow-[0_0_20px_rgba(0,232,122,0.08)] dark:bg-white/[0.04] dark:hover:bg-[#00E87A]/[0.06]">
+              <div className="aspect-square" />
+            </div>
+            {/* Row 2 */}
+            <div className="group relative col-span-2 overflow-hidden rounded-xl border border-transparent bg-[#071510]/[0.04] transition-all duration-500 hover:scale-[1.04] hover:border-[#00E87A]/15 hover:bg-[#00E87A]/[0.05] hover:shadow-[0_0_20px_rgba(0,232,122,0.08)] dark:bg-white/[0.04] dark:hover:bg-[#00E87A]/[0.06]">
+              <div className="aspect-[2/1]" />
+            </div>
+            <div className="group relative overflow-hidden rounded-xl border border-transparent bg-[#071510]/[0.04] transition-all duration-500 hover:scale-[1.04] hover:border-[#00E87A]/15 hover:bg-[#00E87A]/[0.05] hover:shadow-[0_0_20px_rgba(0,232,122,0.08)] dark:bg-white/[0.04] dark:hover:bg-[#00E87A]/[0.06]">
+              <div className="aspect-square" />
+            </div>
+            {/* Row 3 */}
+            <div className="group relative overflow-hidden rounded-xl border border-transparent bg-[#071510]/[0.04] transition-all duration-500 hover:scale-[1.04] hover:border-[#00E87A]/15 hover:bg-[#00E87A]/[0.05] hover:shadow-[0_0_20px_rgba(0,232,122,0.08)] dark:bg-white/[0.04] dark:hover:bg-[#00E87A]/[0.06]">
+              <div className="aspect-square" />
+            </div>
+            <div className="group relative col-span-2 overflow-hidden rounded-xl border border-transparent bg-[#071510]/[0.04] transition-all duration-500 hover:scale-[1.04] hover:border-[#00E87A]/15 hover:bg-[#00E87A]/[0.05] hover:shadow-[0_0_20px_rgba(0,232,122,0.08)] dark:bg-white/[0.04] dark:hover:bg-[#00E87A]/[0.06]">
+              <div className="aspect-[2/1]" />
+            </div>
+          </div>
+        </motion.div>
 
-      <div
-        ref={rowRef}
-        className="scrollbar-hide relative -mx-6 flex cursor-grab gap-5 overflow-x-auto px-6 py-4 active:cursor-grabbing md:-mx-10 md:px-10"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onWheel={handleWheel}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
-      >
-        <div ref={innerRef} className="flex shrink-0 gap-5">
-          {items.map((item, idx) => (
-            <a
-              key={`${item.id}-${idx}`}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex w-[280px] shrink-0 flex-col gap-4 rounded-2xl border border-[#00E87A]/10 bg-[var(--bg-card)] p-5 transition-all duration-500 hover:scale-[1.02] hover:border-[#00E87A]/25 hover:shadow-[0_0_30px_rgba(0,232,122,0.1)]"
+        {/* ── RIGHT: More Projects Content ── */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.19, 1, 0.22, 1] }}
+          className="order-1 lg:order-2"
+        >
+          <h3 className="mb-5 font-['Outfit'] text-3xl font-bold leading-tight text-[#071510] dark:text-[#F0FAF4] md:text-4xl lg:text-[2.4rem]">
+            Et bien d’autres projets web réalisés avec succès
+          </h3>
+          <p className="mb-8 max-w-lg font-['Satoshi'] text-base leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
+            De la landing page à la plateforme SaaS complexe, nous avons accompagné
+            des dizaines de clients dans la création de solutions digitales sur
+            mesure.
+          </p>
+
+          <ul className="mb-10 space-y-2.5">
+            {sites.map((site) => (
+              <li
+                key={site}
+                className="flex items-center justify-between rounded-xl border border-[#00E87A]/8 bg-white/40 px-4 py-2.5 transition-all duration-300 hover:border-[#00E87A]/20 dark:bg-white/[0.02]"
+              >
+                <span className="font-['Satoshi'] text-sm font-medium text-[#071510] dark:text-[#F0FAF4]">
+                  {site}
+                </span>
+                <ArrowRight className="h-3.5 w-3.5 text-[#00E87A]" />
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#00E87A] px-7 py-3 font-['Satoshi'] text-sm font-extrabold text-[#071510] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(0,232,122,0.35)] active:scale-[0.98]"
             >
-              {/* Top row */}
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--bg-elevated)] text-xl">
-                    {item.logo}
-                  </span>
-                  <div>
-                    <h4 className="font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
-                      {item.name}
-                    </h4>
-                    <span className="inline-flex items-center gap-1.5 font-['Satoshi'] text-[10px] font-medium text-[#00E87A]">
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#00E87A]" />
-                      En ligne
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Description */}
-              <p className="font-['Satoshi'] text-xs leading-relaxed text-[#374151] dark:text-[#9CA3AF]">
-                {item.description}
-              </p>
-
-              {/* CTA */}
-              <span className="mt-auto inline-flex items-center gap-1.5 font-['Satoshi'] text-xs font-semibold text-[#00E87A] transition-transform duration-300 group-hover:translate-x-1">
-                Visiter le site
-                <ExternalLink className="h-3 w-3" />
-              </span>
-
-              {/* Hover glow border */}
-              <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <div
-                  className="absolute inset-0 rounded-2xl"
-                  style={{
-                    boxShadow: `inset 0 0 0 1px ${item.color}33`,
-                  }}
-                />
-              </div>
-            </a>
-          ))}
-        </div>
+              Discuter de votre projet
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </motion.div>
   )
 }
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  Main Section                                                      */
+/*  Main Section                                                     */
 /* ═══════════════════════════════════════════════════════════════════ */
 
 export default function NosRealisations() {
   return (
     <section
       id="realisations"
-      className="relative overflow-hidden bg-[#F7FFF9] py-20 dark:bg-[#060C0A] md:py-28 lg:py-32"
+      className="relative overflow-hidden bg-[#F7FFF9] py-24 dark:bg-[#060C0A] md:py-32 lg:py-40"
       aria-label="Nos Réalisations"
     >
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/*  Background effects                                            */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-
-      {/* Grain texture */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'overlay',
-        }}
-      />
-
-      {/* Subtle mesh glow */}
-      <div
-        className="pointer-events-none absolute right-0 top-1/4 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px]"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(0,232,122,0.06) 0%, transparent 70%)',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-1/4 left-0 h-[400px] w-[400px] rounded-full opacity-20 blur-[100px]"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%)',
-        }}
-      />
-
-      {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         <SectionHeader />
-        <FeaturedProject project={FEATURED} />
-        <BentoGrid projects={SECONDARY} />
-        <OnlineProjectsRow />
+        <FeaturedProject />
+        <SecondaryCards />
+        <MoreProjectsSection />
       </div>
     </section>
   )

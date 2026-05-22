@@ -376,7 +376,7 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div>
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-4 font-['Satoshi'] font-semibold">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-4 font-['Outfit'] font-semibold">
                 Restons connectés
               </h3>
               <p className="text-[#071510]/80 dark:text-[#F0FAF4]/80 text-sm leading-relaxed mb-4 max-w-md">
@@ -411,7 +411,7 @@ export default function Footer() {
               variants={columnVariants}
               className="lg:col-span-2"
             >
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-5 font-['Satoshi'] font-semibold">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00E87A] mb-5 font-['Outfit'] font-semibold">
                 {column.title}
               </h3>
               <ul className="space-y-3">

@@ -285,7 +285,7 @@ export default function Hero() {
             }}
             className="mb-6"
           >
-            <h1 className="text-elegant-shadow">
+            <h1 className="font-['Outfit'] text-elegant-shadow">
               <ScrambleRevealText
                 text="NOUS TRANSFORMONS VOS IDÉES EN"
                 className="block font-['Outfit'] text-2xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-3xl md:text-4xl lg:text-5xl leading-tight"

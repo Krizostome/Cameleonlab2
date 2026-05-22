@@ -78,7 +78,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
     <aside className="lg:sticky lg:top-28 lg:self-start">
       {/* Categories */}
       <div className="mb-8 rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 flex items-center gap-2 font-['Outfit'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           <Tag className="h-4 w-4 text-[#00E87A]" />
           Catégories
         </h3>
@@ -102,7 +102,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
 
       {/* Popular posts */}
       <div className="mb-8 rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 flex items-center gap-2 font-['Outfit'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           <TrendingUp className="h-4 w-4 text-[#00E87A]" />
           Populaires
         </h3>
@@ -113,7 +113,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
                 {i + 1}
               </span>
               <div>
-                <h4 className="font-['Satoshi'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
+                <h4 className="font-['Outfit'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
                   {post.title}
                 </h4>
                 <span className="mt-1 block font-['Satoshi'] text-[10px] text-[#374151]">
@@ -127,7 +127,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
 
       {/* Tags */}
       <div className="mb-8 rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 font-['Outfit'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           Tags
         </h3>
         <div className="flex flex-wrap gap-2">
@@ -145,7 +145,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
 
       {/* CTA Card */}
       <div className="rounded-2xl border border-[#00E87A]/20 bg-[#071510] p-6 text-center dark:bg-[#071510]/80">
-        <h3 className="mb-2 font-['Satoshi'] text-base font-bold text-[#F0FAF4]">
+        <h3 className="mb-2 font-['Outfit'] text-base font-bold text-[#F0FAF4]">
           Un projet en tête ?
         </h3>
         <p className="mb-5 font-['Satoshi'] text-xs leading-relaxed text-[#374151]">
@@ -164,7 +164,7 @@ function Sidebar({ categories, tags, popularPosts }: { categories: Category[]; t
 
       {/* Mini contact */}
       <div className="mt-8 rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-3 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-3 font-['Outfit'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           CameleonLab
         </h3>
         <div className="flex items-start gap-2">

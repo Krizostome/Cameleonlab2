@@ -7,7 +7,7 @@ import Services from './components/sections/Services'
 import Process from './components/sections/Process'
 import TechExpertise from './components/sections/TechExpertise'
 import Testimonials from './components/sections/Testimonials'
-import Team from './components/sections/Team'
+// import Team from './components/sections/Team' // Hidden for now — can be reactivated
 import FAQ from './components/sections/FAQ'
 import CTASection from './components/sections/CTA'
 import Footer from './components/layout/Footer'
@@ -22,12 +22,12 @@ function HomePage() {
     <>
       <Navbar />
       <Hero />
-      <NosRealisations />
       <TechExpertise />
+      <NosRealisations />
       <BasedInCotonou />
       <Services />
       <Process />
-      <Team />
+      {/* <Team /> */}
       <Testimonials />
       <FAQ />
       <CTASection />

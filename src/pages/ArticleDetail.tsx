@@ -279,7 +279,7 @@ function ArticleSidebar({
     <aside className="space-y-8">
       {/* Reading time + meta */}
       <div className="rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 flex items-center gap-2 font-['Outfit'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           <BookOpen className="h-4 w-4 text-[#00E87A]" />
           À propos
         </h3>
@@ -308,7 +308,7 @@ function ArticleSidebar({
       {/* Similar articles */}
       {similar.length > 0 && (
         <div className="rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-          <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+          <h3 className="mb-4 flex items-center gap-2 font-['Outfit'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
             <Tag className="h-4 w-4 text-[#00E87A]" />
             Dans la même catégorie
           </h3>
@@ -328,7 +328,7 @@ function ArticleSidebar({
                   />
                 </div>
                 <div>
-                  <h4 className="font-['Satoshi'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
+                  <h4 className="font-['Outfit'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
                     {post.title}
                   </h4>
                   <span className="mt-1 block font-['Satoshi'] text-[10px] text-[#374151]">
@@ -343,7 +343,7 @@ function ArticleSidebar({
 
       {/* Popular */}
       <div className="rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 flex items-center gap-2 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 flex items-center gap-2 font-['Outfit'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           <TrendingUp className="h-4 w-4 text-[#00E87A]" />
           Populaires
         </h3>
@@ -354,7 +354,7 @@ function ArticleSidebar({
                 {i + 1}
               </span>
               <div>
-                <h4 className="font-['Satoshi'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
+                <h4 className="font-['Outfit'] text-sm font-medium leading-snug text-[#071510] dark:text-[#F0FAF4] group-hover:text-[#00E87A] transition-colors line-clamp-2">
                   {post.title}
                 </h4>
                 <span className="mt-1 block font-['Satoshi'] text-[10px] text-[#374151]">
@@ -368,7 +368,7 @@ function ArticleSidebar({
 
       {/* Categories */}
       <div className="rounded-2xl border border-[#00E87A]/10 bg-[#F0FAF4]/30 dark:bg-[#071510]/40 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 font-['Satoshi'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
+        <h3 className="mb-4 font-['Outfit'] text-sm font-bold text-[#071510] dark:text-[#F0FAF4]">
           Catégories
         </h3>
         <div className="flex flex-wrap gap-2">
@@ -646,7 +646,7 @@ export default function ArticleDetail() {
                   className="h-14 w-14 rounded-full object-cover ring-2 ring-[#00E87A]/20"
                 />
                 <div>
-                  <h4 className="font-['Satoshi'] text-base font-bold text-[#071510] dark:text-[#F0FAF4]">
+                  <h4 className="font-['Outfit'] text-base font-bold text-[#071510] dark:text-[#F0FAF4]">
                     {post.author.name}
                   </h4>
                   <p className="font-['Satoshi'] text-xs text-[#374151]">{post.author.role}</p>

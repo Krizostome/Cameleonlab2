@@ -411,7 +411,7 @@ export default function TechExpertise() {
 
       {/* ── Header ── */}
       <div className="relative z-10 mx-auto mb-16 max-w-7xl px-6 text-center md:px-10" data-reveal>
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[#00E87A]">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00E87A]/15 bg-[#00E87A]/5 px-4 py-1.5 font-['Satoshi'] text-[11px] font-medium uppercase tracking-widest text-[#00E87A]">
           Notre stack
         </div>
         <h2 className="mb-4 font-['Outfit'] text-3xl font-bold text-[#071510] dark:text-[#F0FAF4] sm:text-4xl md:text-5xl">

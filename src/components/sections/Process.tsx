@@ -89,25 +89,37 @@ export default function Process() {
       className="relative overflow-hidden bg-[#F7FFF9] dark:bg-[#060C0A] py-16 md:py-20 lg:py-24"
       aria-label="Notre processus"
     >
-      {/* Grain texture */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'overlay',
-        }}
-      />
-
-      {/* Radial halo */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{
-          width: '700px',
-          height: '700px',
-          background: 'radial-gradient(circle, rgba(0,232,122,0.04) 0%, transparent 60%)',
-          filter: 'blur(80px)',
-        }}
-      />
+      {/* ── Background layers (same as Team section) ── */}
+      <div className="absolute inset-0 z-0">
+        {/* Grain texture via SVG noise */}
+        <div
+          className="absolute inset-0 opacity-[0.035] dark:opacity-[0.05]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "128px 128px",
+          }}
+        />
+        {/* Radial green halo */}
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            width: "80%",
+            height: "80%",
+            background: "radial-gradient(circle, rgba(0,232,122,0.06) 0%, transparent 60%)",
+            filter: "blur(80px)",
+            pointerEvents: "none",
+          }}
+        />
+        {/* Atmospheric vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.08) 100%)",
+            pointerEvents: "none",
+          }}
+        />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         {/* Header */}

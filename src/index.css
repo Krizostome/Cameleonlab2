@@ -75,6 +75,14 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+/* ═══════════════════════════════════════════════════════════════════ */
+/*  Global typography — Outfit for headings, Satoshi for body        */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+}
+
 /* Smooth theme transitions on common properties */
 *,
 *::before,
